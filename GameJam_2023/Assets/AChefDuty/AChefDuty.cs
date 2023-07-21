@@ -20,8 +20,19 @@ namespace GameJamCore
         [Space]
         public int TargetFramrate = 60;
 
+        [Space]
 
-    private void Start()
+        public int number_of_food_to_get;
+        public FoodDeposit food_deposit;
+
+        public override void OnAwake()
+        {
+            Application.targetFrameRate = TargetFramrate;
+
+            base.OnAwake();
+        }
+
+        private void Start()
         {
             food_configs = new Dictionary<foodtype, FoodConfig>();
             //inizialize dictionary
@@ -30,20 +41,23 @@ namespace GameJamCore
                 food_configs.Add(food.type, food);
             }
 
+
+            SpawnFood();
+
+            SetUpFoodDepost();
+
+        }
+
+
+        public void SpawnFood()
+        {
+
             //numbers
             for (int i = 0; i <= 9; i++)
             {
                 availableNumbers.Add(i);
             }
 
-            SpawnFood();
-
-            Application.targetFrameRate = TargetFramrate;
-        }
-
-
-        public void SpawnFood()
-        {
             var clone_foods = food_configs.Values.ToList();
 
             for(int i = 0; i < food_configs.Values.Count; i++)
@@ -66,6 +80,36 @@ namespace GameJamCore
         public void SpawnFood(foodtype[] foods)
         {
 
+        }
+
+        public void SetUpFoodDepost()
+        {
+
+            //crea una lista e passala sotto
+            List<FoodConfig> _list_to_pass = new List<FoodConfig>();
+
+            List<int> numeri_estratti = new List<int>();
+
+            for(int i = 0; i < number_of_food_to_get; i++)
+            {
+                //prendi un numero
+                int number = Random.Range(0, food_configs.Keys.Count);
+
+                //il numero è già estratto?
+                if (numeri_estratti.Contains(number))
+                {
+                    //ritorna indietro e rifai
+                    i--;
+                }
+                else
+                {
+                    _list_to_pass.Add(_food_config[number]);
+                    numeri_estratti.Add(number);
+                }
+
+            }
+
+            food_deposit.InizializeRequestedResources(_list_to_pass);
         }
     }
 }
