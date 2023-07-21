@@ -146,7 +146,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   outlineGradientInLocalSpace: 0
-  outlineWidth: 0.66
+  outlineWidth: 0.3
   outlineQuality: 3
   outlineDownsampling: 2
   outlineVisibility: 0
