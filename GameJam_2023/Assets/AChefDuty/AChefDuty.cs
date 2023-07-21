@@ -6,16 +6,20 @@ namespace GameJamCore
 {
     public class AChefDuty : GameManagerBase
     {
-        // Start is called before the first frame update
-        void Start()
+        public Transform[] food_spawn_position;
+
+        [SerializeField] FoodConfig[] _food_config;
+
+        public Dictionary<foodtype, FoodConfig> food_configs;
+
+        private void Start()
         {
+            //inizialize dictionary
 
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            foreach(FoodConfig food in _food_config)
+            {
+                food_configs.Add(food.type, food);
+            }
         }
     }
 }
