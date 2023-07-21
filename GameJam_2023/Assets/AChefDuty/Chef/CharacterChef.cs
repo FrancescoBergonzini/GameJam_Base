@@ -11,20 +11,29 @@ namespace GameJamCore
 
         public foodtype current_food_holding = foodtype.none;
 
+        public GameObject current_food_holded;
         public List<GameObject> _food_holding_pref;
 
         public Dictionary<foodtype, GameObject> food_holding_pref;
 
         [Header("Raycast logic")]
-        public LayerMask objectsLayerMask;
+        public LayerMask foodLayerMask;
+
         public float raycastDistance = 10f;
         public Transform start_transform;
         public FoodObject food_looking;
         public float check_time = 0.5f;
         public float start_time;
+        public float radious;
 
         [Header("Action logic")]
         KeyCode Action_Key = KeyCode.Mouse0;
+
+        [Header("Trow logic")]
+        public Transform trow_point;
+
+        [Space]
+        public float trow_force = 5f;
 
         public enum state
         {
@@ -47,29 +56,38 @@ namespace GameJamCore
             start_time = Time.time;
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             switch (current_state)
             {
 
                 case state.looking_for_food:
-                    // Ottieni la direzione davanti alla trasformazione
 
-                    if (Time.time > start_time + check_time)
+                    Vector3 raycastDirection = start_transform.forward;
+                    // Esegui il Raycast
+                    RaycastHit hit;
+
+                    if (Physics.Raycast(start_transform.position, raycastDirection, out hit, raycastDistance))
                     {
-                        Vector3 raycastDirection = start_transform.forward;
-                        // Esegui il Raycast
-                        RaycastHit hit;
+                        Collider[] colliders = Physics.OverlapSphere(hit.point, radious, foodLayerMask);
 
-                        if (Physics.Raycast(start_transform.position, raycastDirection, out hit, raycastDistance, objectsLayerMask))
+                        if (colliders.Length > 0)
                         {
-                            // Un oggetto è stato colpito dal Raycast nel layer "oggetti"
-                            food_looking = hit.collider.gameObject.GetComponentInParent<FoodObject>();
+                            // Trovato almeno un oggetto nel raggio della sfera
+                            food_looking = colliders[0].GetComponentInParent<FoodObject>();
                         }
-                        else food_looking = null;
-
-                        start_time = Time.time;
+                        else
+                        {
+                            food_looking = null;
+                        }
                     }
+                    else
+                    {
+                        food_looking = null;
+                    }
+
+                    //start_time = Time.time;
+                    //}
 
                     if (Input.GetKeyDown(Action_Key) && food_looking != null)
                     {
@@ -84,6 +102,16 @@ namespace GameJamCore
 
                 case state.carring_food:
 
+                    if (Input.GetKeyDown(Action_Key))
+                    {
+                        FoodObject.Create((AChefDuty.Instance as AChefDuty).food_configs[current_food_holding], trow_point, trow_force);
+
+                        DeactiveFoods();
+
+                        current_food_holding = foodtype.none;
+
+                        current_state = state.looking_for_food;
+                    }
                     break;
             }
 
@@ -97,31 +125,39 @@ namespace GameJamCore
                 if(food.name == current_food_holding.ToString())
                 {
                     food.SetActive(true);
+                    current_food_holded = food;
                     return;
                 }
             }
         }
 
-        public void TrowFood()
+        public void DeactiveFoods()
         {
-            //genera oggetto e lancialo
+            foreach (GameObject food in _food_holding_pref)
+            {
+                if (food.name == current_food_holding.ToString())
+                {
+                    food.SetActive(false);
+                }
+            }
 
-            //distruggi e ripulisci me
+            current_food_holded = null;
         }
 
 
-        private void OnDrawGizmos()
+
+
+        private void OnDrawGizmosSelected()
         {
             Vector3 raycastDirection = start_transform.forward;
             Gizmos.color = Color.red;
             Gizmos.DrawRay(start_transform.position, raycastDirection * raycastDistance);
 
             RaycastHit hit;
-            if (Physics.Raycast(start_transform.position, raycastDirection, out hit, raycastDistance, objectsLayerMask))
+            if (Physics.Raycast(start_transform.position, raycastDirection, out hit, raycastDistance))
             {
-                // Se il Raycast colpisce un oggetto nel layer "oggetti", mostra il punto di impatto come Gizmo
-                Gizmos.color = Color.green;
-                Gizmos.DrawSphere(hit.point, 1f);
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawWireSphere(hit.point, radious);
             }
         }
     }

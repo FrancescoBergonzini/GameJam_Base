@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 404777884}
   - component: {fileID: 404777883}
   - component: {fileID: 404777882}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,6 +419,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b77890a41957aa34e933b3fbb9029ee4, type: 2}
   - {fileID: 11400000, guid: 2e966fb840d69da46a7833f397cdfcae, type: 2}
   availableNumbers: 
+  food_holder_transform: {fileID: 1210981344}
+  TargetFramrate: 60
 --- !u!4 &580041258
 Transform:
   m_ObjectHideFlags: 0
@@ -433,6 +435,7 @@ Transform:
   m_Children:
   - {fileID: 735562230}
   - {fileID: 1364636767}
+  - {fileID: 1210981344}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -462,6 +465,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Items: []
+--- !u!1 &649098914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 649098915}
+  m_Layer: 0
+  m_Name: trow_point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &649098915
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649098914}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8773013670311625496}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &652083212
 GameObject:
   m_ObjectHideFlags: 0
@@ -1033,7 +1067,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 555129a0d8a116c439d478e20188e6e3, type: 3}
       propertyPath: m_Name
-      value: wholerHam
+      value: wholeHam
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 555129a0d8a116c439d478e20188e6e3, type: 3}
       propertyPath: m_IsActive
@@ -1248,6 +1282,37 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c7903db1ad411af479a78d99b981b63b, type: 3}
   m_PrefabInstance: {fileID: 1187916073}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1210981343
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1210981344}
+  m_Layer: 0
+  m_Name: food_holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1210981344
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210981343}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 580041258}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1364636766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,9 +1473,9 @@ Light:
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
-    m_Resolution: -1
+    m_Resolution: 1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.791
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -1623,7 +1688,7 @@ GameObject:
   - component: {fileID: 1802855286}
   - component: {fileID: 1802855285}
   - component: {fileID: 1802855284}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1717,7 +1782,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1833813454}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Environment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1915,6 +1980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   current_food_holding: 100
+  current_food_holded: {fileID: 0}
   _food_holding_pref:
   - {fileID: 1559882035}
   - {fileID: 1187916075}
@@ -1926,14 +1992,17 @@ MonoBehaviour:
   - {fileID: 1139158923}
   - {fileID: 2114384730}
   - {fileID: 1116167398}
-  objectsLayerMask:
+  foodLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  raycastDistance: 2.5
+  raycastDistance: 3
   start_transform: {fileID: 8773013670311625496}
   food_looking: {fileID: 0}
   check_time: 0.5
   start_time: 0
+  radious: 1.5
+  trow_point: {fileID: 649098915}
+  trow_force: 10
   current_state: 0
 --- !u!4 &431761493165899721 stripped
 Transform:
@@ -2124,6 +2193,7 @@ Transform:
   - {fileID: 1139158922}
   - {fileID: 2114384729}
   - {fileID: 1116167397}
+  - {fileID: 649098915}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

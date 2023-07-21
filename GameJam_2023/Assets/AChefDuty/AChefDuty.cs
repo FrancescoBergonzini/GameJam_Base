@@ -15,6 +15,11 @@ namespace GameJamCore
 
         public List<int> availableNumbers = new List<int>();
 
+        public Transform food_holder_transform;
+
+        [Space]
+        public int TargetFramrate = 60;
+
 
     private void Start()
         {
@@ -32,6 +37,8 @@ namespace GameJamCore
             }
 
             SpawnFood();
+
+            Application.targetFrameRate = TargetFramrate;
         }
 
 
@@ -45,7 +52,7 @@ namespace GameJamCore
                 int randomNumber = availableNumbers[randomIndex];
 
   
-                FoodObject.Create(clone_foods[randomNumber], food_spawn_position[randomNumber].position);
+                FoodObject.Create(clone_foods[randomNumber], food_spawn_position[randomNumber]);
 
                 //remove
                 availableNumbers.Remove(randomNumber);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace GameJamCore
@@ -11,10 +12,17 @@ namespace GameJamCore
 
         public FoodConfig Config;
 
-        public static void Create(FoodConfig config, Vector3 pos)
+        public Rigidbody RB;
+
+        public static void Create(FoodConfig config, Transform pos, float trow_force = 0)
         {
-            FoodObject food = Instantiate(config.prefab, pos, Quaternion.identity);
+            FoodObject food = Instantiate(config.prefab, pos.position, Quaternion.identity, (AChefDuty.Instance as AChefDuty).food_holder_transform);
             food.Config = config;
+            food.RB = food.GetComponent<Rigidbody>();
+
+            if (trow_force != 0) food.RB.AddForce(pos.forward * trow_force, ForceMode.Impulse);
+
+
         }
 
         public foodtype ConvertFoodToData()
