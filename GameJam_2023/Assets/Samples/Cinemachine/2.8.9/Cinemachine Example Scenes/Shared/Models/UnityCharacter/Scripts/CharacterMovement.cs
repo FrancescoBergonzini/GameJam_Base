@@ -16,7 +16,6 @@ public class CharacterMovement : MonoBehaviour
     private float speed = 0f;
     private float direction = 0f;
     private bool isSprinting = false;
-    private Animator anim;
     private Vector3 targetDirection;
     private Vector2 input;
     private Quaternion freeRotation;
@@ -26,7 +25,6 @@ public class CharacterMovement : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-	    anim = GetComponent<Animator>();
 	    mainCamera = Camera.main;
 	}
 
@@ -41,21 +39,17 @@ public class CharacterMovement : MonoBehaviour
             speed = Mathf.Abs(input.x) + input.y;
         else
             speed = Mathf.Abs(input.x) + Mathf.Abs(input.y);
-
-        speed = Mathf.Clamp(speed, 0f, 1f);
-        speed = Mathf.SmoothDamp(anim.GetFloat("Speed"), speed, ref velocity, 0.1f);
-        anim.SetFloat("Speed", speed);
+;
 
 	    if (input.y < 0f && useCharacterForward)
             direction = input.y;
 	    else
             direction = 0f;
 
-        anim.SetFloat("Direction", direction);
 
         // set sprinting
 	    isSprinting = ((Input.GetKey(sprintJoystick) || Input.GetKey(sprintKeyboard)) && input != Vector2.zero && direction >= 0f);
-        anim.SetBool("isSprinting", isSprinting);
+
 
         // Update target direction relative to the camera view (or not if the Keep Direction option is checked)
         UpdateTargetDirection();
