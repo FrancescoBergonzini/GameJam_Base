@@ -17,9 +17,31 @@ namespace GameJamCore
             food.Config = config;
         }
 
-        private void Start()
+        public foodtype ConvertFoodToData()
         {
-            
+            if (this.gameObject != null)
+            {
+                // Ottieni il tipo di cibo dalla configurazione
+                foodtype type = Config.type;
+
+                // Avvia la coroutine per distruggere l'oggetto in modo asincrono
+                StartCoroutine(DestroyGameObject());
+
+                return type;
+            }
+            else
+            {
+                return foodtype.none;
+            }
+        }
+
+        private IEnumerator DestroyGameObject()
+        {
+            // Aspetta un frame prima di distruggere l'oggetto
+            yield return null;
+
+            // Distruggi l'oggetto
+            Destroy(this.gameObject);
         }
     }
 }

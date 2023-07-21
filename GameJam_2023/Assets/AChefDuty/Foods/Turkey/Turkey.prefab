@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Turkey
       objectReference: {fileID: 0}
+    - target: {fileID: 9085636115403072708, guid: a5e3cd2f840c39b40b9fa91f5d746a34, type: 3}
+      propertyPath: rmsCount
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5e3cd2f840c39b40b9fa91f5d746a34, type: 3}
 --- !u!4 &3926256896987583870 stripped
@@ -129,9 +133,21 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -2328411686548971133, guid: 224ae4f5f97791d4684074d2ed48e4d7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 224ae4f5f97791d4684074d2ed48e4d7, type: 3}
       propertyPath: m_Name
       value: turkey
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 224ae4f5f97791d4684074d2ed48e4d7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626175159611565448, guid: 224ae4f5f97791d4684074d2ed48e4d7, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 224ae4f5f97791d4684074d2ed48e4d7, type: 3}

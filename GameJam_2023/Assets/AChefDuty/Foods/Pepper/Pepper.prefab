@@ -71,6 +71,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pepper
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 96a38e90bc1a9a745ac48fb0b6a8de09, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96a38e90bc1a9a745ac48fb0b6a8de09, type: 3}
 --- !u!1 &1864457135330900015 stripped

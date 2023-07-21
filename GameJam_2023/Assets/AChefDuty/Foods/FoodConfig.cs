@@ -12,11 +12,13 @@ namespace GameJamCore
         watermelon,
         turkey,
         coconut,
-        whileHam,
-        peneapple,
+        wholeHam,
+        pineapple,
         pepper,
         meatRaw,
-        mushroom
+        mushroom,
+
+        none = 100
     }
 
     [CreateAssetMenu(fileName = "Assets/FoodConfig_new.asset", menuName = "GameJam/AChefDuty/FoodConfigConfig")]
