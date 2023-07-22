@@ -48,21 +48,36 @@ namespace GameJamCore
 
         public void OnCollisionEnter(Collision collision)
         {
-            if(collision.gameObject.layer == 7)
+            if((AChefDuty.Instance as AChefDuty).current_mode == AChefDuty.GameMode.preparation)
             {
-                var food = collision.gameObject.GetComponent<FoodObject>();
-
-                if (request_food_to_deposit.Contains(food.Config))
+                if (collision.gameObject.layer == 7)
                 {
-                    food.ConvertFoodToData();
-                    request_food_to_deposit.Remove(food.Config);
-
-                    OnFoodAdded?.Invoke(food.Config.type);
+                    //start game;
+                    (AChefDuty.Instance as AChefDuty).SetUpGame((AChefDuty.Instance as AChefDuty).current_game_diff);
+                    return;
                 }
 
-                if(request_food_to_deposit.Count == 0)
+            }
+
+            if ((AChefDuty.Instance as AChefDuty).current_mode == AChefDuty.GameMode.game)
+            {
+
+                if (collision.gameObject.layer == 7)
                 {
-                    OnAllFoodAdded?.Invoke();
+                    var food = collision.gameObject.GetComponent<FoodObject>();
+
+                    if (request_food_to_deposit.Contains(food.Config))
+                    {
+                        food.ConvertFoodToData();
+                        request_food_to_deposit.Remove(food.Config);
+
+                        OnFoodAdded?.Invoke(food.Config.type);
+                    }
+
+                    if (request_food_to_deposit.Count == 0)
+                    {
+                        OnAllFoodAdded?.Invoke();
+                    }
                 }
             }
         }

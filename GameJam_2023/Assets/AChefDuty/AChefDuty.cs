@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GameJamCore
 {
@@ -28,6 +30,36 @@ namespace GameJamCore
         public Monolith[] monolith;
         public Sprite[] rune_sprites;
 
+
+        [Space]
+        public float game_time;
+        float start_time;
+        public TextMeshProUGUI time_text;
+        public TextMeshProUGUI game_over_text;
+        public GameObject gameover_ui;
+        public GameObject gamewin_ui;
+        public GameObject tutorial_obj;
+
+        [Space]
+        public GameDifficulty current_game_diff;
+
+        public enum GameMode
+        {
+            none,
+            preparation,
+            game,
+            end
+        }
+
+        public GameMode current_mode = GameMode.none;
+
+        public enum game_over_reason
+        {
+            time_end,
+            touch_water,
+            recipe_failed
+        }
+
         public override void OnAwake()
         {
             Application.targetFrameRate = TargetFramrate;
@@ -37,23 +69,56 @@ namespace GameJamCore
 
         private void Start()
         {
+
+            if (current_mode == GameMode.none)
+            {
+                current_mode = GameMode.preparation;
+            }
+
             food_configs = new Dictionary<foodtype, FoodConfig>();
             //inizialize dictionary
-            foreach(FoodConfig food in _food_config)
+            foreach (FoodConfig food in _food_config)
             {
                 food_configs.Add(food.type, food);
             }
 
 
-            SpawnFood();
-
-            SetUpFoodDepost();
-
-            //
-            Runefy();
 
         }
 
+        private void Update()
+        {
+            if(current_mode == GameMode.game)
+            {
+                time_text.text = DisplayTime(game_time - (Time.time - start_time));
+
+                if(game_time - (Time.time - start_time) <= 0)
+                {
+                    GameOver(game_over_reason.time_end);
+                    
+                }
+            }
+        }
+
+
+        public void SetUpGame(GameDifficulty difficulties)
+        {
+            tutorial_obj.SetActive(false);
+
+            current_mode = GameMode.game;
+
+            SpawnFood();
+
+            SetUpFoodDepost(difficulties.food_to_get);
+
+            //
+            Runefy(difficulties.runefy);
+
+            game_time = difficulties.time;
+
+            
+            start_time = Time.time;
+        }
 
         public void SpawnFood()
         {
@@ -89,7 +154,7 @@ namespace GameJamCore
 
         }
 
-        public void SetUpFoodDepost()
+        public void SetUpFoodDepost(int foot_to_spaw_number)
         {
 
             //crea una lista e passala sotto
@@ -97,7 +162,7 @@ namespace GameJamCore
 
             List<int> numeri_estratti = new List<int>();
 
-            for(int i = 0; i < number_of_food_to_get; i++)
+            for(int i = 0; i < foot_to_spaw_number; i++)
             {
                 //prendi un numero
                 int number = Random.Range(0, food_configs.Keys.Count);
@@ -119,9 +184,9 @@ namespace GameJamCore
             food_deposit.InizializeRequestedResources(_list_to_pass);
         }
 
-        public void Runefy()
+        public void Runefy(int number_to_runefy)
         {
-            if (runefy_food <= 0)
+            if (number_to_runefy <= 0)
                 return;
 
 
@@ -132,7 +197,7 @@ namespace GameJamCore
 
             //per ogni runa, cambia food image con quello
 
-            for (int i = 0; i < runefy_food; i++)
+            for (int i = 0; i < number_to_runefy; i++)
             {
                 //prendi una runa random 
                 int rune_number = Random.Range(0, rune_sprites.Length);
@@ -161,6 +226,49 @@ namespace GameJamCore
 
             }
             //passa a monolith random, food e sprite
+        }
+
+        public void GameOver(game_over_reason reason)
+        {
+            current_mode = GameMode.end;
+
+            Time.timeScale = 0;
+
+            gameover_ui.SetActive(true);
+
+            switch (reason)
+            {
+                case game_over_reason.time_end: game_over_text.text = "You didn't finish the recipe in time and you died!";
+                    break;
+
+                case game_over_reason.touch_water: game_over_text.text = "You drowned by falling into the water!";
+                    break;
+
+                case game_over_reason.recipe_failed: game_over_text.text = "You got too many ingredients wrong!";
+                    break;
+            }
+
+        }
+
+        public void GameWin()
+        {
+            current_mode = GameMode.end;
+            Time.timeScale = 0;
+
+            CharacterChef.instance.gameObject.SetActive(false);
+            gamewin_ui.SetActive(true);
+        }
+
+        public void RestartScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        string DisplayTime(float timeToDisplay)
+        {
+            float minutes = Mathf.FloorToInt(timeToDisplay / 60);
+            float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+            return string.Format("{0:00}:{1:00}", minutes, seconds);
         }
     }
 }

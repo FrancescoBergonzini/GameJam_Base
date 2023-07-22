@@ -16,7 +16,18 @@ namespace GameJamCore
 
         public static void Create(FoodConfig config, Transform pos, float trow_force = 0)
         {
-            FoodObject food = Instantiate(config.prefab, pos.position, Quaternion.identity, (AChefDuty.Instance as AChefDuty).food_holder_transform);
+            FoodObject food = null;
+
+            if((AChefDuty.Instance as AChefDuty).current_mode == AChefDuty.GameMode.preparation)
+            {
+                food = Instantiate(config.prefab, pos.position, Quaternion.identity, (AChefDuty.Instance as AChefDuty).tutorial_obj.transform);
+            }
+            else
+            {
+                food = Instantiate(config.prefab, pos.position, Quaternion.identity, (AChefDuty.Instance as AChefDuty).food_holder_transform);
+            }
+
+            
             food.Config = config;
             food.RB = food.GetComponent<Rigidbody>();
 
