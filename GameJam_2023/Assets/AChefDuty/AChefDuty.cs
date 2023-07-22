@@ -13,7 +13,6 @@ namespace GameJamCore
 
         public Dictionary<foodtype, FoodConfig> food_configs;
 
-        public List<int> availableNumbers = new List<int>();
 
         public Transform food_holder_transform;
 
@@ -59,6 +58,7 @@ namespace GameJamCore
         public void SpawnFood()
         {
 
+            List<int> availableNumbers = new List<int>();
             //numbers
             for (int i = 0; i <= 9; i++)
             {
@@ -138,16 +138,16 @@ namespace GameJamCore
                 int rune_number = Random.Range(0, rune_sprites.Length);
 
                 //giù presa?
-                if (rune_estratte.Contains(rune_number)) continue;
+                if (rune_estratte.Contains(rune_number)) { i--; continue; } ;
 
                 //prendi un food random
-                int food_number = Random.Range(0, rune_sprites.Length);
+                int food_number = Random.Range(0, food_deposit.food_icons.Count);
 
-                if (food_estratti.Contains(food_number)) continue;
+                if (food_estratti.Contains(food_number)) { i--; continue; };
 
                 //estrai monolite
                 int monolith_number = Random.Range(0, monolith.Length);
-                if (monolith_estratti.Contains(monolith_number)) continue;
+                if (monolith_estratti.Contains(monolith_number)) { i--; continue; };
 
                 //cambia e inizializza monolite valore
                 monolith[monolith_number].InizializeMonolith(rune_sprites[rune_number], food_deposit.food_icons[food_number].food_icon.sprite);

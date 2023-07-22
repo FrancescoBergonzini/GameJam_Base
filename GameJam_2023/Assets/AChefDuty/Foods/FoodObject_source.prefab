@@ -147,7 +147,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   outlineGradientInLocalSpace: 0
-  outlineWidth: 0.45
+  outlineWidth: 0.6
   outlineQuality: 0
   outlineDownsampling: 2
   outlineVisibility: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
   outlineOptimalBlit: 1
   outlineBlitDebug: 0
   outlineIndependent: 0
-  glow: 0
+  glow: 2.5
   glowWidth: 0.4
   glowQuality: 3
   glowDownsampling: 2
