@@ -21,9 +21,13 @@ namespace GameJamCore
         public int TargetFramrate = 60;
 
         [Space]
-
         public int number_of_food_to_get;
         public FoodDeposit food_deposit;
+
+        [Space]
+        public int runefy_food;
+        public Monolith[] monolith;
+        public Sprite[] rune_sprites;
 
         public override void OnAwake()
         {
@@ -45,6 +49,9 @@ namespace GameJamCore
             SpawnFood();
 
             SetUpFoodDepost();
+
+            //
+            Runefy();
 
         }
 
@@ -110,6 +117,50 @@ namespace GameJamCore
             }
 
             food_deposit.InizializeRequestedResources(_list_to_pass);
+        }
+
+        public void Runefy()
+        {
+            if (runefy_food <= 0)
+                return;
+
+
+            List<int> rune_estratte = new List<int>();
+            List<int> food_estratti = new List<int>();
+            List<int> monolith_estratti = new List<int>();
+
+
+            //per ogni runa, cambia food image con quello
+
+            for (int i = 0; i < runefy_food; i++)
+            {
+                //prendi una runa random 
+                int rune_number = Random.Range(0, rune_sprites.Length);
+
+                //giù presa?
+                if (rune_estratte.Contains(rune_number)) continue;
+
+                //prendi un food random
+                int food_number = Random.Range(0, rune_sprites.Length);
+
+                if (food_estratti.Contains(food_number)) continue;
+
+                //estrai monolite
+                int monolith_number = Random.Range(0, monolith.Length);
+                if (monolith_estratti.Contains(monolith_number)) continue;
+
+                //cambia e inizializza monolite valore
+                monolith[monolith_number].InizializeMonolith(rune_sprites[rune_number], food_deposit.food_icons[food_number].food_icon.sprite);
+                food_deposit.food_icons[food_number].food_icon.sprite = rune_sprites[rune_number];
+
+                //salv risultati non estraibili
+                rune_estratte.Add(rune_number);
+                food_estratti.Add(food_number);
+                monolith_estratti.Add(monolith_number);
+                
+
+            }
+            //passa a monolith random, food e sprite
         }
     }
 }

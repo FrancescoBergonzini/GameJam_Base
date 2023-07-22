@@ -19,6 +19,9 @@ namespace GameJamCore
         public FoodIcon icon_food_prefab;
         public Transform icon_parent;
 
+        [Space]
+        public List<FoodIcon> food_icons;
+
 
         private void Start()
         {
@@ -33,6 +36,8 @@ namespace GameJamCore
             foreach(FoodConfig food in request_food_to_deposit)
             {
                 var token = FoodIcon.Create(icon_food_prefab, food.type, food.icon, icon_parent) ;
+
+                food_icons.Add(token);
 
                 OnFoodAdded += token.CheckChangeBack;
 
