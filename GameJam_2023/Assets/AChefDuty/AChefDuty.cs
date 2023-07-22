@@ -116,6 +116,8 @@ namespace GameJamCore
 
             game_time = difficulties.time;
 
+            food_deposit.OnAllFoodAdded += GameWin;
+
             
             start_time = Time.time;
         }
@@ -123,25 +125,35 @@ namespace GameJamCore
         public void SpawnFood()
         {
 
-            List<int> availableNumbers = new List<int>();
-            //numbers
-            for (int i = 0; i <= 9; i++)
-            {
-                availableNumbers.Add(i);
-            }
+            List<int> availablePositions = new List<int>();
+            List<int> availableFoods = new List<int>();
 
             var clone_foods = food_configs.Values.ToList();
 
             for(int i = 0; i < food_configs.Values.Count; i++)
             {
-                int randomIndex = Random.Range(0, availableNumbers.Count);
-                int randomNumber = availableNumbers[randomIndex];
+                int _Position = Random.Range(0, food_spawn_position.Count);
+                int _Foods = Random.Range(0, food_spawn_position.Count);
 
-  
-                FoodObject.Create(clone_foods[randomNumber], food_spawn_position[randomNumber]);
+                //presente?
+                if (availablePositions.Contains(_Position))
+                {
+                    i--;
+                    continue;
+                }
+
+                if (availableFoods.Contains(_Foods))
+                {
+                    i--;
+                    continue;
+                }
+
+                
+                FoodObject.Create(clone_foods[_Position], food_spawn_position[_Foods]);
 
                 //remove
-                availableNumbers.Remove(randomNumber);
+                availablePositions.Add(_Position);
+                availableFoods.Add(_Foods);
 
             }
 
@@ -232,7 +244,7 @@ namespace GameJamCore
         {
             current_mode = GameMode.end;
 
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
 
             gameover_ui.SetActive(true);
 
@@ -248,21 +260,40 @@ namespace GameJamCore
                     break;
             }
 
+            StartCoroutine(_restart());
+
         }
 
         public void GameWin()
         {
             current_mode = GameMode.end;
-            Time.timeScale = 0;
+            
+            //Time.timeScale = 0;
 
             CharacterChef.instance.gameObject.SetActive(false);
             gamewin_ui.SetActive(true);
+
+            StartCoroutine(_restart());
+
+
         }
 
-        public void RestartScene()
+        public IEnumerator _restart()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+            CharacterChef.instance.gameObject.SetActive(false);
+            gameover_ui.SetActive(false);
+
+            yield return new WaitForSeconds(6f);
+
+            RestartScene();
+
+            void RestartScene()
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
         }
+        
 
         string DisplayTime(float timeToDisplay)
         {

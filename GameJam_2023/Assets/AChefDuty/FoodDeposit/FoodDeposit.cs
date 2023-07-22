@@ -22,6 +22,9 @@ namespace GameJamCore
         [Space]
         public List<FoodIcon> food_icons;
 
+        [Space]
+        public int errors = 2;
+
 
         private void Start()
         {
@@ -72,6 +75,14 @@ namespace GameJamCore
                         request_food_to_deposit.Remove(food.Config);
 
                         OnFoodAdded?.Invoke(food.Config.type);
+                    }
+                    //se non era li segna errore ma distruggilo
+                    else
+                    {
+                        errors--;
+                        Destroy(food.gameObject);
+
+                        if (errors <= 0) (AChefDuty.Instance as AChefDuty).GameOver(AChefDuty.game_over_reason.recipe_failed);
                     }
 
                     if (request_food_to_deposit.Count == 0)
