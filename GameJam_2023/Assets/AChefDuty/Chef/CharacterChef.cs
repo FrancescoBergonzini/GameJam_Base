@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GameJamCore
 {
-    public class CharacterChef : MonoBehaviour
+    public class CharacterChef : GameEntity
     {
         public static CharacterChef instance;
 
@@ -95,6 +95,8 @@ namespace GameJamCore
 
                         ActiveCorrectFood();
 
+                        PlaySound(AudioType.cath);
+
                         current_state = state.carring_food;
                     }
 
@@ -109,6 +111,8 @@ namespace GameJamCore
                         DeactiveFoods();
 
                         current_food_holding = foodtype.none;
+
+                        PlaySound(AudioType.trow);
 
                         current_state = state.looking_for_food;
                     }

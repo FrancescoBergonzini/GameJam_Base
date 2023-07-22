@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GameJamCore
 {
-    public class FoodDeposit : MonoBehaviour
+    public class FoodDeposit : GameEntity
     {
         public static FoodDeposit instance;
 
@@ -55,6 +55,7 @@ namespace GameJamCore
             {
                 if (collision.gameObject.layer == 7)
                 {
+                    PlaySound(AudioType.start);
                     //start game;
                     (AChefDuty.Instance as AChefDuty).SetUpGame((AChefDuty.Instance as AChefDuty).current_game_diff);
                     return;
@@ -71,6 +72,7 @@ namespace GameJamCore
 
                     if (request_food_to_deposit.Contains(food.Config))
                     {
+                        PlaySound(AudioType.good);
                         food.ConvertFoodToData();
                         request_food_to_deposit.Remove(food.Config);
 
@@ -79,6 +81,7 @@ namespace GameJamCore
                     //se non era li segna errore ma distruggilo
                     else
                     {
+                        PlaySound(AudioType.bad);
                         errors--;
                         Destroy(food.gameObject);
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GameJamCore
 {
-    public class GameManagerBase : MonoBehaviour
+    public class GameManagerBase : GameEntity
     {
         // References to sound and particle databases (runtime)
         private ISoundDatabase SoundDatabase;

@@ -10,7 +10,16 @@ namespace GameJamCore
         None = 0,
         notImplemented,
 
-        test_sound = 10
+        test_sound = 10,
+
+        bad,
+        cath,
+        difficulty,
+        start,
+        good,
+        jump,
+        trow
+
             
 
 

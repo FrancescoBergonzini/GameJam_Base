@@ -15,7 +15,7 @@ namespace GameJamCore
         public float time;
     }
 
-    public class DifficultyChanger : MonoBehaviour
+    public class DifficultyChanger : GameEntity
     {
 
         [Space]
@@ -32,6 +32,7 @@ namespace GameJamCore
         {
             if (collision.gameObject.layer == 7)
             {
+                PlaySound(AudioType.difficulty);
                 //chenge difficulties
                 difficulty_counter++;
                 if (difficulty_counter == 3) difficulty_counter = 0;

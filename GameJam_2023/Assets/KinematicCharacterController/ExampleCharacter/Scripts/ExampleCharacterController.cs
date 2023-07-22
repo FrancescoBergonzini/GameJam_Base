@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using KinematicCharacterController;
 using System;
+using GameJamCore;
 
 namespace KinematicCharacterController.Examples
 {
@@ -40,7 +41,7 @@ namespace KinematicCharacterController.Examples
         TowardsGroundSlopeAndGravity,
     }
 
-    public class ExampleCharacterController : MonoBehaviour, ICharacterController
+    public class ExampleCharacterController : GameEntity, ICharacterController
     {
         public KinematicCharacterMotor Motor;
 
@@ -175,6 +176,8 @@ namespace KinematicCharacterController.Examples
                         {
                             _timeSinceJumpRequested = 0f;
                             _jumpRequested = true;
+
+
                         }
 
                         // Crouching input
@@ -357,6 +360,9 @@ namespace KinematicCharacterController.Examples
                             // See if we actually are allowed to jump
                             if (!_jumpConsumed && ((AllowJumpingWhenSliding ? Motor.GroundingStatus.FoundAnyGround : Motor.GroundingStatus.IsStableOnGround) || _timeSinceLastAbleToJump <= JumpPostGroundingGraceTime))
                             {
+
+                                PlaySound(GameJamCore.AudioType.jump);
+
                                 // Calculate jump direction before ungrounding
                                 Vector3 jumpDirection = Motor.CharacterUp;
                                 if (Motor.GroundingStatus.FoundAnyGround && !Motor.GroundingStatus.IsStableOnGround)

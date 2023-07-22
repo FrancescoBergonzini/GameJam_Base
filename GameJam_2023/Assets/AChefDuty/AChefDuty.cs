@@ -244,6 +244,7 @@ namespace GameJamCore
         {
             current_mode = GameMode.end;
 
+            PlaySound(GameJamCore.AudioType.bad);
             //Time.timeScale = 0;
 
             gameover_ui.SetActive(true);
@@ -282,7 +283,7 @@ namespace GameJamCore
         {
 
             CharacterChef.instance.gameObject.SetActive(false);
-            gameover_ui.SetActive(false);
+            time_text.gameObject.SetActive(false);
 
             yield return new WaitForSeconds(6f);
 
