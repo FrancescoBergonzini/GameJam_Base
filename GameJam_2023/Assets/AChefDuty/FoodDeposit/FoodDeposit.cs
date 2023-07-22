@@ -12,8 +12,12 @@ namespace GameJamCore
 
         public List<FoodConfig> request_food_to_deposit;
 
-        public Action OnFoodAdded;
+        public Action<foodtype> OnFoodAdded;
         public Action OnAllFoodAdded;
+
+        [Header("Sign")]
+        public FoodIcon icon_food_prefab;
+        public Transform icon_parent;
 
 
         private void Start()
@@ -24,6 +28,15 @@ namespace GameJamCore
         public void InizializeRequestedResources(List<FoodConfig> requested)
         {
             request_food_to_deposit = requested.ToList();
+
+            //add icons
+            foreach(FoodConfig food in request_food_to_deposit)
+            {
+                var token = FoodIcon.Create(icon_food_prefab, food.type, food.icon, icon_parent) ;
+
+                OnFoodAdded += token.CheckChangeBack;
+
+            }
 
 
         }
@@ -39,7 +52,7 @@ namespace GameJamCore
                     food.ConvertFoodToData();
                     request_food_to_deposit.Remove(food.Config);
 
-                    OnFoodAdded?.Invoke();
+                    OnFoodAdded?.Invoke(food.Config.type);
                 }
 
                 if(request_food_to_deposit.Count == 0)
