@@ -57,7 +57,8 @@ namespace GameJamCore
         {
             time_end,
             touch_water,
-            recipe_failed
+            recipe_failed,
+            object_fall
         }
 
         public override void OnAwake()
@@ -88,6 +89,11 @@ namespace GameJamCore
 
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                RestartScene();
+            }
+
             if(current_mode == GameMode.game)
             {
                 time_text.text = DisplayTime(game_time - (Time.time - start_time));
@@ -259,6 +265,8 @@ namespace GameJamCore
 
                 case game_over_reason.recipe_failed: game_over_text.text = "You got too many ingredients wrong!";
                     break;
+                case game_over_reason.object_fall: game_over_text.text = "A ingredient is fall into the water";
+                    break;
             }
 
             StartCoroutine(_restart());
@@ -289,12 +297,14 @@ namespace GameJamCore
 
             RestartScene();
 
-            void RestartScene()
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
+            
         }
-        
+
+        public void RestartScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
 
         string DisplayTime(float timeToDisplay)
         {

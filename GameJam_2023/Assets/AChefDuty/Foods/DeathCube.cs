@@ -13,6 +13,11 @@ namespace GameJamCore
             {
                 (AChefDuty.Instance as AChefDuty).GameOver(AChefDuty.game_over_reason.touch_water);
             }
+
+            if (other.gameObject.layer == 7)
+            {
+                (AChefDuty.Instance as AChefDuty).GameOver(AChefDuty.game_over_reason.object_fall);
+            }
         }
     }
 }
