@@ -2071,6 +2071,12 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 3031527319056419366, guid: 000a8b88c890b7343b766ee2e8e14c0e, type: 3}
+      propertyPath: m_text
+      value: 'Toss an item into the bucket to start or hit this to change difficulty.
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 7857971021060680800, guid: 000a8b88c890b7343b766ee2e8e14c0e, type: 3}
       propertyPath: m_Name
       value: Tutorial_4
