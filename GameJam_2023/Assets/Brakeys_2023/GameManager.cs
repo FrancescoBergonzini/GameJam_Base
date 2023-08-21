@@ -14,7 +14,7 @@ namespace GameJamCore.Brakeys_2023
         [Header("Biscotto references")]
         public Biscotto biscotto_prefab;
         //forse inutile, ma vedremo...
-        private List<Biscotto> _spawned_biscotti;
+        private List<Biscotto> _spawned_biscotti = new List<Biscotto>();
 
 
         private void Start()
