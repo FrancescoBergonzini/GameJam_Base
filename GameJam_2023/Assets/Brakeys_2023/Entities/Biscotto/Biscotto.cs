@@ -18,7 +18,7 @@ namespace GameJamCore.Brakeys_2023
             get { return _integrity; }
 
             //l'integrity va da 0 a 100
-            protected set 
+            protected set
             {
                 _integrity = value;
 
@@ -28,6 +28,8 @@ namespace GameJamCore.Brakeys_2023
             }
         }
 
+        [SerializeField, ReorderableList] List<GameObject> cookiePieces;
+        int startCookiePiecesCount;
 
         protected enum State
         {
@@ -55,7 +57,7 @@ namespace GameJamCore.Brakeys_2023
 
         public void Inizialize()
         {
-            if (_rdb == null) 
+            if (_rdb == null)
                 _rdb = GetComponent<Rigidbody2D>();
 
             if (_col == null)
@@ -64,6 +66,27 @@ namespace GameJamCore.Brakeys_2023
             //Sempre 100 di base?
             SetIntegrity(100f);
 
+            //imposta il numero iniziale di pezzi
+            startCookiePiecesCount = cookiePieces.Count;
+        }
+
+        private void Start()
+        {
+            Inizialize();
+            StartCoroutine(TestIntegrtity());
+        }
+
+        /// <summary>
+        /// solo per test
+        /// </summary>
+        /// <returns></returns>
+        IEnumerator TestIntegrtity()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(1);
+                ModifyIntegrity(-1);
+            }
         }
 
         #region Force
@@ -91,6 +114,17 @@ namespace GameJamCore.Brakeys_2023
         public void ModifyIntegrity(float value)
         {
             Integrity += value;
+            Debug.Log(Integrity);
+            //controlla se l'integrità è minore della soglia per rimuovere un pezzo
+            if (Integrity < (100f / startCookiePiecesCount) * cookiePieces.Count)
+            {
+                var removedPiece = cookiePieces[0];
+                removedPiece.layer = LayerMask.NameToLayer("PezziBiscotto");
+                removedPiece.transform.parent = null;
+                var pieceRigidbody = removedPiece.AddComponent<Rigidbody2D>();
+                pieceRigidbody.gravityScale = -0.8f;
+                cookiePieces.RemoveAt(0);
+            }
         }
 
         #endregion
