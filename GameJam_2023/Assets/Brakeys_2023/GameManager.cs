@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+namespace GameJamCore.Brakeys_2023
 {
-    // Start is called before the first frame update
-    void Start()
+    public class GameManager : GameManagerBase
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
+

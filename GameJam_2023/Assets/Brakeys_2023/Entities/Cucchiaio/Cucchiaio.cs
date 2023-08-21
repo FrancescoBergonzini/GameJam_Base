@@ -4,9 +4,10 @@ using UnityEngine;
 
 namespace GameJamCore.Brakeys_2023
 {
-    public class Biscotto : GameEntity
+    public class Cucchiaio : GameEntity
     {
 
     }
+
 }
 
