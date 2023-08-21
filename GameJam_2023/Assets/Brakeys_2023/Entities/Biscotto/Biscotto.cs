@@ -56,11 +56,20 @@ namespace GameJamCore.Brakeys_2023
 
         }
 
+        #region Force
+
         public Rigidbody2D GetRigidbody()
         {
             if (_rdb != null) return _rdb;
             else return null;
         }
+
+        public void OnForce()
+        {
+            //manage force using this...
+        }
+
+        #endregion
 
         #region Integrity
 
