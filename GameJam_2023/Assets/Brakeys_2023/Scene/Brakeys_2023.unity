@@ -394,6 +394,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1682038503}
   - component: {fileID: 1682038504}
+  - component: {fileID: 1682038506}
+  - component: {fileID: 1682038505}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -428,3 +430,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91116b16ff4b7a0409fd5b6caa855188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1682038505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682038502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef8bdae5e0a21942a18410aa44646d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Items:
+  - type: 1
+    prefab_particle: {fileID: 0}
+    Lifetime: 0
+    sound_type: 0
+--- !u!114 &1682038506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682038502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc42050137423fe4ab4b328fe910dfe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Items:
+  - type: 1
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    randomize: 0
+    fattore_di_random: 0
+    source: {fileID: 0}
