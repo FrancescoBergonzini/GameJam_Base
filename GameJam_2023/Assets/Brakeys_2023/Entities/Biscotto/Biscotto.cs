@@ -29,6 +29,16 @@ namespace GameJamCore.Brakeys_2023
         }
 
 
+        protected enum State
+        {
+            none,
+            not_interactable,
+            interactable
+        }
+
+        protected State current_State = State.none;
+
+
         public static int ActiveInGame = 0;
 
         public static Biscotto Create(Biscotto prefab, Vector3 position, Quaternion rotation, Vector2 force, Transform parent)
@@ -85,6 +95,10 @@ namespace GameJamCore.Brakeys_2023
 
         #endregion
 
+        #region State
+
+
+        #endregion
 
 
     }
