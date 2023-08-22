@@ -11,6 +11,7 @@ namespace GameJamCore.Brakeys_2023
     {
 
         [Header("Cucchiaio caratteristiche")]
+        public float velocità;
         public float resistenza_al_liquido;
         public float danno_da_impatto;
 
@@ -67,7 +68,8 @@ namespace GameJamCore.Brakeys_2023
         private void Update()
         {
             //input 
-            //inputForce
+            inputForce = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
             RotateLeft();
 
             RotateRight();
@@ -78,6 +80,9 @@ namespace GameJamCore.Brakeys_2023
         {
             if (inLiquid)
                 ManageMovementInLiquid();
+
+            if (!inLiquid)
+                ManageMovementInAir();
         }
 
         #region Input
@@ -95,18 +100,14 @@ namespace GameJamCore.Brakeys_2023
                                                  fluidDensity: GameManager.instance.current_level_tazza.current_liquid.densità,
                                                  objectDensity: this.current_config.resistenza_al_liquido);
 
-            // Modifica i valori dell'input in base alla velocità finale
-            inputForce *= finalVelocity;
-            //calcolo verticale
-
             // Aggiungi la forza dell'input al rigidbody usando AddForce
-            _rdb.AddForce(inputForce);
+            _rdb.AddForce(inputForce * current_config.velocità * finalVelocity, ForceMode2D.Force);
 
         }
 
         public void ManageMovementInAir()
         {
-
+            _rdb.AddForce(inputForce * current_config.velocità, ForceMode2D.Force);
         }
 
         //Questo metodo semplifica ulteriormente la resistenza al fluido e si basa sull'idea generale che più è alta la densità del fluido,
