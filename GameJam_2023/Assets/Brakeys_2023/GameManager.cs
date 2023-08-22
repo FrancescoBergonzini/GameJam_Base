@@ -27,6 +27,7 @@ namespace GameJamCore.Brakeys_2023
 
     public class GameManager : GameManagerBase
     {
+        public static GameManager instance => Instance as GameManager;
 
         [Header("Game references")]
         public Transform biscotto_parent;
@@ -41,6 +42,11 @@ namespace GameJamCore.Brakeys_2023
         [Header("Game mode")]
         public GameMode current_mode = GameMode.none;
         public string Debug_mode;
+
+        [Space]
+        public Tazza current_level_tazza;
+        public Cucchiaio current_level_cucchiaio;
+
         public enum GameMode
         {
             none,

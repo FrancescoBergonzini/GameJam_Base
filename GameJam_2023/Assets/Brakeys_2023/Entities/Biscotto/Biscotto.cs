@@ -5,6 +5,12 @@ using UnityEngine;
 
 namespace GameJamCore.Brakeys_2023
 {
+    [Serializable]
+    public struct Biscotto_Config
+    {
+        public float velocità_di_caduta;
+        public float resistenza_al_deterioramento;
+    }
 
     public class Biscotto : GameEntity
     {
@@ -30,6 +36,10 @@ namespace GameJamCore.Brakeys_2023
 
         [SerializeField, ReorderableList] List<GameObject> cookiePieces;
         int startCookiePiecesCount;
+
+        //
+        [Space]
+        public Biscotto_Config current_Config;
 
         protected enum State
         {
@@ -77,6 +87,7 @@ namespace GameJamCore.Brakeys_2023
         {
             Inizialize();
             StartCoroutine(TestIntegrtity());
+
         }
 
         /// <summary>

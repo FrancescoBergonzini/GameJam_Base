@@ -582,6 +582,8 @@ MonoBehaviour:
   biscotto_prefab: {fileID: 8346053624269761988, guid: ffd6becf21b70584eb4601ca7e57990b, type: 3}
   current_mode: 0
   Debug_mode: 
+  current_level_tazza: {fileID: 0}
+  current_level_cucchiaio: {fileID: 0}
 --- !u!114 &1682038505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,6 +601,10 @@ MonoBehaviour:
     prefab_particle: {fileID: 0}
     Lifetime: 0
     sound_type: 0
+  - type: 20
+    prefab_particle: {fileID: 33399610224794606, guid: e13bcc03ebb4c374791e45176e32a643, type: 3}
+    Lifetime: 5
+    sound_type: 1
 --- !u!114 &1682038506
 MonoBehaviour:
   m_ObjectHideFlags: 0

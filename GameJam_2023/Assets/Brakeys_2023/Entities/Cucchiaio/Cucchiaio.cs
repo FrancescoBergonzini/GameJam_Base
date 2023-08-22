@@ -1,13 +1,32 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 namespace GameJamCore.Brakeys_2023
 {
+    [Serializable]
+    public struct Cucchiaio_Config
+    {
+
+        [Header("Cucchiaio caratteristiche")]
+        public float resistenza_al_liquido;
+        public float danno_da_impatto;
+
+        //o meglio avere direttamente un altro cucchiaio?
+        public float dimensione;
+    }
+
     public class Cucchiaio : GameEntity
     {
+        Vector2 inputForce;
+
         Rigidbody2D _rdb;
         Collider2D _col;
+
+        [Space]
+        public Cucchiaio_Config current_config;
 
         protected enum Orientamento
         {
@@ -15,6 +34,12 @@ namespace GameJamCore.Brakeys_2023
             Left,
             Right
         }
+
+
+        //inLiquid determina la velocità 
+        //se fuori da liquidi tazza si muova a velocità fissa
+        //se dentro liquido è dato da velocità di movimento * 
+        public bool inLiquid = false;
 
         protected Orientamento current_orientamento = Orientamento.none;
 
@@ -27,6 +52,12 @@ namespace GameJamCore.Brakeys_2023
 
         protected override void Inizialize()
         {
+            if (_rdb == null)
+                _rdb = GetComponent<Rigidbody2D>();
+
+            if (_col == null)
+                _col = GetComponent<Collider2D>();
+
             //parte a destra
             current_orientamento = Orientamento.Left;
 
@@ -35,22 +66,57 @@ namespace GameJamCore.Brakeys_2023
 
         private void Update()
         {
-            ManageMovement();
-
+            //input 
+            //inputForce
             RotateLeft();
 
             RotateRight();
         }
 
-        #region Input
-        public void ManageMovement()
-        {
-            //gestisci input per controller e wasd
-            var horizontal = Input.GetAxis("Horizontal");
-            var vertical = Input.GetAxis("Vertical");
 
-            Debug.Log(horizontal);
-            Debug.Log(vertical);
+        private void FixedUpdate()
+        {
+            if (inLiquid)
+                ManageMovementInLiquid();
+        }
+
+        #region Input
+        public void ManageMovementInLiquid()
+        {
+
+            //Debug.Log(horizontal);
+            //Debug.Log(vertical);
+
+            //Vector2 inputForce = new Vector2(horizontal, vertical);
+            float inputMagnitude = inputForce.magnitude; // Calcola la magnitudine dell'input
+
+            // Calcola la velocità finale usando CalculateSpeed
+            float finalVelocity = CalculateSpeed(inputMagnitude: inputMagnitude,
+                                                 fluidDensity: GameManager.instance.current_level_tazza.current_liquid.densità,
+                                                 objectDensity: this.current_config.resistenza_al_liquido);
+
+            // Modifica i valori dell'input in base alla velocità finale
+            inputForce *= finalVelocity;
+            //calcolo verticale
+
+            // Aggiungi la forza dell'input al rigidbody usando AddForce
+            _rdb.AddForce(inputForce);
+
+        }
+
+        public void ManageMovementInAir()
+        {
+
+        }
+
+        //Questo metodo semplifica ulteriormente la resistenza al fluido e si basa sull'idea generale che più è alta la densità del fluido,
+        //maggiore sarà la resistenza.
+        private float CalculateSpeed(float inputMagnitude, float fluidDensity, float objectDensity)
+        {
+            // Calcola la velocità finale in base all'input, la densità del fluido e la densità del cucchiaio
+            float finalVelocity = inputMagnitude * (1 - (fluidDensity / objectDensity));
+
+            return finalVelocity;
         }
 
         public void RotateLeft()
