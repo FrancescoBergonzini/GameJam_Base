@@ -55,7 +55,7 @@ namespace GameJamCore.Brakeys_2023
         }
 
 
-        public void Inizialize()
+        protected override void Inizialize()
         {
             if (_rdb == null)
                 _rdb = GetComponent<Rigidbody2D>();
@@ -68,6 +68,9 @@ namespace GameJamCore.Brakeys_2023
 
             //imposta il numero iniziale di pezzi
             startCookiePiecesCount = cookiePieces.Count;
+
+            //layer
+            _changeLayer(Layers.Biscotto);
         }
 
         private void Start()
@@ -119,8 +122,10 @@ namespace GameJamCore.Brakeys_2023
             if (Integrity < (100f / startCookiePiecesCount) * cookiePieces.Count)
             {
                 var removedPiece = cookiePieces[0];
-                removedPiece.layer = LayerMask.NameToLayer("PezziBiscotto");
+                removedPiece.layer = Layers.PezziBiscotto;
                 removedPiece.transform.parent = null;
+
+                //TODO: useremo poi una classe apposta in moda da evitare il dispendioso AddComponent
                 var pieceRigidbody = removedPiece.AddComponent<Rigidbody2D>();
                 pieceRigidbody.gravityScale = -0.8f;
                 cookiePieces.RemoveAt(0);

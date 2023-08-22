@@ -25,10 +25,12 @@ namespace GameJamCore.Brakeys_2023
             Inizialize();
         }
 
-        public void Inizialize()
+        protected override void Inizialize()
         {
             //parte a destra
             current_orientamento = Orientamento.Left;
+
+            _changeLayer(Layers.Cucchiaio);
         }
 
         private void Update()

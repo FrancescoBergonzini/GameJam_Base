@@ -6,7 +6,10 @@ namespace GameJamCore.Brakeys_2023
 {
     public class Tazza : GameEntity
     {
-
+        protected override void Inizialize()
+        {
+            _changeLayer(Layers.Tazza);
+        }
     }
 }
 

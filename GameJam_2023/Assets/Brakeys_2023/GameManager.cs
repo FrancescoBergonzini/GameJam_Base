@@ -4,6 +4,27 @@ using UnityEngine;
 
 namespace GameJamCore.Brakeys_2023
 {
+    public static class Layers
+    {
+        //new layers test
+        public const int Biscotto = 6;
+        public const int PezziBiscotto = 7;
+        public const int Cucchiaio = 8;
+        public const int Tazza = 9;
+        public const int Liquido = 10;
+
+        public const int Collision11 = 11;
+        public const int Collision12 = 12;
+        public const int Collision13 = 13;
+        public const int Collision14= 14;
+        public const int Collision15 = 15;
+
+        //Others
+        public const int IgnoreStructure = 29; //ignora collision Structure & Enemy
+        public const int LimitDestroyEdge = 30;
+        public const int Structures = 31;
+    }
+
     public class GameManager : GameManagerBase
     {
 
