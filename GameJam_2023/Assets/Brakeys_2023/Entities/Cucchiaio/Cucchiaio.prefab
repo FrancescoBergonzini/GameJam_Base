@@ -46,6 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7f1612a3916675458a34c1427ebfd33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  current_config:
+    "velocit\xE0": 10
+    resistenza_al_liquido: 1
+    danno_da_impatto: 1
+    dimensione: 1
+  inLiquid: 0
 --- !u!50 &6823252601988298259
 Rigidbody2D:
   serializedVersion: 4

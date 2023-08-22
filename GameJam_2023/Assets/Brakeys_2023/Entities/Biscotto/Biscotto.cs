@@ -5,12 +5,6 @@ using UnityEngine;
 
 namespace GameJamCore.Brakeys_2023
 {
-    [Serializable]
-    public struct Biscotto_Config
-    {
-        public float velocità_di_caduta;
-        public float resistenza_al_deterioramento;
-    }
 
     public class Biscotto : GameEntity
     {
@@ -39,7 +33,8 @@ namespace GameJamCore.Brakeys_2023
 
         //
         [Space]
-        public Biscotto_Config current_Config;
+        public float velocità_di_caduta; //influenzata dalla densità del liquido
+        public float resistenza_al_deterioramento; //influenzato dal liquido 
 
         protected enum State
         {

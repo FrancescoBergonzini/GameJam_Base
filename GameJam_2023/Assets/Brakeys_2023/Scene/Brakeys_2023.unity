@@ -582,8 +582,8 @@ MonoBehaviour:
   biscotto_prefab: {fileID: 8346053624269761988, guid: ffd6becf21b70584eb4601ca7e57990b, type: 3}
   current_mode: 0
   Debug_mode: 
-  current_level_tazza: {fileID: 0}
-  current_level_cucchiaio: {fileID: 0}
+  current_level_tazza: {fileID: 8278601175338930772, guid: e13bcc03ebb4c374791e45176e32a643, type: 3}
+  current_level_cucchiaio: {fileID: 1061355840901040194, guid: 7d899ac22cf1f6c45b40276bbbd3b9d9, type: 3}
 --- !u!114 &1682038505
 MonoBehaviour:
   m_ObjectHideFlags: 0

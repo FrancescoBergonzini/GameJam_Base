@@ -13,7 +13,7 @@ namespace GameJamCore.Brakeys_2023
         [Header("Cucchiaio caratteristiche")]
         public float velocità;
         public float resistenza_al_liquido;
-        public float danno_da_impatto;
+        public float danno_da_impatto; // colpire un biscotto con una velocità alta fa più danno
 
         //o meglio avere direttamente un altro cucchiaio?
         public float dimensione;

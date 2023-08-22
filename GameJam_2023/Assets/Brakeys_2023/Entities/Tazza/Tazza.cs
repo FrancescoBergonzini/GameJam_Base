@@ -6,10 +6,17 @@ namespace GameJamCore.Brakeys_2023
 {
     public struct Liquid_Config
     {
-        public float densità;
-        public float galleggibilità;
-        public float riempimento; //da 1 a 3 , a metà , quasi pieno e pieno
+        public float densità; //determina la velocità del cucchiaio 
+        public float galleggibilità; //determina la velocità del biscotto
+        public Riempimento riempimento; //da 1 a 3 , a metà , quasi pieno e pieno
 
+    }
+
+    public enum Riempimento
+    {
+        mezzo_pieno,
+        tre_quarti_pieno,
+        pieno
     }
 
     public class Tazza : GameEntity
