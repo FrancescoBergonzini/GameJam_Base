@@ -9,7 +9,8 @@ namespace GameJamCore.Brakeys_2023
         None = 0,
         notImplemented,
 
-        test_visual = 10
+        test_visual = 10,
+        liquid = 11
 
 
     }
