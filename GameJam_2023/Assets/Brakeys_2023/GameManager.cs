@@ -37,7 +37,8 @@ namespace GameJamCore.Brakeys_2023
         public Biscotto biscotto_prefab;
         //forse inutile, ma vedremo...
         private List<Biscotto> _spawned_biscotti = new List<Biscotto>();
-
+        [SerializeField] Vector2 biscottoSpawnXRange;
+        [SerializeField] float biscottoSpawnY;
 
         [Header("Game mode")]
         public GameMode current_mode = GameMode.none;
@@ -63,7 +64,8 @@ namespace GameJamCore.Brakeys_2023
             StartMainGameRoutine();
 
             //passo da none a preparation
-            OnPreparationEnter();
+            //OnPreparationEnter();
+            BiscottoSpawn();
         }
 
 
@@ -72,7 +74,7 @@ namespace GameJamCore.Brakeys_2023
 
         public Vector2 GetBiscottoSpawnPosition()
         {
-            return Vector2.zero;
+            return new Vector2(Random.Range(biscottoSpawnXRange.x, biscottoSpawnXRange.y), biscottoSpawnY);
         }
 
 
