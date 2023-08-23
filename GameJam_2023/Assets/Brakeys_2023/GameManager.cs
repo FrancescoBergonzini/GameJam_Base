@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,16 +26,21 @@ namespace GameJamCore.Brakeys_2023
         public const int Structures = 31;
     }
 
+
     public class GameManager : GameManagerBase
     {
         public static GameManager instance => Instance as GameManager;
+
+        [Space]
+        public LevelConfig[] levels;
+        [Space]
+        public LevelConfig current_level = null;
 
         [Header("Game references")]
         public Transform biscotto_parent;
 
 
         [Header("Biscotto references")]
-        public Biscotto biscotto_prefab;
         //forse inutile, ma vedremo...
         private List<Biscotto> _spawned_biscotti = new List<Biscotto>();
         [SerializeField] Vector2 biscottoSpawnXRange;
@@ -51,7 +57,8 @@ namespace GameJamCore.Brakeys_2023
         public enum GameMode
         {
             none,
-            preparation,
+            biscotti_spawn,
+            cucchiaio_spawn,
             game,
             final_score,
             exit
@@ -61,11 +68,14 @@ namespace GameJamCore.Brakeys_2023
 
         private void Start()
         {
+
+            //debug
+            if (current_level == null)
+                current_level = levels[0];
+
             StartMainGameRoutine();
 
-            //passo da none a preparation
-            //OnPreparationEnter();
-            BiscottoSpawn();
+            OnSpawnBiscottiEnter();
         }
 
 
@@ -74,11 +84,22 @@ namespace GameJamCore.Brakeys_2023
 
         public Vector2 GetBiscottoSpawnPosition()
         {
-            return new Vector2(Random.Range(biscottoSpawnXRange.x, biscottoSpawnXRange.y), biscottoSpawnY);
+            return new Vector2(UnityEngine.Random.Range(biscottoSpawnXRange.x, biscottoSpawnXRange.y), biscottoSpawnY);
         }
 
+        public IEnumerator ManageBiscottiLevelSpawn_cr(LevelConfig levelSpawner, Action OnComplete = null)
+        {
+            foreach(var biscotto in levelSpawner.biscotti_to_spawn)
+            {
+                BiscottoSpawn(biscotto);
 
-        public Biscotto BiscottoSpawn()
+                yield return new WaitForSeconds(levelSpawner.delay_between_each_spawn);
+            }
+
+            OnComplete.Invoke();
+        }
+
+        public Biscotto BiscottoSpawn(Biscotto biscotto_prefab)
         {
             var biscotto = Biscotto.Create(prefab: biscotto_prefab,
                                   position: GetBiscottoSpawnPosition(),
@@ -115,7 +136,7 @@ namespace GameJamCore.Brakeys_2023
                             Debug_mode = "none";
                             break;
 
-                        case GameMode.preparation:
+                        case GameMode.biscotti_spawn:
                             Debug_mode = "preparazione";
                             break;
 
@@ -139,14 +160,20 @@ namespace GameJamCore.Brakeys_2023
         }
 
 
-        public void OnPreparationEnter()
+        public void OnSpawnBiscottiEnter()
         {
             //cose che devono accadare la prima volta che si è nello stato preparation
 
-            current_mode = GameMode.preparation;
+            current_mode = GameMode.biscotti_spawn;
+
+            StartCoroutine(ManageBiscottiLevelSpawn_cr(levelSpawner: current_level, 
+                                                       OnComplete: () => OnCucchiaioSpawnEnter()));
         }
 
-
+        public void OnCucchiaioSpawnEnter()
+        {
+            current_mode = GameMode.cucchiaio_spawn;
+        }
         public void OnGameEnter()
         {
             //chiama le cose da fare quando preparatione finisce
