@@ -12,7 +12,7 @@ namespace GameJamCore.Brakeys_2023
         Collider _col;
 
         [Space]
-        float _integrity;
+        [SerializeField] float _integrity;
         public float Integrity
         {
             get { return _integrity; }
@@ -28,13 +28,14 @@ namespace GameJamCore.Brakeys_2023
             }
         }
 
+        [Space]
         [SerializeField, ReorderableList] List<PezzoBiscotto> cookiePieces;
         int startCookiePiecesCount;
 
         //
         [Space]
-        public float velocità_di_caduta_in_fluido; //influenzata dalla densità del liquido
-        public float velocità_di_deterioramento; //influenzato dal liquido 
+        public float velocità_di_caduta; //influenzata dalla densità del liquido
+        public float danno_integrità_second; //influenzato dal liquido 
 
 
         protected enum State
@@ -46,7 +47,6 @@ namespace GameJamCore.Brakeys_2023
 
         protected State current_State = State.none;
 
-        public bool InAir;
 
         public static int ActiveInGame = 0;
 
@@ -78,55 +78,47 @@ namespace GameJamCore.Brakeys_2023
             //imposta il numero iniziale di pezzi
             startCookiePiecesCount = cookiePieces.Count;
 
-            //
-            current_State = State.interactable;
-
             //layer
             _changeLayer(Layers.Biscotto);
 
             //aggiungi listener per entrata/uscita da liquido
             onLiquidEnter.AddListener(() =>
             {
-                _rdb.gravityScale = inLiquidSpeed;
+                _rdb.gravityScale = inLiquidSpeed * UnityEngine.Random.Range(1, 1.5f);
+
+                //lerp velocità
                 DOTween.To(() => _rdb.velocity, x => _rdb.velocity = x, Vector2.zero, .5f);
-                StartCoroutine(Deteriorate());
+
+                //DOVirtual.Float(0, 1f, 1f, v => _rdb.velocity *= v);
+
+                //particle
+                PlayParticle(ParticleType.liquid);
+
+
+            StartCoroutine(deteriorate_cr());
             });
 
             onLiquidExit.AddListener(() =>
             {
                 _rdb.gravityScale = outsideLiquidSpeed;
-                StopCoroutine(nameof(Deteriorate));
+                StopCoroutine(nameof(deteriorate_cr));
             });
         }
 
 
-<<<<<<< HEAD
-        private void Update()
-        {
-            if (InAir)
-            {
-
-            }
-
-
-            if (!InAir)
-            {
-
-            }
-        }
-
-=======
         /// <summary>
         /// solo per test
         /// </summary>
         /// <returns></returns>
-        IEnumerator Deteriorate(float startDelay = 3)
+        IEnumerator deteriorate_cr(float startDelay = 3)
         {
             yield return new WaitForSeconds(startDelay);
+
             while (true)
             {
                 yield return new WaitForSeconds(1);
-                ModifyIntegrity(-0.3f);
+
+                ModifyIntegrity(danno_integrità_second);
             }
         }
 
@@ -134,7 +126,6 @@ namespace GameJamCore.Brakeys_2023
         {
 
         }
->>>>>>> 32fb162f246b58d24f550913f2be70655bbd8aba
 
         #region Force
 
@@ -174,6 +165,10 @@ namespace GameJamCore.Brakeys_2023
 
         #endregion
 
+        #region State
+
+
+        #endregion
 
 
 

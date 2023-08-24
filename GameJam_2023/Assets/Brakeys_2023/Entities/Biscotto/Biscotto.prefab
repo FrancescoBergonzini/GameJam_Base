@@ -48,28 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outsideLiquidSpeed: 1
-  inLiquidSpeed: 0.005
+  inLiquidSpeed: 0.01
   affectLiquidSurface: 1
+  _integrity: 0
   cookiePieces:
-<<<<<<< HEAD
-  - {fileID: 5840519930691185371}
-  - {fileID: 2146067775007922008}
-  - {fileID: 7196795035061416101}
-  - {fileID: 8779978229646797331}
-  - {fileID: 3226679985791020485}
-  - {fileID: 6931493867245955179}
-  - {fileID: 6913401149638925093}
-  - {fileID: 1917654398584478486}
-  - {fileID: 5971220876974161912}
-  - {fileID: 9213497069161371914}
-  - {fileID: 6631275168092409710}
-  - {fileID: 6782591629231959736}
-  - {fileID: 3226306209236704476}
-  - {fileID: 1921499421570909236}
-  "velocit\xE0_di_caduta_in_fluido": 0.2
-  "velocit\xE0_di_deterioramento": 0.5
-  InAir: 0
-=======
   - {fileID: 7267327314809776068}
   - {fileID: 1898180131636045253}
   - {fileID: 6495648649395243083}
@@ -84,9 +66,8 @@ MonoBehaviour:
   - {fileID: 7716062715053420977}
   - {fileID: 8347286105443126030}
   - {fileID: 2810727940277087358}
-  "velocit\xE0_di_caduta": 0
-  resistenza_al_deterioramento: 0
->>>>>>> 32fb162f246b58d24f550913f2be70655bbd8aba
+  "velocit\xE0_di_caduta": 1
+  "danno_integrit\xE0_second": -5
 --- !u!50 &5185423930705844528
 Rigidbody2D:
   serializedVersion: 4

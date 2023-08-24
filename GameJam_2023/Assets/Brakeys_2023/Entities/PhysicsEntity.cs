@@ -31,6 +31,7 @@ namespace GameJamCore.Brakeys_2023
             }
         }
 
+
         private void OnTriggerExit2D(Collider2D collision)
         {
             if (collision.gameObject.layer == Layers.Liquido)

@@ -41,8 +41,7 @@ namespace GameJamCore.Brakeys_2023
                 _rdb.gravityScale = outsideLiquidSpeed;
                 if (!hasSplashed)
                 {
-                    Brakeys_ParticleManager test = FindObjectOfType<Brakeys_ParticleManager>();
-                    test.PlayParticle(ParticleType.liquid, transform.position);
+                    PlayParticle(ParticleType.liquid);
                     hasSplashed = true;
                 }
             });
