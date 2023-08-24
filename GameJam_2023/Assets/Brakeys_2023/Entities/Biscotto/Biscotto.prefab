@@ -62,8 +62,9 @@ MonoBehaviour:
   - {fileID: 6782591629231959736}
   - {fileID: 3226306209236704476}
   - {fileID: 1921499421570909236}
-  "velocit\xE0_di_caduta": 0
-  resistenza_al_deterioramento: 0
+  "velocit\xE0_di_caduta_in_fluido": 0.2
+  "velocit\xE0_di_deterioramento": 0.5
+  InAir: 0
 --- !u!50 &5185423930705844528
 Rigidbody2D:
   serializedVersion: 4

@@ -33,8 +33,8 @@ namespace GameJamCore.Brakeys_2023
 
         //
         [Space]
-        public float velocità_di_caduta; //influenzata dalla densità del liquido
-        public float resistenza_al_deterioramento; //influenzato dal liquido 
+        public float velocità_di_caduta_in_fluido; //influenzata dalla densità del liquido
+        public float velocità_di_deterioramento; //influenzato dal liquido 
 
         protected enum State
         {
@@ -45,6 +45,7 @@ namespace GameJamCore.Brakeys_2023
 
         protected State current_State = State.none;
 
+        public bool InAir;
 
         public static int ActiveInGame = 0;
 
@@ -74,29 +75,28 @@ namespace GameJamCore.Brakeys_2023
             //imposta il numero iniziale di pezzi
             startCookiePiecesCount = cookiePieces.Count;
 
+            //
+            current_State = State.interactable;
+
             //layer
             _changeLayer(Layers.Biscotto);
         }
 
-        private void Start()
-        {
-            Inizialize();
-            StartCoroutine(TestIntegrtity());
 
-        }
-
-        /// <summary>
-        /// solo per test
-        /// </summary>
-        /// <returns></returns>
-        IEnumerator TestIntegrtity()
+        private void Update()
         {
-            while (true)
+            if (InAir)
             {
-                yield return new WaitForSeconds(1);
-                ModifyIntegrity(-1);
+
+            }
+
+
+            if (!InAir)
+            {
+
             }
         }
+
 
         #region Force
 
@@ -140,10 +140,6 @@ namespace GameJamCore.Brakeys_2023
 
         #endregion
 
-        #region State
-
-
-        #endregion
 
 
     }
