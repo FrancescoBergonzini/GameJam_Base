@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,8 +6,7 @@ using UnityEngine;
 
 namespace GameJamCore.Brakeys_2023
 {
-
-    public class Biscotto : GameEntity
+    public class Biscotto : PhysicsEntity
     {
         Rigidbody2D _rdb;
         Collider _col;
@@ -28,13 +28,14 @@ namespace GameJamCore.Brakeys_2023
             }
         }
 
-        [SerializeField, ReorderableList] List<GameObject> cookiePieces;
+        [SerializeField, ReorderableList] List<PezzoBiscotto> cookiePieces;
         int startCookiePiecesCount;
 
         //
         [Space]
         public float velocità_di_caduta_in_fluido; //influenzata dalla densità del liquido
         public float velocità_di_deterioramento; //influenzato dal liquido 
+
 
         protected enum State
         {
@@ -54,6 +55,8 @@ namespace GameJamCore.Brakeys_2023
             Biscotto _biscotto = Instantiate(prefab, position, rotation, parent);
 
             _biscotto.Inizialize();
+
+            _biscotto.transform.eulerAngles = new Vector3(0, 0, UnityEngine.Random.Range(0, 360f));
 
             ActiveInGame++;
 
@@ -80,9 +83,24 @@ namespace GameJamCore.Brakeys_2023
 
             //layer
             _changeLayer(Layers.Biscotto);
+
+            //aggiungi listener per entrata/uscita da liquido
+            onLiquidEnter.AddListener(() =>
+            {
+                _rdb.gravityScale = inLiquidSpeed;
+                DOTween.To(() => _rdb.velocity, x => _rdb.velocity = x, Vector2.zero, .5f);
+                StartCoroutine(Deteriorate());
+            });
+
+            onLiquidExit.AddListener(() =>
+            {
+                _rdb.gravityScale = outsideLiquidSpeed;
+                StopCoroutine(nameof(Deteriorate));
+            });
         }
 
 
+<<<<<<< HEAD
         private void Update()
         {
             if (InAir)
@@ -97,6 +115,26 @@ namespace GameJamCore.Brakeys_2023
             }
         }
 
+=======
+        /// <summary>
+        /// solo per test
+        /// </summary>
+        /// <returns></returns>
+        IEnumerator Deteriorate(float startDelay = 3)
+        {
+            yield return new WaitForSeconds(startDelay);
+            while (true)
+            {
+                yield return new WaitForSeconds(1);
+                ModifyIntegrity(-0.3f);
+            }
+        }
+
+        private void SetFallingSpeed()
+        {
+
+        }
+>>>>>>> 32fb162f246b58d24f550913f2be70655bbd8aba
 
         #region Force
 
@@ -123,22 +161,20 @@ namespace GameJamCore.Brakeys_2023
         public void ModifyIntegrity(float value)
         {
             Integrity += value;
-            Debug.Log(Integrity);
             //controlla se l'integrità è minore della soglia per rimuovere un pezzo
             if (Integrity < (100f / startCookiePiecesCount) * cookiePieces.Count)
             {
                 var removedPiece = cookiePieces[0];
-                removedPiece.layer = Layers.PezziBiscotto;
-                removedPiece.transform.parent = null;
+                removedPiece.Release();
 
                 //TODO: useremo poi una classe apposta in moda da evitare il dispendioso AddComponent
-                var pieceRigidbody = removedPiece.AddComponent<Rigidbody2D>();
-                pieceRigidbody.gravityScale = -0.8f;
                 cookiePieces.RemoveAt(0);
             }
         }
 
         #endregion
+
+
 
 
 
