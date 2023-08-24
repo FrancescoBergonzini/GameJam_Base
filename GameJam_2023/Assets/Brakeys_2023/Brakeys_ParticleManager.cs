@@ -11,8 +11,6 @@ namespace GameJamCore.Brakeys_2023
 
         test_visual = 10,
         liquid = 11
-
-
     }
 
     public class Brakeys_ParticleManager : ParticleDatabase<ParticleType, AudioType>

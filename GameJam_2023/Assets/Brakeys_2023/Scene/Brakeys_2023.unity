@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731715, g: 0.13414735, b: 0.121078536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -178,7 +178,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7323041303573737796, guid: e13bcc03ebb4c374791e45176e32a643, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7323041303573737796, guid: e13bcc03ebb4c374791e45176e32a643, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7323041303573737796, guid: e13bcc03ebb4c374791e45176e32a643, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7323041303573737796, guid: e13bcc03ebb4c374791e45176e32a643, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1669067897, guid: e13bcc03ebb4c374791e45176e32a643, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e13bcc03ebb4c374791e45176e32a643, type: 3}
 --- !u!1 &773565673
 GameObject:
@@ -435,9 +452,9 @@ MonoBehaviour:
     prefab_particle: {fileID: 0}
     Lifetime: 0
     sound_type: 0
-  - type: 20
-    prefab_particle: {fileID: 33399610224794606, guid: e13bcc03ebb4c374791e45176e32a643, type: 3}
-    Lifetime: 5
+  - type: 11
+    prefab_particle: {fileID: 7595962699074290566, guid: e9881a60fc07c8d44aebc71cf64121ad, type: 3}
+    Lifetime: 2
     sound_type: 1
 --- !u!114 &1682038506
 MonoBehaviour:

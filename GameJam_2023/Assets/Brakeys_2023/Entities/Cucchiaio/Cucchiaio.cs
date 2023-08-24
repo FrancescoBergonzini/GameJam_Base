@@ -19,7 +19,7 @@ namespace GameJamCore.Brakeys_2023
         public float dimensione;
     }
 
-    public class Cucchiaio : GameEntity
+    public class Cucchiaio : PhysicsEntity
     {
         Vector2 inputForce;
 
@@ -102,7 +102,6 @@ namespace GameJamCore.Brakeys_2023
 
             // Aggiungi la forza dell'input al rigidbody usando AddForce
             _rdb.AddForce(inputForce * current_config.velocità * finalVelocity, ForceMode2D.Force);
-
         }
 
         public void ManageMovementInAir()
