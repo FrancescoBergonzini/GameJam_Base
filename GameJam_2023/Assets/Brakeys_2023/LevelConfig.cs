@@ -20,12 +20,21 @@ namespace GameJamCore.Brakeys_2023
 
 
         [Space]
-        public float currentScore;
+        public float LevelScore = 0;
+        public int Stars = 0;
         public bool isUnlocked = false;
 
-        public void SetCurrentScore(float value)
+        [Space]
+        public LevelConfig next_level;
+
+        public void SetCurrentScoreAndStars(float score, int stars)
         {
-            currentScore = value;
+            LevelScore = score;
+            Stars = stars;
+
+            //unlock here next level?
+            if (stars > 0 && next_level != null)
+                next_level.isUnlocked = true;
         }
     }
 }

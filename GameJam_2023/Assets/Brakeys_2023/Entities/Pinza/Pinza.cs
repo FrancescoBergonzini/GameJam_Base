@@ -147,6 +147,15 @@ namespace GameJamCore.Brakeys_2023
             }
         }
 
+
+        public void KillMe()
+        {
+            StopAllCoroutines();
+            DOTween.KillAll();
+
+            Destroy(this.gameObject);
+        }
+
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {

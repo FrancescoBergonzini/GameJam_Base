@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -42,6 +43,7 @@ namespace GameJamCore.Brakeys_2023
         [Header("Game references")]
         public Transform biscotto_parent;
         public Pinza pinza_prefab;
+        public UiManager ui_prefab;
 
 
         [Header("Biscotto references")]
@@ -58,8 +60,6 @@ namespace GameJamCore.Brakeys_2023
         public Tazza current_level_tazza;
         public Pinza current_level_pinza;
 
-        [Header("UI")]
-        public TextMeshProUGUI time_UI;
         float start_time;
 
 
@@ -166,8 +166,10 @@ namespace GameJamCore.Brakeys_2023
                         case GameMode.game:
                             Debug_mode = "game";
 
+                            //
+                            ui_prefab.SetScore((int)current_raw_score);
 
-                            time_UI.text = _formatTime(start_time + current_level.game_time - Time.time);
+                            ui_prefab.SetTimer(start_time + current_level.game_time - Time.time);
 
                             //check if game is finish
                             if (start_time + current_level.game_time < Time.time)
@@ -211,41 +213,64 @@ namespace GameJamCore.Brakeys_2023
         }
         public void OnGameEnter()
         {
-            //chiama le cose da fare quando preparatione finisce
+            current_mode = GameMode.game;
 
             //chiama cose da fare quando Enter inizia
             start_time = Time.time;
 
-            current_mode = GameMode.game;
-        }
+            foreach (var canvas in ui_prefab.panels) canvas.alpha = 1f;
 
+
+        }
 
         public void OnFinalScoreEnter()
         {
             current_mode = GameMode.final_score;
 
-            //TODO: settare punteggio
-            //current_level.SetCurrentScore(score);
+            foreach (var canvas in ui_prefab.panels) canvas.alpha = 0f;
+
+
+            current_level_pinza.KillMe();
+
+            //test
+            //ui_prefab.GameEnd(500, 2);
+            ui_prefab.GameEnd((int)this.current_raw_score, _calculate_stars());
         }
+
+        //da chiamare quando si esce dalla scena!
 
         public void OnExitEnter()
         {
             current_mode = GameMode.exit;
+
+            //salve punteggio in scriptable
+            //solo se è più alto di quello che abbiamo li
+            if (current_raw_score > this.current_level.LevelScore)
+                current_level.SetCurrentScoreAndStars(current_raw_score, _calculate_stars());
+
         }
 
+        //calcola quante stelle devo accendere in base al punteggio...
+        int _calculate_stars() //min 0, max 3
+        {
+            int maxpossibilevalue = 100 * current_level.biscotti_to_spawn.Length;
+
+            var percent = (this.current_raw_score / maxpossibilevalue) * 100;
+
+            if (percent < 25)
+                return 0;
+            else if (percent >= 25 && percent < 50f)
+                return 1;
+            else if (percent >= 50 && percent < 70)
+                return 2;
+            else
+                return 3;
+
+
+        }
 
         #endregion
 
-        //helpers
-
-        protected string _formatTime(float time)
-        {
-            int hours = Mathf.FloorToInt(time / 3600);
-            int minutes = Mathf.FloorToInt((time % 3600) / 60);
-            int seconds = Mathf.FloorToInt(time % 60);
-
-            return string.Format("{0:00}:{1:00}", minutes, seconds);
-        }
 
     }
 }
