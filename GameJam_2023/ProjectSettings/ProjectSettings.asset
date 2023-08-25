@@ -710,7 +710,7 @@ PlayerSettings:
   webGLPowerPreference: 2
   scriptingDefineSymbols:
     Standalone: LETAI_TRUESHADOW;TOOLBOX_FORCE_DEFAULT_LISTS
-    WebGL: LETAI_TRUESHADOW
+    WebGL: LETAI_TRUESHADOW;TOOLBOX_FORCE_DEFAULT_LISTS
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}

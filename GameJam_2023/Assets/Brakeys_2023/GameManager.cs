@@ -53,7 +53,10 @@ namespace GameJamCore.Brakeys_2023
 
         [Space]
         public Tazza current_level_tazza;
-        public Cucchiaio current_level_cucchiaio;
+        public Pinza current_level_pinza;
+
+        [Space]
+        public Pinza pinza_prefab;
 
         public enum GameMode
         {
@@ -77,6 +80,7 @@ namespace GameJamCore.Brakeys_2023
 
             StartMainGameRoutine();
 
+            //start biscotti
             OnSpawnBiscottiEnter();
         }
 
@@ -169,12 +173,17 @@ namespace GameJamCore.Brakeys_2023
             current_mode = GameMode.biscotti_spawn;
 
             StartCoroutine(ManageBiscottiLevelSpawn_cr(levelSpawner: current_level, 
-                                                       OnComplete: () => OnCucchiaioSpawnEnter()));
+                                                       OnComplete: () => OnPinzaSpawnEnter()));
         }
 
-        public void OnCucchiaioSpawnEnter()
+        public void OnPinzaSpawnEnter()
         {
             current_mode = GameMode.cucchiaio_spawn;
+
+            GameManager.instance.current_level_pinza = Instantiate(GameManager.instance.pinza_prefab, Vector3.zero, Quaternion.identity);
+
+            //subito?
+            OnGameEnter();
         }
         public void OnGameEnter()
         {

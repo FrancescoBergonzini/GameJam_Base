@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1627557316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1627557317}
+  m_Layer: 8
+  m_Name: cucchiaio_punta
+  m_TagString: Untagged
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1627557317
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627557316}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.39, y: -1.39, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7607867811969548168}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5920888307861234581
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +42,7 @@ GameObject:
   - component: {fileID: 7426997739136606077}
   - component: {fileID: 1133024800682345444}
   - component: {fileID: 4546500933722479737}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: Spoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,13 +161,13 @@ GameObject:
   - component: {fileID: 6299433058307418415}
   - component: {fileID: 1061355840901040194}
   - component: {fileID: 6823252601988298259}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cucchiaio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6299433058307418415
 Transform:
   m_ObjectHideFlags: 0
@@ -165,23 +196,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7f1612a3916675458a34c1427ebfd33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outsideLiquidSpeed: 0
-  inLiquidSpeed: 0
-  isPhysic: 0
+  outsideLiquidSpeed: 1
+  inLiquidSpeed: 1
+  isPhysic: 1
   firstEnterInLiquid: 0
-  MaxSpeed: 5
+  MaxSpeed: 2
   MinSpeed: 0
   Smooth_time: 0.5
   Smooth_strenght: 0.25
-  cucchiaio_punta: {fileID: 0}
+  cucchiaio_punta: {fileID: 1627557317}
   current_config:
-    "velocit\xE0": 10
-    "velocit\xE0_in_liquido": 0
+    "velocit\xE0": 70
+    "velocit\xE0_in_liquido": 45
     danno_da_impatto: 1
     dimensione: 1
-  rotationSpeed: 300
-  maxRotation: 25
-  minRotation: -25
+  rotationSpeed: 100
+  maxRotation: 35
+  minRotation: -35
 --- !u!50 &6823252601988298259
 Rigidbody2D:
   serializedVersion: 4
@@ -194,14 +225,14 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 1
-  m_AngularDrag: 0.05
+  m_Mass: 10
+  m_LinearDrag: 1.5
+  m_AngularDrag: 10000
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!1001 &7922728073084489556
 PrefabInstance:
@@ -258,8 +289,51 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cucchiaio_model
       objectReference: {fileID: 0}
+    - target: {fileID: 2763628628593181053, guid: db13424a46eeb2c49bad97c5378971d8, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db13424a46eeb2c49bad97c5378971d8, type: 3}
+--- !u!1 &5451975327407590953 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2763628628593181053, guid: db13424a46eeb2c49bad97c5378971d8, type: 3}
+  m_PrefabInstance: {fileID: 7922728073084489556}
+  m_PrefabAsset: {fileID: 0}
+--- !u!60 &749615179
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5451975327407590953}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.3179349, y: -0.23290986}
+      - {x: -0.91619927, y: 0.7481999}
+      - {x: -1.3016508, y: 1.1171377}
+      - {x: -1.3328005, y: 1.0555696}
+      - {x: -0.65176815, y: 0.46473444}
+      - {x: 0.23462059, y: -0.21121779}
+      - {x: 0.46804556, y: -0.5131651}
+      - {x: 0.58778536, y: -0.80901694}
+      - {x: 0.51872444, y: -0.44733506}
 --- !u!4 &7607867811969548168 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 317429297900286172, guid: db13424a46eeb2c49bad97c5378971d8, type: 3}
