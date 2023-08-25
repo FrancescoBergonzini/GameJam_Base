@@ -70,6 +70,7 @@ namespace GameJamCore.Brakeys_2023
         {
 
             //debug
+            //TODO: settare current_level dal menu
             if (current_level == null)
                 current_level = levels[0];
 
@@ -187,6 +188,9 @@ namespace GameJamCore.Brakeys_2023
         public void OnFinalScoreEnter()
         {
             current_mode = GameMode.final_score;
+
+            //TODO: settare punteggio
+            //current_level.SetCurrentScore(score);
         }
 
         public void OnExitEnter()

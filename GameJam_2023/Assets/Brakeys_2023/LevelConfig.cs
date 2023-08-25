@@ -17,6 +17,15 @@ namespace GameJamCore.Brakeys_2023
         public Biscotto[] biscotti_to_spawn;
         public float delay_between_each_spawn;
 
+
+        [Space]
+        public float currentScore;
+        public bool isUnlocked = false;
+
+        public void SetCurrentScore(float value)
+        {
+            currentScore = value;
+        }
     }
 }
 
