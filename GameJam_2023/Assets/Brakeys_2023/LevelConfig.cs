@@ -11,6 +11,7 @@ namespace GameJamCore.Brakeys_2023
         [Space]
         public string level_name;
         public int level;
+        public float game_time;
 
 
         [Header("Spawn")]

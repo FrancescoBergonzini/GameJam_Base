@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace GameJamCore.Brakeys_2023
@@ -33,12 +34,14 @@ namespace GameJamCore.Brakeys_2023
 
         [Space]
         public LevelConfig[] levels;
+
         [Space]
         public LevelConfig current_level = null;
         public float current_raw_score = 0f;
 
         [Header("Game references")]
         public Transform biscotto_parent;
+        public Pinza pinza_prefab;
 
 
         [Header("Biscotto references")]
@@ -55,8 +58,10 @@ namespace GameJamCore.Brakeys_2023
         public Tazza current_level_tazza;
         public Pinza current_level_pinza;
 
-        [Space]
-        public Pinza pinza_prefab;
+        [Header("UI")]
+        public TextMeshProUGUI time_UI;
+        float start_time;
+
 
         public enum GameMode
         {
@@ -102,8 +107,9 @@ namespace GameJamCore.Brakeys_2023
                 yield return new WaitForSeconds(levelSpawner.delay_between_each_spawn);
             }
 
-            OnComplete.Invoke();
+            OnComplete?.Invoke();
         }
+
 
         public Biscotto BiscottoSpawn(Biscotto biscotto_prefab)
         {
@@ -118,6 +124,17 @@ namespace GameJamCore.Brakeys_2023
             return biscotto;
         }
 
+
+        public IEnumerator ManageClawSpawn(Action OnComplete = null)
+        {
+
+            yield return new WaitForSeconds(1f);
+
+            GameManager.instance.current_level_pinza = Instantiate(GameManager.instance.pinza_prefab, Vector3.zero, Quaternion.identity);
+
+
+            OnComplete?.Invoke();
+        }
         #endregion
 
         #region GameMode
@@ -148,6 +165,14 @@ namespace GameJamCore.Brakeys_2023
 
                         case GameMode.game:
                             Debug_mode = "game";
+
+
+                            time_UI.text = _formatTime(start_time + current_level.game_time - Time.time);
+
+                            //check if game is finish
+                            if (start_time + current_level.game_time < Time.time)
+                                OnFinalScoreEnter();
+
                             break;
 
                         case GameMode.final_score:
@@ -180,16 +205,16 @@ namespace GameJamCore.Brakeys_2023
         {
             current_mode = GameMode.cucchiaio_spawn;
 
-            GameManager.instance.current_level_pinza = Instantiate(GameManager.instance.pinza_prefab, Vector3.zero, Quaternion.identity);
+            StartCoroutine(ManageClawSpawn(OnComplete: () => OnGameEnter()));
 
-            //subito?
-            OnGameEnter();
+
         }
         public void OnGameEnter()
         {
             //chiama le cose da fare quando preparatione finisce
 
             //chiama cose da fare quando Enter inizia
+            start_time = Time.time;
 
             current_mode = GameMode.game;
         }
@@ -210,6 +235,17 @@ namespace GameJamCore.Brakeys_2023
 
 
         #endregion
+
+        //helpers
+
+        protected string _formatTime(float time)
+        {
+            int hours = Mathf.FloorToInt(time / 3600);
+            int minutes = Mathf.FloorToInt((time % 3600) / 60);
+            int seconds = Mathf.FloorToInt(time % 60);
+
+            return string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
 
     }
 }

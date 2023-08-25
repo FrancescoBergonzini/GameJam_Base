@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level_name: Tutorial
   level: 0
-  biscotti_to_spawn: []
+  game_time: 10
+  biscotti_to_spawn:
+  - {fileID: 8346053624269761988, guid: ffd6becf21b70584eb4601ca7e57990b, type: 3}
   delay_between_each_spawn: 0.5
   currentScore: 0
   isUnlocked: 0
