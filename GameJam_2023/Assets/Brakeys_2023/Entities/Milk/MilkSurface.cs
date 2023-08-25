@@ -16,7 +16,7 @@ namespace GameJamCore.Brakeys_2023
 
         private void Start()
         {
-            AddForce(5);
+            AddMilkForce(5);
         }
 
 
@@ -25,7 +25,7 @@ namespace GameJamCore.Brakeys_2023
         /// </summary>
         /// <param name="force"></param>
         /// <param name="direction">Direzione nella quale muovere il liquido, -1 verso sinistra, 1 verso destra</param>
-        public void AddForce(float force)
+        public void AddMilkForce(float force)
         {
             velocity += force;
             velocity = Mathf.Clamp(velocity, -30, 30);
@@ -50,5 +50,14 @@ namespace GameJamCore.Brakeys_2023
             // Update object's position
             transform.eulerAngles = new Vector3(0, 0, currentRotation);
         }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if(collision.gameObject.layer == Layers.Biscotto || collision.gameObject.layer == Layers.Cucchiaio)
+            {
+                AddMilkForce(collision.gameObject.transform.position.x * -20);
+            }
+        }
+
     }
 }

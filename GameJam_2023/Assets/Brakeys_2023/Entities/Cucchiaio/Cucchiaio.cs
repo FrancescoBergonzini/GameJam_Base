@@ -23,7 +23,6 @@ namespace GameJamCore.Brakeys_2023
     {
         Vector2 inputForce;
 
-        Rigidbody2D _rdb;
         Collider2D _col;
 
         [Space]
@@ -53,8 +52,6 @@ namespace GameJamCore.Brakeys_2023
 
         protected override void Inizialize()
         {
-            if (_rdb == null)
-                _rdb = GetComponent<Rigidbody2D>();
 
             if (_col == null)
                 _col = GetComponent<Collider2D>();
@@ -76,8 +73,10 @@ namespace GameJamCore.Brakeys_2023
         }
 
 
-        private void FixedUpdate()
+        public override void FixedUpdate()
         {
+            base.FixedUpdate();
+
             if (inLiquid)
                 ManageMovementInLiquid();
 

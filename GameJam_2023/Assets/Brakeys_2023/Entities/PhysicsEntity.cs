@@ -17,18 +17,33 @@ namespace GameJamCore.Brakeys_2023
 
         [SerializeField] bool affectLiquidSurface;
 
-        protected UnityEvent onLiquidEnter = new UnityEvent();
-        protected UnityEvent onLiquidExit = new UnityEvent();
+        [Space]
+        public bool isPhysic = false;
+        protected Rigidbody2D _rdb;
+        protected float velocity => isPhysic == false ? 0 : GetRigidbody().velocity.magnitude;
+        private Vector3 _currentVelocity = Vector3.zero;
+
+        [Space]
+        public bool firstEnterInLiquid = false;
+        public float MaxSpeed;
+        public float MinSpeed;
+        [Space]
+        public float Smooth_time;
+        public float Smooth_strenght;
+
 
         #region Triggers
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.layer == Layers.Liquido)
             {
-                inAir = false;
-                onLiquidEnter?.Invoke();
-                if(affectLiquidSurface) collision.GetComponent<MilkSurface>().AddForce(transform.position.x * -20);
+                OnLiquidEnter();
             }
+        }
+
+        public virtual void OnLiquidEnter()
+        {
+            inAir = false;
         }
 
 
@@ -36,10 +51,60 @@ namespace GameJamCore.Brakeys_2023
         {
             if (collision.gameObject.layer == Layers.Liquido)
             {
-                inAir = true;
-                onLiquidExit?.Invoke();
+                OnLiquidExit();
             }
         }
+
+        public virtual void OnLiquidExit()
+        {
+            inAir = true;
+        }
+        #endregion
+
+        #region Physic
+
+        public virtual void FixedUpdate()
+        {
+            if (!isPhysic || inAir)
+                return;
+
+            if (velocity > MaxSpeed || velocity < MinSpeed)
+            {
+                if (velocity == 0)
+                    return;
+
+                LimitVelocity();
+
+            }
+        }
+
+        public Rigidbody2D GetRigidbody()
+        {
+            if (_rdb != null)
+            {
+                return _rdb;
+            }
+            else
+            {
+                _rdb = GetComponent<Rigidbody2D>();
+                return _rdb;
+            }
+                
+        }
+
+
+        private void LimitVelocity()
+        {
+            // Limita la velocità dell'oggetto alla velocità massima o minima consentita in modo graduale tramite SmoothDamp
+            float targetVelocity = Mathf.Clamp(velocity, MinSpeed, MaxSpeed);
+
+            GetRigidbody().velocity = Vector3.SmoothDamp(current: GetRigidbody().velocity,
+                                             target: GetRigidbody().velocity.normalized * targetVelocity,
+                                             currentVelocity: ref _currentVelocity,
+                                             smoothTime: Smooth_time,
+                                             Smooth_strenght);
+        }
+
         #endregion
     }
 }

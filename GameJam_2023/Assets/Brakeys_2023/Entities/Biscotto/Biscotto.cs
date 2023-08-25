@@ -8,7 +8,6 @@ namespace GameJamCore.Brakeys_2023
 {
     public class Biscotto : PhysicsEntity
     {
-        Rigidbody2D _rdb;
         Collider _col;
 
         [Space]
@@ -28,14 +27,15 @@ namespace GameJamCore.Brakeys_2023
             }
         }
 
+
+        //
+        [Space]
+        public float danno_integrità_second; //influenzato dal liquido 
+
         [Space]
         [SerializeField, ReorderableList] List<PezzoBiscotto> cookiePieces;
         int startCookiePiecesCount;
 
-        //
-        [Space]
-        public float velocità_di_caduta; //influenzata dalla densità del liquido
-        public float danno_integrità_second; //influenzato dal liquido 
 
 
         protected enum State
@@ -66,11 +66,12 @@ namespace GameJamCore.Brakeys_2023
 
         protected override void Inizialize()
         {
-            if (_rdb == null)
-                _rdb = GetComponent<Rigidbody2D>();
 
             if (_col == null)
                 _col = GetComponent<Collider>();
+
+            //
+            inAir = true;
 
             //Sempre 100 di base?
             SetIntegrity(100f);
@@ -81,28 +82,13 @@ namespace GameJamCore.Brakeys_2023
             //layer
             _changeLayer(Layers.Biscotto);
 
-            //aggiungi listener per entrata/uscita da liquido
-            onLiquidEnter.AddListener(() =>
-            {
-                _rdb.gravityScale = inLiquidSpeed * UnityEngine.Random.Range(1, 1.5f);
-
-                //lerp velocità
-                DOTween.To(() => _rdb.velocity, x => _rdb.velocity = x, Vector2.zero, .5f);
-
-                //DOVirtual.Float(0, 1f, 1f, v => _rdb.velocity *= v);
-
-                //particle
-                PlayParticle(ParticleType.liquid);
+        }
 
 
-            StartCoroutine(deteriorate_cr());
-            });
-
-            onLiquidExit.AddListener(() =>
-            {
-                _rdb.gravityScale = outsideLiquidSpeed;
-                StopCoroutine(nameof(deteriorate_cr));
-            });
+        public override void FixedUpdate()
+        {
+            //limit velocity
+            base.FixedUpdate();
         }
 
 
@@ -121,28 +107,6 @@ namespace GameJamCore.Brakeys_2023
                 ModifyIntegrity(danno_integrità_second);
             }
         }
-
-        private void SetFallingSpeed()
-        {
-
-        }
-
-        #region Force
-
-        public Rigidbody2D GetRigidbody()
-        {
-            if (_rdb != null) return _rdb;
-            else return null;
-        }
-
-        public void OnForce()
-        {
-            //manage force using this...
-        }
-
-        #endregion
-
-        #region Integrity
 
         public void SetIntegrity(float value)
         {
@@ -163,15 +127,38 @@ namespace GameJamCore.Brakeys_2023
             }
         }
 
-        #endregion
 
-        #region State
+        public override void OnLiquidEnter()
+        {
+            base.OnLiquidEnter();
 
+            GetRigidbody().gravityScale = inLiquidSpeed * UnityEngine.Random.Range(1, 1.5f);
 
-        #endregion
+            //lerp velocità, non più 0 ma piccolissima
+            DOTween.To(() => GetRigidbody().velocity, x => GetRigidbody().velocity = x, GetRigidbody().velocity * 0.10f, .5f);
 
+            //applica forza che li fa risalire un attimo
+            if (!firstEnterInLiquid)
+            {
+                GetRigidbody().AddForce(Vector2.up * UnityEngine.Random.Range(1f, 2.5f), ForceMode2D.Impulse);
+                firstEnterInLiquid = true;
+            }
 
+            //particle
+            PlayParticle(ParticleType.liquid);
 
+            //start deterioramento
+            StartCoroutine(deteriorate_cr());
+        }
+
+        public override void OnLiquidExit()
+        {
+            base.OnLiquidExit();
+
+            GetRigidbody().gravityScale = outsideLiquidSpeed;
+
+            StopCoroutine(nameof(deteriorate_cr));
+        }
 
     }
 }

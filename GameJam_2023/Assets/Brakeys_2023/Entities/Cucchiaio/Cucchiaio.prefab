@@ -101,6 +101,11 @@ MonoBehaviour:
   outsideLiquidSpeed: 0
   inLiquidSpeed: 0
   affectLiquidSurface: 0
+  isPhysic: 0
+  MaxSpeed: 0
+  MinSpeed: 0
+  Smooth_time: 0
+  Smooth_strenght: 0
   current_config:
     "velocit\xE0": 1
     resistenza_al_liquido: 0
@@ -190,6 +195,11 @@ MonoBehaviour:
   outsideLiquidSpeed: 0
   inLiquidSpeed: 0
   affectLiquidSurface: 0
+  isPhysic: 1
+  MaxSpeed: 0
+  MinSpeed: 0
+  Smooth_time: 0
+  Smooth_strenght: 0
   current_config:
     "velocit\xE0": 10
     resistenza_al_liquido: 1
