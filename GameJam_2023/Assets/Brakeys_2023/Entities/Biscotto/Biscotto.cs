@@ -37,12 +37,16 @@ namespace GameJamCore.Brakeys_2023
         int startCookiePiecesCount;
 
 
+        [Space]
+        public float UpperForce = 1f;
+
 
         protected enum State
         {
             none,
             not_interactable,
-            interactable
+            interactable,
+            going_to_point
         }
 
         protected State current_State = State.none;
@@ -96,15 +100,15 @@ namespace GameJamCore.Brakeys_2023
         /// solo per test
         /// </summary>
         /// <returns></returns>
-        IEnumerator deteriorate_cr(float startDelay = 3)
+        IEnumerator deteriorate_cr(float startDelay = 1.5f)
         {
             yield return new WaitForSeconds(startDelay);
 
             while (true)
             {
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(danno_integrità_second);
 
-                ModifyIntegrity(danno_integrità_second);
+                ModifyIntegrity(-0.1f);
             }
         }
 
@@ -140,7 +144,7 @@ namespace GameJamCore.Brakeys_2023
             //applica forza che li fa risalire un attimo
             if (!firstEnterInLiquid)
             {
-                GetRigidbody().AddForce(Vector2.up * UnityEngine.Random.Range(1f, 2.5f), ForceMode2D.Impulse);
+                GetRigidbody().AddForce(Vector2.up * UpperForce, ForceMode2D.Impulse);
                 firstEnterInLiquid = true;
             }
 
