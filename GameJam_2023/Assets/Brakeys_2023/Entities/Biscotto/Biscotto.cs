@@ -134,6 +134,11 @@ namespace GameJamCore.Brakeys_2023
             }
         }
 
+        public float ConvertIntegrityToScore()
+        {
+            return this.Integrity;
+        }
+
 
         public override void OnLiquidEnter()
         {
