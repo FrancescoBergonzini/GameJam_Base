@@ -48,8 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outsideLiquidSpeed: 1
-  inLiquidSpeed: 0.0025
-  affectLiquidSurface: 1
+  inLiquidSpeed: 0.0015
   isPhysic: 1
   firstEnterInLiquid: 0
   MaxSpeed: 1
@@ -57,7 +56,7 @@ MonoBehaviour:
   Smooth_time: 0.5
   Smooth_strenght: 1
   _integrity: 0
-  "danno_integrit\xE0_second": 0.01
+  "danno_integrit\xE0_second": 0.025
   cookiePieces:
   - {fileID: 4208077633508497685}
   - {fileID: 4966084156031130388}

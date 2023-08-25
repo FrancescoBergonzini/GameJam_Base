@@ -49,7 +49,7 @@ namespace GameJamCore.Brakeys_2023
             if (_col == null)
                 _col = GetComponent<Collider2D>();
 
-            _changeLayer(Layers.Cucchiaio);
+            //_changeLayer(Layers.Cucchiaio);
         }
 
         private void Update()
