@@ -15,7 +15,7 @@ namespace GameJamCore.Brakeys_2023
         [SerializeField] protected float outsideLiquidSpeed;
         [SerializeField] protected float inLiquidSpeed;
 
-        [SerializeField] bool affectLiquidSurface;
+        bool affectLiquidSurface;
 
         [Space]
         public bool isPhysic = false;
@@ -44,6 +44,8 @@ namespace GameJamCore.Brakeys_2023
         public virtual void OnLiquidEnter()
         {
             inAir = false;
+
+
         }
 
 

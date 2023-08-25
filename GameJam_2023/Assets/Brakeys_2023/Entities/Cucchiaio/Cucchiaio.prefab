@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7426997739136606077}
   - component: {fileID: 1133024800682345444}
-  - component: {fileID: 8530035464595102089}
   - component: {fileID: 4546500933722479737}
   m_Layer: 8
   m_Name: Spoon
@@ -86,32 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8530035464595102089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5920888307861234581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7f1612a3916675458a34c1427ebfd33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outsideLiquidSpeed: 0
-  inLiquidSpeed: 0
-  affectLiquidSurface: 0
-  isPhysic: 0
-  MaxSpeed: 0
-  MinSpeed: 0
-  Smooth_time: 0
-  Smooth_strenght: 0
-  current_config:
-    "velocit\xE0": 1
-    resistenza_al_liquido: 0
-    danno_da_impatto: 0
-    dimensione: 0
-  inLiquid: 0
 --- !u!60 &4546500933722479737
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -173,7 +146,7 @@ Transform:
   m_GameObject: {fileID: 6189028742833768238}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8121822, y: 0.8121822, z: 0.8121822}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7607867811969548168}
@@ -194,18 +167,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outsideLiquidSpeed: 0
   inLiquidSpeed: 0
-  affectLiquidSurface: 0
-  isPhysic: 1
-  MaxSpeed: 0
+  isPhysic: 0
+  firstEnterInLiquid: 0
+  MaxSpeed: 5
   MinSpeed: 0
-  Smooth_time: 0
-  Smooth_strenght: 0
+  Smooth_time: 0.5
+  Smooth_strenght: 0.25
+  cucchiaio_punta: {fileID: 0}
   current_config:
     "velocit\xE0": 10
-    resistenza_al_liquido: 1
+    "velocit\xE0_in_liquido": 0
     danno_da_impatto: 1
     dimensione: 1
-  inLiquid: 0
+  rotationSpeed: 300
+  maxRotation: 25
+  minRotation: -25
 --- !u!50 &6823252601988298259
 Rigidbody2D:
   serializedVersion: 4
@@ -221,12 +197,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 1
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!1001 &7922728073084489556
 PrefabInstance:
   m_ObjectHideFlags: 0
