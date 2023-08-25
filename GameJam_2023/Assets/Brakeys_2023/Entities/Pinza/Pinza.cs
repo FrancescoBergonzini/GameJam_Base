@@ -24,6 +24,10 @@ namespace GameJamCore.Brakeys_2023
 
         [SerializeField] float cookiesCheckRadius;
         [SerializeField] LayerMask layerBiscotti;
+        [SerializeField] Transform cookiesCheckTransform;
+
+        List<Biscotto> grabbedCookies = new List<Biscotto>();
+
 
         float horizontalProgress = 0.5f;
         float horizontalDirection = 1;
@@ -95,12 +99,12 @@ namespace GameJamCore.Brakeys_2023
 
         private void StopMovingDown()
         {
+            CheckCookiesInside();
             currentState = PinzaState.goingUp;
             if (activeMoveDownTween.active) activeMoveDownTween.Kill();
-            _rdb.DOMoveY(horizontalStateY, Mathf.Abs(transform.position.y - horizontalStateY) / verticalSpeed).
+            _rdb.DOMoveY(horizontalStateY, Mathf.Abs(cookiesCheckTransform.position.y - horizontalStateY) / verticalSpeed).
                 OnComplete(() =>
                 {
-                    CheckCookiesInside();
                     currentState = PinzaState.horizontalMovement;
                 });
         }
@@ -120,7 +124,7 @@ namespace GameJamCore.Brakeys_2023
                 {
                     if (cookie.TryGetComponent(out Biscotto biscotto))
                     {
-                        GameManager.instance.current_raw_score += biscotto.ConvertIntegrityToScore();
+                        grabbedCookies.Add(biscotto);
                     }
                 }
             }
