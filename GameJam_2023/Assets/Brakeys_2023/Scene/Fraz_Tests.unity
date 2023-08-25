@@ -3288,6 +3288,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 972913555, guid: 29e50ffc289e8ef4792bb93adb55bce6, type: 3}
+      propertyPath: stars.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 972913555, guid: 29e50ffc289e8ef4792bb93adb55bce6, type: 3}
+      propertyPath: stars.Array.data[0]
+      value: 
+      objectReference: {fileID: 175625702}
+    - target: {fileID: 972913555, guid: 29e50ffc289e8ef4792bb93adb55bce6, type: 3}
+      propertyPath: stars.Array.data[1]
+      value: 
+      objectReference: {fileID: 1644065715}
+    - target: {fileID: 972913555, guid: 29e50ffc289e8ef4792bb93adb55bce6, type: 3}
+      propertyPath: stars.Array.data[2]
+      value: 
+      objectReference: {fileID: 1812726806}
     - target: {fileID: 1349262328, guid: 29e50ffc289e8ef4792bb93adb55bce6, type: 3}
       propertyPath: m_RootOrder
       value: 2

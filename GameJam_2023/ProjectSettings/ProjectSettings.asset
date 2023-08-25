@@ -709,7 +709,7 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Standalone: LETAI_TRUESHADOW
+    Standalone: LETAI_TRUESHADOW;TOOLBOX_FORCE_DEFAULT_LISTS
     WebGL: LETAI_TRUESHADOW
   additionalCompilerArguments: {}
   platformArchitecture: {}

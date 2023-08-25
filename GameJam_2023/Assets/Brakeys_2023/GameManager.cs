@@ -35,6 +35,7 @@ namespace GameJamCore.Brakeys_2023
         public LevelConfig[] levels;
         [Space]
         public LevelConfig current_level = null;
+        public float current_raw_score = 0f;
 
         [Header("Game references")]
         public Transform biscotto_parent;
