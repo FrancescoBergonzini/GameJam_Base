@@ -48,11 +48,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outsideLiquidSpeed: 1
-  inLiquidSpeed: 0.0015
+  inLiquidSpeed: 0.0075
   isPhysic: 1
   firstEnterInLiquid: 0
   MaxSpeed: 1
-  MinSpeed: 0.4
+  MinSpeed: 0
   Smooth_time: 0.5
   Smooth_strenght: 1
   _integrity: 0

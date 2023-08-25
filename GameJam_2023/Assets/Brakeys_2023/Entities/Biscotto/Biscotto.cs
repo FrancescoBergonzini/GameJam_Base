@@ -37,6 +37,7 @@ namespace GameJamCore.Brakeys_2023
         int startCookiePiecesCount;
 
 
+
         [Space]
         public float UpperForce = 1f;
 
@@ -128,6 +129,8 @@ namespace GameJamCore.Brakeys_2023
 
                 //TODO: useremo poi una classe apposta in moda da evitare il dispendioso AddComponent
                 cookiePieces.RemoveAt(0);
+
+                GetRigidbody().mass -= GetRigidbody().mass / startCookiePiecesCount;
             }
         }
 
@@ -136,7 +139,7 @@ namespace GameJamCore.Brakeys_2023
         {
             base.OnLiquidEnter();
 
-            GetRigidbody().gravityScale = inLiquidSpeed * UnityEngine.Random.Range(1, 1.5f);
+            GetRigidbody().gravityScale = inLiquidSpeed * UnityEngine.Random.Range(1, 2f);
 
             //lerp velocità, non più 0 ma piccolissima
             DOTween.To(() => GetRigidbody().velocity, x => GetRigidbody().velocity = x, GetRigidbody().velocity * 0.10f, .5f);
