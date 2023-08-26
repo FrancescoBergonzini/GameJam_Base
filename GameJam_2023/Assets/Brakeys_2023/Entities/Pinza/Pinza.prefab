@@ -127,7 +127,7 @@ MonoBehaviour:
   raycastMask:
     serializedVersion: 2
     m_Bits: 512
-  verticalSpeed: 2
+  verticalSpeed: 3.25
   sphereCastCheckRadius: 0.32
   stopOffset: 0.9
   cookiesCheckRadius: 0.31
