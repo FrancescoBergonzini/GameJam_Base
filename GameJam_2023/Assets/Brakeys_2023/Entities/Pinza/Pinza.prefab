@@ -112,8 +112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7617fd5a7dcc2649a34513df1d61c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outsideLiquidSpeed: 1
-  inLiquidSpeed: 0.5
+  outsideLiquidSpeed: 0.75
+  inLiquidSpeed: 1
   isPhysic: 0
   firstEnterInLiquid: 0
   MaxSpeed: 0
@@ -142,7 +142,8 @@ MonoBehaviour:
   clawArmsOpenAngle: 7
   pinza_splash_destra: {fileID: 4813835375477181238}
   pinza_splash_sinistra: {fileID: 5641490194549042302}
-  motion_ease: 4
+  down_ease: 7
+  up_ease: 4
 --- !u!50 &2770526579485286674
 Rigidbody2D:
   serializedVersion: 4

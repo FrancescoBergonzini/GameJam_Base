@@ -54,7 +54,9 @@ namespace GameJamCore.Brakeys_2023
         PinzaState currentState = PinzaState.horizontalMovement;
 
         [Space]
-        public Ease motion_ease;
+        public Ease down_ease;
+        public Ease up_ease;
+
 
         bool PlayerInput => Input.anyKeyDown || Input.GetMouseButtonDown(0);
 
@@ -127,7 +129,7 @@ namespace GameJamCore.Brakeys_2023
                     ToggleClawArms(true);
                     currentState = PinzaState.horizontalMovement;
                 }).
-                SetEase(Ease.Linear);
+                SetEase(up_ease);
         }
 
         void ToggleClawArms(bool open)
@@ -199,7 +201,7 @@ namespace GameJamCore.Brakeys_2023
             if (castResult > 0)
             {
                 activeMoveDownTween = _rdb.DOMoveY(hits[0].point.y + stopOffset, (hits[0].distance / verticalSpeed) * current_velocity_modifier)
-                    .OnComplete(StopMovingDown).SetEase(motion_ease);
+                    .OnComplete(StopMovingDown).SetEase(down_ease);
             }
         }
 

@@ -813,6 +813,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b9e9642d02817f248b9d8dd98d91c8c9, type: 2}
   - {fileID: 11400000, guid: 58daac21934182f4b93b6e4ae565591a, type: 2}
   - {fileID: 11400000, guid: 018dcd145a958784696189b933bd33c5, type: 2}
+  - {fileID: 11400000, guid: 6c84acd25d6f7154b8cfd5bc063f3d89, type: 2}
   current_raw_score: 0
   biscotto_parent: {fileID: 1739158078}
   pinza_prefab: {fileID: 2770526579485286675, guid: 2408a6fa64c70a74ab11c596e774ab04, type: 3}
@@ -822,7 +823,7 @@ MonoBehaviour:
   current_mode: 0
   Debug_mode: 
   current_level_tazza: {fileID: 8278601175338930772, guid: e13bcc03ebb4c374791e45176e32a643, type: 3}
-  current_level_pinza: {fileID: 0}
+  current_level_pinza: {fileID: 2770526579485286675, guid: 2408a6fa64c70a74ab11c596e774ab04, type: 3}
 --- !u!114 &1682038505
 MonoBehaviour:
   m_ObjectHideFlags: 0
