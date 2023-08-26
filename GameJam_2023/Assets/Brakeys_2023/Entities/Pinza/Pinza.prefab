@@ -121,13 +121,13 @@ MonoBehaviour:
   Smooth_time: 0
   Smooth_strenght: 0
   _rdb: {fileID: 2770526579485286674}
-  horizontalSpeed: 1
+  horizontalSpeed: 1.5
   horizontalStateY: -0.03
   minMaxX: {x: -0.72, y: 0.72}
   raycastMask:
     serializedVersion: 2
     m_Bits: 512
-  verticalSpeed: 3.25
+  verticalSpeed: 2.5
   sphereCastCheckRadius: 0.32
   stopOffset: 0.9
   cookiesCheckRadius: 0.31

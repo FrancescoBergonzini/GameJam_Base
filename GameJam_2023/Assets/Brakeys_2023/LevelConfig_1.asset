@@ -20,7 +20,7 @@ MonoBehaviour:
   - {fileID: 8346053624269761988, guid: ffd6becf21b70584eb4601ca7e57990b, type: 3}
   - {fileID: 8346053624269761988, guid: 4160f289b09ef424c80f1d648b950d09, type: 3}
   delay_between_each_spawn: 0.5
-  LevelScore: 275.80038
-  Stars: 3
-  isUnlocked: 1
+  LevelScore: 0
+  Stars: 0
+  isUnlocked: 0
   next_level: {fileID: 11400000, guid: 018dcd145a958784696189b933bd33c5, type: 2}
