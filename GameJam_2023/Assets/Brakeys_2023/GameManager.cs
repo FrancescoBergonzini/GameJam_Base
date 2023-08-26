@@ -142,10 +142,13 @@ namespace GameJamCore.Brakeys_2023
         public IEnumerator ManageClawSpawn(Action OnComplete = null)
         {
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
 
-            GameManager.instance.current_level_pinza = Instantiate(GameManager.instance.pinza_prefab, Vector3.zero, Quaternion.identity);
+            GameManager.instance.current_level_pinza = Instantiate(GameManager.instance.pinza_prefab, new Vector3(0,2,0), Quaternion.identity);
 
+            yield return GameManager.instance.current_level_pinza.transform.DOMoveY(0, 0.5f).WaitForCompletion();
+
+            GameManager.instance.current_level_pinza.currentState = Pinza.PinzaState.horizontalMovement;
 
             OnComplete?.Invoke();
         }

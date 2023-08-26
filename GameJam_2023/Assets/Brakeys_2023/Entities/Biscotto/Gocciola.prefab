@@ -65,7 +65,7 @@ MonoBehaviour:
   - {fileID: 4396701291398551331}
   - {fileID: 6823224014243753480}
   - {fileID: 6842407208021296033}
-  UpperForce: 0.5
+  UpperForce: 0.75
 --- !u!50 &5185423930705844528
 Rigidbody2D:
   serializedVersion: 4
