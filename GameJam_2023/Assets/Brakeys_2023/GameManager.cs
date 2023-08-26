@@ -2,6 +2,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -187,6 +188,10 @@ namespace GameJamCore.Brakeys_2023
                             if (start_time + current_level.game_time < Time.time)
                                 OnFinalScoreEnter();
 
+                            //finisch game if biscotti 0
+                            if(Biscotto.ActiveInGame <= 0)
+                                OnFinalScoreEnter();
+
                             break;
 
                         case GameMode.final_score:
@@ -226,10 +231,13 @@ namespace GameJamCore.Brakeys_2023
         {
             current_mode = GameMode.game;
 
+            //biscotti deteriorano
+            foreach (var biscotto in _spawned_biscotti) biscotto.StartDeteriorate();
+
             //chiama cose da fare quando Enter inizia
             start_time = Time.time;
 
-            foreach (var canvas in ui_prefab.panels) canvas.alpha = 1f;
+            foreach (var canvas in ui_prefab.panels) DOVirtual.Float(from: 0, to: 1, duration: 1f, v => canvas.alpha = v); 
 
 
         }
@@ -249,6 +257,8 @@ namespace GameJamCore.Brakeys_2023
 
             foreach (var canvas in ui_prefab.panels) canvas.alpha = 0f;
 
+            var biscotti = FindObjectsOfType<Biscotto>();
+            if (biscotti != null && biscotti.Count() > 0) foreach (var biscotto in biscotti) Destroy(biscotto.gameObject);
 
             current_level_pinza.KillMe();
 

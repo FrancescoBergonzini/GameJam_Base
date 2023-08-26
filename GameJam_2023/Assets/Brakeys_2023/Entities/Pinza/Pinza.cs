@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace GameJamCore.Brakeys_2023
 {
-    public class Pinza : GameEntity
+    public class Pinza : PhysicsEntity
     {
         [SerializeField] Rigidbody2D _rdb;
 
@@ -40,6 +40,10 @@ namespace GameJamCore.Brakeys_2023
         float horizontalProgress = 0.5f;
         float horizontalDirection = 1;
 
+        [Space]
+        public Transform pinza_splash_destra;
+        public Transform pinza_splash_sinistra;
+
         public enum PinzaState
         {
             horizontalMovement,
@@ -49,7 +53,12 @@ namespace GameJamCore.Brakeys_2023
 
         PinzaState currentState = PinzaState.horizontalMovement;
 
+        [Space]
+        public Ease motion_ease;
+
         bool PlayerInput => Input.anyKeyDown || Input.GetMouseButtonDown(0);
+
+        public float current_velocity_modifier => (inAir == false ? inLiquidSpeed : outsideLiquidSpeed);
 
         // Start is called before the first frame update
         void Start()
@@ -171,6 +180,9 @@ namespace GameJamCore.Brakeys_2023
                 GameManager.instance.OnAddScore(cookie.ConvertIntegrityToScore());
                 cookie.ProcessGrab();
             }
+
+
+
             grabbedCookies.Clear();
         }
 
@@ -186,8 +198,8 @@ namespace GameJamCore.Brakeys_2023
             var castResult = Physics2D.CircleCast(transform.position, sphereCastCheckRadius, Vector2.down, contactFilter, hits);
             if (castResult > 0)
             {
-                activeMoveDownTween = _rdb.DOMoveY(hits[0].point.y + stopOffset, hits[0].distance / verticalSpeed)
-                    .OnComplete(StopMovingDown).SetEase(Ease.Linear);
+                activeMoveDownTween = _rdb.DOMoveY(hits[0].point.y + stopOffset, (hits[0].distance / verticalSpeed) * current_velocity_modifier)
+                    .OnComplete(StopMovingDown).SetEase(motion_ease);
             }
         }
 
@@ -198,6 +210,27 @@ namespace GameJamCore.Brakeys_2023
             DOTween.KillAll();
 
             Destroy(this.gameObject);
+        }
+
+
+        //
+        public override void OnLiquidEnter()
+        {
+            base.OnLiquidEnter();
+
+            if (activeMoveDownTween != null) activeMoveDownTween.timeScale = current_velocity_modifier;
+
+            PlayParticle(ParticleType.liquid, pinza_splash_destra.position);
+            PlayParticle(ParticleType.liquid, pinza_splash_sinistra.position);
+
+        }
+
+        public override void OnLiquidExit()
+        {
+            base.OnLiquidExit();
+
+            PlayParticle(ParticleType.liquid, pinza_splash_destra.position);
+            PlayParticle(ParticleType.liquid, pinza_splash_sinistra.position);
         }
 
 #if UNITY_EDITOR

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level_name: Level_1
   level: 1
-  game_time: 30
+  game_time: 20
   biscotti_to_spawn:
   - {fileID: 8346053624269761988, guid: ffd6becf21b70584eb4601ca7e57990b, type: 3}
   - {fileID: 8346053624269761988, guid: ffd6becf21b70584eb4601ca7e57990b, type: 3}
   - {fileID: 8346053624269761988, guid: 4160f289b09ef424c80f1d648b950d09, type: 3}
-  delay_between_each_spawn: 1
+  delay_between_each_spawn: 0.5
   LevelScore: 0
   Stars: 0
   isUnlocked: 0

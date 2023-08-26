@@ -89,11 +89,35 @@ namespace GameJamCore.Brakeys_2023
 
         }
 
+        private void Update()
+        {
+            if (_integrity <= 0)
+                KillMe();
+        }
+
+        public void KillMe()
+        {
+            if (this.gameObject != null)
+                ActiveInGame--;
+
+            Destroy(this.gameObject);
+        }
 
         public override void FixedUpdate()
         {
             //limit velocity
             base.FixedUpdate();
+        }
+
+
+        bool enable_deteriorate = false;
+        public void StartDeteriorate()
+        {
+            if (enable_deteriorate == true)
+                return;
+
+            StartCoroutine(deteriorate_cr());
+            enable_deteriorate = true;
         }
 
 
@@ -166,9 +190,6 @@ namespace GameJamCore.Brakeys_2023
 
             //particle
             PlayParticle(ParticleType.liquid);
-
-            //start deterioramento
-            StartCoroutine(deteriorate_cr());
         }
 
         public override void OnLiquidExit()
@@ -190,7 +211,7 @@ namespace GameJamCore.Brakeys_2023
         {
             transform.parent = null;
             var jumpPosition = new Vector2(UnityEngine.Random.Range(3.5f, 5f), UnityEngine.Random.Range(-2f, -3f));
-            transform.DOJump(jumpPosition, 3, 1, 2).OnComplete(()=> { Destroy(gameObject); });
+            transform.DOJump(jumpPosition, 3, 1, 2).OnComplete(()=> { KillMe(); });
         }
     }
 }

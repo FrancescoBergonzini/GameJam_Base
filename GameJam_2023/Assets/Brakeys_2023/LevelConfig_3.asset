@@ -10,20 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 206f264290d11d24f910d73c9ff39f56, type: 3}
-  m_Name: LevelConfig_2
+  m_Name: LevelConfig_3
   m_EditorClassIdentifier: 
-  level_name: Level_2
-  level: 2
-  game_time: 40
+  level_name: Level_3
+  level: 3
+  game_time: 30
   biscotti_to_spawn:
-  - {fileID: 8346053624269761988, guid: ffd6becf21b70584eb4601ca7e57990b, type: 3}
   - {fileID: 8346053624269761988, guid: 4160f289b09ef424c80f1d648b950d09, type: 3}
-  - {fileID: 8346053624269761988, guid: ffd6becf21b70584eb4601ca7e57990b, type: 3}
   - {fileID: 8346053624269761988, guid: 4160f289b09ef424c80f1d648b950d09, type: 3}
-  - {fileID: 8346053624269761988, guid: ffd6becf21b70584eb4601ca7e57990b, type: 3}
   - {fileID: 8346053624269761988, guid: 4160f289b09ef424c80f1d648b950d09, type: 3}
-  delay_between_each_spawn: 0.25
+  - {fileID: 8346053624269761988, guid: 4160f289b09ef424c80f1d648b950d09, type: 3}
+  - {fileID: 8346053624269761988, guid: 4160f289b09ef424c80f1d648b950d09, type: 3}
+  - {fileID: 8346053624269761988, guid: 4160f289b09ef424c80f1d648b950d09, type: 3}
+  - {fileID: 8346053624269761988, guid: 4160f289b09ef424c80f1d648b950d09, type: 3}
+  delay_between_each_spawn: 0.1
   LevelScore: 0
   Stars: 0
   isUnlocked: 0
-  next_level: {fileID: 11400000, guid: 6c84acd25d6f7154b8cfd5bc063f3d89, type: 2}
+  next_level: {fileID: 0}
