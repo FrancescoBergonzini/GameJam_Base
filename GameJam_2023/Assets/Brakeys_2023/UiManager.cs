@@ -1,4 +1,5 @@
 using DG.Tweening;
+using GameJamCore.Brakeys_2023;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -91,7 +92,10 @@ public class UiManager : MonoBehaviour
             Image star = stars[i];
             star.transform.DOPunchScale(Vector3.one * 1.1f, 0.5f);
             star.color = Color.yellow;
+
+            GameManager.instance.PlaySound(GameJamCore.Brakeys_2023.AudioType.start_pop, Vector2.zero);
             yield return new WaitForSeconds(0.5f);
+
         }
     }
 }

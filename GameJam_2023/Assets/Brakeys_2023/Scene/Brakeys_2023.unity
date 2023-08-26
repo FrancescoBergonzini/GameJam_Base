@@ -1459,14 +1459,14 @@ MonoBehaviour:
     source: {fileID: 0}
   - type: 20
     clip: {fileID: 8300000, guid: 08112a14e49055846bbf065b2ef88044, type: 3}
-    volume: 0.5
+    volume: 1
     pitch: 1
     loop: 0
     randomize: 1
     fattore_di_random: 0.1
     source: {fileID: 0}
   - type: 21
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 099b5dc35a218be46ae20325242b4fea, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
@@ -1474,7 +1474,7 @@ MonoBehaviour:
     fattore_di_random: 0
     source: {fileID: 0}
   - type: 22
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 45f1de6e06737224198f490227bc5b22, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
@@ -1482,7 +1482,7 @@ MonoBehaviour:
     fattore_di_random: 0
     source: {fileID: 0}
   - type: 23
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 4f2c1432b11d32f48bdc64df637a2abb, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
@@ -1514,15 +1514,15 @@ MonoBehaviour:
     fattore_di_random: 0
     source: {fileID: 0}
   - type: 40
-    clip: {fileID: 0}
-    volume: 0.5
+    clip: {fileID: 8300000, guid: 49454018e1abdbf4ba2952f90b4dce29, type: 3}
+    volume: 0.75
     pitch: 1
     loop: 0
-    randomize: 0
-    fattore_di_random: 0
+    randomize: 1
+    fattore_di_random: 0.1
     source: {fileID: 0}
   - type: 60
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 5a548fcc7e0606b409e43d6a6498febe, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -1530,7 +1530,7 @@ MonoBehaviour:
     fattore_di_random: 0
     source: {fileID: 0}
   - type: 61
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 8b73edf874d6af94d944fbe3165c8675, type: 3}
     volume: 1
     pitch: 1
     loop: 0

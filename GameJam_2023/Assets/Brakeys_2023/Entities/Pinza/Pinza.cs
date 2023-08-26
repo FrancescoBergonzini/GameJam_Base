@@ -89,10 +89,14 @@ namespace GameJamCore.Brakeys_2023
         {
             if (PlayerInput)
             {
+
+                PlaySound(AudioType.active_claw);
+
                 currentState = PinzaState.goingDown;
                 GoDown();
                 return;
             }
+
 
             horizontalProgress += horizontalDirection * Time.deltaTime * horizontalSpeed;
 
@@ -110,6 +114,7 @@ namespace GameJamCore.Brakeys_2023
 
         private void MovingDown()
         {
+
             if (PlayerInput)
             {
                 StopMovingDown();
@@ -119,6 +124,7 @@ namespace GameJamCore.Brakeys_2023
         private void StopMovingDown()
         {
             ToggleClawArms(false);
+
 
             CheckCookiesInside();
             currentState = PinzaState.goingUp;
@@ -138,6 +144,9 @@ namespace GameJamCore.Brakeys_2023
             var angle = open ? clawArmsOpenAngle : clawArmsCloseAngle;
             leftClaw.DOLocalRotate(new Vector3(0, 0, -angle), .5f);
             rightClaw.DOLocalRotate(new Vector3(0, 0, angle), .5f);
+
+            PlaySound(AudioType.closing_claw);
+
         }
 
         private void CheckCookiesInside()
@@ -182,6 +191,9 @@ namespace GameJamCore.Brakeys_2023
             {
                 GameManager.instance.OnAddScore(cookie.ConvertIntegrityToScore());
                 cookie.ProcessGrab();
+
+                PlaySound(AudioType.biscuit_to_points);
+
             }
 
 

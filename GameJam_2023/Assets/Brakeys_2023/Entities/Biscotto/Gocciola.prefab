@@ -52,11 +52,11 @@ MonoBehaviour:
   isPhysic: 1
   firstEnterInLiquid: 0
   MaxSpeed: 1
-  MinSpeed: 0.4
+  MinSpeed: 0.1
   Smooth_time: 0.5
   Smooth_strenght: 1
   _integrity: 0
-  "danno_integrit\xE0_second": 0.01
+  "danno_integrit\xE0_second": 0.02
   cookiePieces:
   - {fileID: 1389585510736146246}
   - {fileID: 7440013993233499668}

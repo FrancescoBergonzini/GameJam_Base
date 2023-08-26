@@ -241,7 +241,9 @@ namespace GameJamCore.Brakeys_2023
             //chiama cose da fare quando Enter inizia
             start_time = Time.time;
 
-            foreach (var canvas in ui_prefab.panels) DOVirtual.Float(from: 0, to: 1, duration: 1f, v => canvas.alpha = v); 
+            foreach (var canvas in ui_prefab.panels) DOVirtual.Float(from: 0, to: 1, duration: 1f, v => canvas.alpha = v);
+
+            GameManager.instance.PlaySound(Brakeys_2023.AudioType.start_game, Vector2.zero);
 
 
         }
@@ -269,6 +271,9 @@ namespace GameJamCore.Brakeys_2023
             //test
             //ui_prefab.GameEnd(500, 2);
             ui_prefab.GameEnd((int)this.current_raw_score, _calculate_stars());
+
+            GameManager.instance.PlaySound(Brakeys_2023.AudioType.end_game, Vector2.zero);
+
         }
 
         //da chiamare quando si esce dalla scena!
