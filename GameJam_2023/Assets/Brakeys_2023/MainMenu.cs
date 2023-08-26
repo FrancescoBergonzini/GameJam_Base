@@ -46,8 +46,7 @@ namespace GameJamCore.Brakeys_2023
             }
 
             //scale
-
-            foreach (var transform in object_to_scale) transform.DOScale(1.2f, 1f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
+            foreach (var transform in object_to_scale) transform.DOScale(1.2f, 1f).From(1f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
         }
 
         void MoveToScreen(MenuScreen screen, bool instant = false, float delay = 0)

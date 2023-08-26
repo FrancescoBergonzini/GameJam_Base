@@ -25,5 +25,5 @@ MonoBehaviour:
   delay_between_each_spawn: 0.25
   LevelScore: 0
   Stars: 0
-  isUnlocked: 0
+  isUnlocked: 1
   next_level: {fileID: 11400000, guid: 6c84acd25d6f7154b8cfd5bc063f3d89, type: 2}

@@ -125,9 +125,9 @@ namespace GameJamCore.Brakeys_2023
         /// solo per test
         /// </summary>
         /// <returns></returns>
-        IEnumerator deteriorate_cr(float startDelay = 1.5f)
+        IEnumerator deteriorate_cr()
         {
-            yield return new WaitForSeconds(startDelay);
+            yield return new WaitForSeconds(UnityEngine.Random.Range(0.5f, 1.5f));
 
             while (true)
             {
@@ -183,7 +183,7 @@ namespace GameJamCore.Brakeys_2023
             //applica forza che li fa risalire un attimo
             if (!firstEnterInLiquid)
             {
-                GetRigidbody().AddForce(Vector2.up * UpperForce, ForceMode2D.Impulse);
+                GetRigidbody().AddForce(Vector2.up * (UpperForce + UnityEngine.Random.Range(- UpperForce * 0.5f, UpperForce * 0.5f)), ForceMode2D.Impulse);
                 firstEnterInLiquid = true;
             }
 
