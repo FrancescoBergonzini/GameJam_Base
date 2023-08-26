@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace GameJamCore.Brakeys_2023
 {
@@ -24,7 +25,9 @@ namespace GameJamCore.Brakeys_2023
 
         [SerializeField] float cookiesCheckRadius;
         [SerializeField] LayerMask layerBiscotti;
-        [SerializeField] Transform cookiesCheckTransform;
+        [SerializeField] Transform cookiesCheckTransform_0;
+        [SerializeField] Transform cookiesCheckTransform_1;
+
 
         [SerializeField] Transform leftClaw;
         [SerializeField] Transform rightClaw;
@@ -127,17 +130,28 @@ namespace GameJamCore.Brakeys_2023
 
         private void CheckCookiesInside()
         {
-            List<Collider2D> cookies = new List<Collider2D>();
+            List<Collider2D> cookies_0 = new List<Collider2D>();
+            List<Collider2D> cookies_1 = new List<Collider2D>();
+
+
             ContactFilter2D contactFilter = new ContactFilter2D()
             {
                 layerMask = layerBiscotti,
                 useLayerMask = true
             };
-            var cookiesCount = Physics2D.OverlapCircle(cookiesCheckTransform.position, cookiesCheckRadius, contactFilter, cookies);
-            Debug.Log(cookiesCount);
-            if (cookiesCount > 0)
+
+            var cookiesCount_0 = Physics2D.OverlapCircle(cookiesCheckTransform_0.position, cookiesCheckRadius, contactFilter, cookies_0);
+            var cookiesCount_1 = Physics2D.OverlapCircle(cookiesCheckTransform_1.position, cookiesCheckRadius, contactFilter, cookies_1);
+
+
+            //Debug.Log(cookiesCount);
+
+            if (cookiesCount_0 > 0 || cookiesCount_1 > 0)
             {
-                foreach (var cookie in cookies)
+
+                IEnumerable<Collider2D> union = cookies_0.Union(cookies_1);
+
+                foreach (var cookie in union)
                 {
                     if (cookie.TryGetComponent(out Biscotto biscotto))
                     {
@@ -202,7 +216,11 @@ namespace GameJamCore.Brakeys_2023
             }
 
             Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(cookiesCheckTransform.position, cookiesCheckRadius);
+
+            Gizmos.DrawWireSphere(cookiesCheckTransform_0.position, cookiesCheckRadius);
+
+            Gizmos.DrawWireSphere(cookiesCheckTransform_1.position, cookiesCheckRadius);
+
         }
 #endif
     }
