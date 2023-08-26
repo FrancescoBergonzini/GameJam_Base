@@ -154,7 +154,7 @@ namespace GameJamCore.Brakeys_2023
 
             foreach (var cookie in grabbedCookies)
             {
-                GameManager.instance.current_raw_score += cookie.ConvertIntegrityToScore();
+                GameManager.instance.OnAddScore(cookie.ConvertIntegrityToScore());
                 cookie.ProcessGrab();
             }
             grabbedCookies.Clear();

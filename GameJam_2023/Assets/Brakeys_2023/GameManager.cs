@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GameJamCore.Brakeys_2023
 {
@@ -62,6 +63,7 @@ namespace GameJamCore.Brakeys_2023
 
         float start_time;
 
+        int biscottoCount = 0;
 
         public enum GameMode
         {
@@ -89,7 +91,15 @@ namespace GameJamCore.Brakeys_2023
             OnSpawnBiscottiEnter();
         }
 
+        public void GoToMenu()
+        {
+            SceneManager.LoadScene("Menu");
+        }
 
+        public void Retry()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
 
         #region Biscotto Manage
 
@@ -106,6 +116,8 @@ namespace GameJamCore.Brakeys_2023
 
                 yield return new WaitForSeconds(levelSpawner.delay_between_each_spawn);
             }
+
+            biscottoCount = levelSpawner.biscotti_to_spawn.Length;
 
             OnComplete?.Invoke();
         }
@@ -208,9 +220,8 @@ namespace GameJamCore.Brakeys_2023
             current_mode = GameMode.cucchiaio_spawn;
 
             StartCoroutine(ManageClawSpawn(OnComplete: () => OnGameEnter()));
-
-
         }
+
         public void OnGameEnter()
         {
             current_mode = GameMode.game;
@@ -221,6 +232,15 @@ namespace GameJamCore.Brakeys_2023
             foreach (var canvas in ui_prefab.panels) canvas.alpha = 1f;
 
 
+        }
+
+        public void OnAddScore(float score)
+        {
+            biscottoCount--;
+            current_raw_score+= score;
+            if (biscottoCount <= 0) {
+                OnFinalScoreEnter();
+            }
         }
 
         public void OnFinalScoreEnter()
@@ -247,7 +267,6 @@ namespace GameJamCore.Brakeys_2023
             //solo se è più alto di quello che abbiamo li
             if (current_raw_score > current_level.LevelScore)
                 current_level.SetCurrentScoreAndStars(current_raw_score, _calculate_stars());
-
         }
 
         //calcola quante stelle devo accendere in base al punteggio...

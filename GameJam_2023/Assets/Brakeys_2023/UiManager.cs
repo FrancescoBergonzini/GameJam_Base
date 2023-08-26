@@ -59,16 +59,28 @@ public class UiManager : MonoBehaviour
         }
     }
 
-
-
-
     public void GameEnd(int finalScore, int stars)
     {
         gameEndPanel.gameObject.SetActive(true);
         gameEndPanel.DOAnchorPos(Vector2.zero, 2).SetEase(Ease.OutBack);
-        gameEndText.text = $"GAME OVER!\nYour score: {finalScore}";
+
+        var finalMessage = stars switch
+        {
+            0 => GetEndMessage("GAME OVER", "TRY AGAIN", "DON'T GIVE UP"),
+            1 => GetEndMessage("KEEP GOING", "FIRST STAR", "YOU'RE PROGRESSING"),
+            2 => GetEndMessage("WELL DONE", "TWO STARS SHINE", "GROWING STRONG"),
+            3 => GetEndMessage("AWESOME", "LEGENDARY", "MASTERFUL"),
+        };
+
+        gameEndText.text = $"{finalMessage}!" +
+            $"\nYour score: {finalScore}";
 
         StartCoroutine(ToggleStars(stars, 2));
+    }
+
+    string GetEndMessage(params string[] messages)
+    {
+        return messages[UnityEngine.Random.Range(0, messages.Length)];
     }
 
     IEnumerator ToggleStars(int starsCount, float startDelay)

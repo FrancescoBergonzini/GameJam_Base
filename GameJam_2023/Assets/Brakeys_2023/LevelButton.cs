@@ -11,6 +11,7 @@ public class LevelButton : MonoBehaviour
 {
     [SerializeField] TMP_Text levelName;
     [SerializeField] Button button;
+    [SerializeField] GameObject[] stars;
 
     internal void SetLevel(LevelConfig level)
     {
@@ -23,6 +24,10 @@ public class LevelButton : MonoBehaviour
                 GameManager.current_level = level;
                 SceneManager.LoadScene("Brakeys_2023");
             });
+        }
+        for (int i = 0; i < level.Stars; i++)
+        {
+            stars[i].gameObject.SetActive(true);
         }
     }
 
