@@ -212,6 +212,7 @@ namespace GameJamCore.Brakeys_2023
             transform.parent = null;
             var jumpPosition = new Vector2(UnityEngine.Random.Range(3.5f, 5f), UnityEngine.Random.Range(-2f, -3f));
             transform.DOJump(jumpPosition, 3, 1, 2).OnComplete(()=> { KillMe(); });
+            PlayParticle(ParticleType.stars);
         }
     }
 }

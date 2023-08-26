@@ -10,7 +10,8 @@ namespace GameJamCore.Brakeys_2023
         notImplemented,
 
         test_visual = 10,
-        liquid = 11
+        liquid = 11,
+        stars
     }
 
     public class Brakeys_ParticleManager : ParticleDatabase<ParticleType, AudioType>

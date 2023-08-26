@@ -1294,7 +1294,11 @@ MonoBehaviour:
   - type: 11
     prefab_particle: {fileID: 7595962699074290566, guid: e9881a60fc07c8d44aebc71cf64121ad, type: 3}
     Lifetime: 2
-    sound_type: 1
+    sound_type: 0
+  - type: 12
+    prefab_particle: {fileID: 8991260959489705104, guid: 7c1c03141fc01fd4c9b384dcc15c75e4, type: 3}
+    Lifetime: 2
+    sound_type: 0
 --- !u!114 &1682038506
 MonoBehaviour:
   m_ObjectHideFlags: 0
