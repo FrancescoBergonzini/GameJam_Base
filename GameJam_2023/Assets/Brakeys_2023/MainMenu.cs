@@ -13,6 +13,9 @@ namespace GameJamCore.Brakeys_2023
         [SerializeField] Transform levelsParent;
         [SerializeField] SerializedDictionary<MenuScreen, Transform> screens;
 
+        [Space]
+        public Transform[] object_to_scale;
+
         static bool showMain = true;
 
         enum MenuScreen
@@ -41,6 +44,10 @@ namespace GameJamCore.Brakeys_2023
                 var button = Instantiate(levelButtonPrefab, levelsParent);
                 button.SetLevel(level);
             }
+
+            //scale
+
+            foreach (var transform in object_to_scale) transform.DOScale(1.2f, 1f).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
         }
 
         void MoveToScreen(MenuScreen screen, bool instant = false, float delay = 0)
