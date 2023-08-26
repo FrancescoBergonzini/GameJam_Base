@@ -119,6 +119,7 @@ namespace GameJamCore.Brakeys_2023
             }
 
             biscottoCount = levelSpawner.biscotti_to_spawn.Length;
+            current_level_tazza.Setup();
 
             OnComplete?.Invoke();
         }

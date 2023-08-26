@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,10 +23,16 @@ namespace GameJamCore.Brakeys_2023
     public class Tazza : GameEntity
     {
         public Liquid_Config current_liquid;
+        [SerializeField] SpriteRenderer front;
 
         protected override void Inizialize()
         {
             _changeLayer(Layers.Tazza);
+        }
+
+        public void Setup()
+        {
+            front.DOFade(0, 2).SetDelay(1);
         }
     }
 }
