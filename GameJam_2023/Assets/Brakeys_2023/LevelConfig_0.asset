@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level_name: Tutorial
   level: 0
-  game_time: 10
+  game_time: 30
   biscotti_to_spawn:
   - {fileID: 8346053624269761988, guid: ffd6becf21b70584eb4601ca7e57990b, type: 3}
   delay_between_each_spawn: 0.5
-  LevelScore: 0
-  Stars: 0
-  isUnlocked: 0
+  LevelScore: 95.40007
+  Stars: 3
+  isUnlocked: 1
   next_level: {fileID: 11400000, guid: b9e9642d02817f248b9d8dd98d91c8c9, type: 2}

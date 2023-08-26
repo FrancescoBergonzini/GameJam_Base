@@ -109,7 +109,14 @@ namespace GameJamCore.Brakeys_2023
             {
                 yield return new WaitForSeconds(danno_integrità_second);
 
-                ModifyIntegrity(-0.1f);
+                if (inAir)
+                {
+                    yield break;
+                }
+                else
+                {
+                    ModifyIntegrity(-0.1f);
+                }
             }
         }
 
@@ -169,10 +176,22 @@ namespace GameJamCore.Brakeys_2023
             base.OnLiquidExit();
 
             GetRigidbody().gravityScale = outsideLiquidSpeed;
-
-            StopCoroutine(nameof(deteriorate_cr));
         }
 
+        public void Grab(Pinza pinza)
+        {
+            _rdb.simulated = false;
+            transform.parent = pinza.transform;
+            inAir = false;
+        }
+
+        public void ProcessGrab()
+        {
+            Debug.LogWarning("process");
+            transform.parent = null;
+            var jumpPosition = new Vector2(UnityEngine.Random.Range(3.5f, 5f), UnityEngine.Random.Range(-2f, -3f));
+            transform.DOJump(jumpPosition, 3, 1, 2).OnComplete(()=> { Destroy(gameObject); });
+        }
     }
 }
 

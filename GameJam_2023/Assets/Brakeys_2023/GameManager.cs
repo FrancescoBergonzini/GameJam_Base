@@ -37,7 +37,7 @@ namespace GameJamCore.Brakeys_2023
         public LevelConfig[] levels;
 
         [Space]
-        public LevelConfig current_level = null;
+        public static LevelConfig current_level = null;
         public float current_raw_score = 0f;
 
         [Header("Game references")]
@@ -245,7 +245,7 @@ namespace GameJamCore.Brakeys_2023
 
             //salve punteggio in scriptable
             //solo se è più alto di quello che abbiamo li
-            if (current_raw_score > this.current_level.LevelScore)
+            if (current_raw_score > current_level.LevelScore)
                 current_level.SetCurrentScoreAndStars(current_raw_score, _calculate_stars());
 
         }

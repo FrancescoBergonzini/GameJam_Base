@@ -7,7 +7,7 @@ namespace GameJamCore.Brakeys_2023
     public class MainMenu : MonoBehaviour
     {
         [SerializeField] List<LevelConfig> levels = new List<LevelConfig>();
-        [SerializeField] GameObject levelButtonPrefab;
+        [SerializeField] LevelButton levelButtonPrefab;
 
         [SerializeField] Transform levelsParent;
         // Start is called before the first frame update
@@ -15,7 +15,8 @@ namespace GameJamCore.Brakeys_2023
         {
             foreach (var level in levels)
             {
-                Instantiate(levelButtonPrefab, levelsParent);
+                var button = Instantiate(levelButtonPrefab, levelsParent);
+                button.SetLevel(level);
             }
         }
 

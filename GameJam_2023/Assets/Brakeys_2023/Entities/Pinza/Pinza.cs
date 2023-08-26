@@ -26,6 +26,11 @@ namespace GameJamCore.Brakeys_2023
         [SerializeField] LayerMask layerBiscotti;
         [SerializeField] Transform cookiesCheckTransform;
 
+        [SerializeField] Transform leftClaw;
+        [SerializeField] Transform rightClaw;
+        [SerializeField] float clawArmsCloseAngle;
+        [SerializeField] float clawArmsOpenAngle;
+
         List<Biscotto> grabbedCookies = new List<Biscotto>();
 
 
@@ -46,7 +51,7 @@ namespace GameJamCore.Brakeys_2023
         // Start is called before the first frame update
         void Start()
         {
-
+            ToggleClawArms(true);
         }
 
         // Update is called once per frame
@@ -79,7 +84,6 @@ namespace GameJamCore.Brakeys_2023
             var ease = -(Mathf.Cos(Mathf.PI * horizontalProgress) - 1) / 2;
             var xPosition = Mathf.Lerp(minMaxX.x, minMaxX.y, ease);
 
-
             transform.position = new Vector2(xPosition, horizontalStateY);
 
             if (horizontalProgress >= 1 || horizontalProgress <= 0)
@@ -99,14 +103,26 @@ namespace GameJamCore.Brakeys_2023
 
         private void StopMovingDown()
         {
+            ToggleClawArms(false);
+
             CheckCookiesInside();
             currentState = PinzaState.goingUp;
             if (activeMoveDownTween.active) activeMoveDownTween.Kill();
-            _rdb.DOMoveY(horizontalStateY, Mathf.Abs(cookiesCheckTransform.position.y - horizontalStateY) / verticalSpeed).
+            _rdb.DOMoveY(horizontalStateY, Mathf.Abs(transform.position.y - horizontalStateY) / verticalSpeed).
                 OnComplete(() =>
                 {
+                    ProcessCookiesInside();
+                    ToggleClawArms(true);
                     currentState = PinzaState.horizontalMovement;
-                });
+                }).
+                SetEase(Ease.Linear);
+        }
+
+        void ToggleClawArms(bool open)
+        {
+            var angle = open ? clawArmsOpenAngle : clawArmsCloseAngle;
+            leftClaw.DOLocalRotate(new Vector3(0, 0, -angle), .5f);
+            rightClaw.DOLocalRotate(new Vector3(0, 0, angle), .5f);
         }
 
         private void CheckCookiesInside()
@@ -117,7 +133,8 @@ namespace GameJamCore.Brakeys_2023
                 layerMask = layerBiscotti,
                 useLayerMask = true
             };
-            var cookiesCount = Physics2D.OverlapCircle(transform.position, cookiesCheckRadius, contactFilter, cookies);
+            var cookiesCount = Physics2D.OverlapCircle(cookiesCheckTransform.position, cookiesCheckRadius, contactFilter, cookies);
+            Debug.Log(cookiesCount);
             if (cookiesCount > 0)
             {
                 foreach (var cookie in cookies)
@@ -125,9 +142,22 @@ namespace GameJamCore.Brakeys_2023
                     if (cookie.TryGetComponent(out Biscotto biscotto))
                     {
                         grabbedCookies.Add(biscotto);
+                        biscotto.Grab(this);
                     }
                 }
             }
+        }
+
+        private void ProcessCookiesInside()
+        {
+            if (grabbedCookies.Count <= 0) return;
+
+            foreach (var cookie in grabbedCookies)
+            {
+                GameManager.instance.current_raw_score += cookie.ConvertIntegrityToScore();
+                cookie.ProcessGrab();
+            }
+            grabbedCookies.Clear();
         }
 
         private void GoDown()
@@ -143,7 +173,7 @@ namespace GameJamCore.Brakeys_2023
             if (castResult > 0)
             {
                 activeMoveDownTween = _rdb.DOMoveY(hits[0].point.y + stopOffset, hits[0].distance / verticalSpeed)
-                    .OnComplete(StopMovingDown);
+                    .OnComplete(StopMovingDown).SetEase(Ease.Linear);
             }
         }
 
@@ -170,6 +200,9 @@ namespace GameJamCore.Brakeys_2023
             {
                 Gizmos.DrawWireSphere(hit[0].point, sphereCastCheckRadius);
             }
+
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(cookiesCheckTransform.position, cookiesCheckRadius);
         }
 #endif
     }

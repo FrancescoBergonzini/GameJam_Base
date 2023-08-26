@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3237630764229422989}
   - component: {fileID: 613894186582475968}
   - component: {fileID: 5142171290415730666}
+  - component: {fileID: 1231234612181183894}
   m_Layer: 5
   m_Name: LevelButton
   m_TagString: Untagged
@@ -153,6 +154,20 @@ MonoBehaviour:
   baked: 0
   modifiedFromInspector: 0
   bakedShadows: []
+--- !u!114 &1231234612181183894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2866456805058315804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1caf98a812a9f9e4d933ce355e8ad420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelName: {fileID: 581969993465998454}
+  button: {fileID: 613894186582475968}
 --- !u!1 &8950483058600788137
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +261,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
+  m_fontSize: 18
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
