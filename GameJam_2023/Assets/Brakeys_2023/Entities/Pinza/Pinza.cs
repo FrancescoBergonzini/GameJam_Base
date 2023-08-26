@@ -46,12 +46,13 @@ namespace GameJamCore.Brakeys_2023
 
         public enum PinzaState
         {
+            none = default,
             horizontalMovement,
             goingDown,
             goingUp,
         }
 
-        PinzaState currentState = PinzaState.horizontalMovement;
+        public PinzaState currentState = default;
 
         [Space]
         public Ease down_ease;
