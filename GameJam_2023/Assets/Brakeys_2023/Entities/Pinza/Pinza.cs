@@ -111,7 +111,7 @@ namespace GameJamCore.Brakeys_2023
             CheckCookiesInside();
             currentState = PinzaState.goingUp;
             if (activeMoveDownTween.active) activeMoveDownTween.Kill();
-            _rdb.DOMoveY(horizontalStateY, Mathf.Abs(transform.position.y - horizontalStateY) / verticalSpeed).
+            _rdb.DOMoveY(horizontalStateY, Mathf.Abs(transform.position.y - horizontalStateY) / verticalSpeed).SetDelay(0.5f).
                 OnComplete(() =>
                 {
                     ProcessCookiesInside();
