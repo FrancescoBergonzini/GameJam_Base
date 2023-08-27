@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level_name: Level_2
   level: 2
-  game_time: 15
+  game_time: 10
   biscotti_to_spawn:
   - {fileID: 8346053624269761988, guid: ffd6becf21b70584eb4601ca7e57990b, type: 3}
   - {fileID: 8346053624269761988, guid: 4160f289b09ef424c80f1d648b950d09, type: 3}
