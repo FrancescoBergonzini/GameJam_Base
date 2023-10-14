@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static GameJamCore.UnityUtilities;
 
 namespace GameJamCore
 {
@@ -39,12 +40,20 @@ namespace GameJamCore
         private ISoundDatabase SoundDatabase;
         private IParticleDatabase ParticleDatabase;
 
+
+
         public static GameManagerBase Instance;
 
         [Header("Game mode")]
         private GameMode current_mode = GameMode.none;
 
         public string Debug_mode;
+
+        //test
+        [Space]
+        //to use Untilities values use => using static GameJamCore.UnityUtilities;
+        public Range marco;
+
 
         private void Awake()
         {
@@ -53,8 +62,13 @@ namespace GameJamCore
 
         private void Start()
         {
+            SetupCollisionlayers();
+
             StartMainGameRoutine();
+
         }
+
+
 
         public virtual void OnAwake()
         {
@@ -75,6 +89,34 @@ namespace GameJamCore
                 Debug.LogError("GameManagerBase needs a ParticleDatabase");
             }
         }
+
+        #region Collision
+
+        public virtual void SetupCollisionlayers()
+        {
+            //Collision1
+            //Character
+            //Physics.IgnoreLayerCollision(Layers.Players, Layers.Items, true);
+            //Physics.IgnoreLayerCollision(Layers.Players, Layers.Items_parts, true);
+
+
+            //Collision2
+            //Edge
+
+
+            //Collision3
+            //Structure 
+
+            //Collision4
+            //Collision5 
+            //Collision6
+            //Collision7
+            //Collision8
+            //Collision9
+            //Collision10
+        }
+
+        #endregion
 
         #region Particles
 
