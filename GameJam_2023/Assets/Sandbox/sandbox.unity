@@ -186,14 +186,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Items:
-  - type: 10
-    clip: {fileID: 8300000, guid: 4b36a7ea4be741645974407fde58c467, type: 3}
+  - clip: {fileID: 8300000, guid: 4b36a7ea4be741645974407fde58c467, type: 3}
+    clip_array: []
     volume: 1
     pitch: 1
     loop: 0
     randomize: 1
     fattore_di_random: 0.1
     source: {fileID: 0}
+    type: 10
+  flags: 0
 --- !u!114 &479940072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,9 +209,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Items:
-  - type: 10
-    prefab_particle: {fileID: 915874326755496211, guid: 685d4aeae9da5df49ae202dd1500166e, type: 3}
+  - prefab_particle: {fileID: 915874326755496211, guid: 685d4aeae9da5df49ae202dd1500166e, type: 3}
     Lifetime: 3
+    sound_data:
+      clip: {fileID: 0}
+      clip_array: []
+      volume: 1
+      pitch: 1
+      loop: 0
+      randomize: 0
+      fattore_di_random: 0.2
+      source: {fileID: 0}
+    type: 10
     sound_type: 10
 --- !u!114 &479940073
 MonoBehaviour:
@@ -251,7 +262,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 978431729}
-  - component: {fileID: 978431728}
   - component: {fileID: 978431730}
   m_Layer: 0
   m_Name: particle_audio-tester
@@ -260,18 +270,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &978431728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 978431727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be4cad2fa57156240b27681960fdc332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &978431729
 Transform:
   m_ObjectHideFlags: 0
@@ -296,15 +294,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 978431727}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9462cfcfadada5d499913aff9a7d734e, type: 3}
+  m_Script: {fileID: 11500000, guid: da8749d26dd6ea64cb088403c3798484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  int_string:
-    pairs: []
-    error: 0
-  custom_string:
-    pairs: []
-    error: 0
+  particleData:
+    prefab_particle: {fileID: 915874326755496211, guid: 685d4aeae9da5df49ae202dd1500166e, type: 3}
+    Lifetime: 5
+    sound_data:
+      clip: {fileID: 8300000, guid: 4b36a7ea4be741645974407fde58c467, type: 3}
+      clip_array: []
+      volume: 1
+      pitch: 1
+      loop: 0
+      randomize: 0
+      fattore_di_random: 0.2
+      source: {fileID: 0}
+  soundData:
+    clip: {fileID: 0}
+    clip_array: []
+    volume: 1
+    pitch: 1
+    loop: 0
+    randomize: 0
+    fattore_di_random: 0.2
+    source: {fileID: 0}
 --- !u!1 &1588143439
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,7 +365,7 @@ MonoBehaviour:
   int_string:
     pairs:
     - key: 0
-      value: zero
+      value: 
     error: 0
   custom_string:
     pairs:

@@ -127,10 +127,25 @@ namespace GameJamCore
             return p.instantiated_particle;
         }
 
-        public GameObject PlayParticle(System.Enum type, Vector3 position)
+        public GameObject PlayParticleMute(IParticleData data, Vector3 position, float? z_pos = null)
         {
+            if (z_pos != null)
+                position.z = (float)z_pos;
+
+            var p = ParticleDatabase.PlayParticle(data, position);
+
+            return p.instantiated_particle;
+        }
+
+        public GameObject PlayParticle(System.Enum type, Vector3 position, float? z_pos = null)
+        {
+            if (z_pos != null)
+                position.z = (float)z_pos;
+
             var p = ParticleDatabase.PlayParticle(type, position);
-            System.Enum sound_type = p.data.GetSound();
+
+            System.Enum sound_type = p.data.GetSoundType();
+
 
             if ((int)(object)sound_type != 0)
             {
@@ -140,9 +155,34 @@ namespace GameJamCore
             return p.instantiated_particle;
         }
 
-        public void PlaySound(System.Enum type, Vector3? position)
+        public GameObject PlayParticle(IParticleData particle, Vector3 position, float? z_pos = null)
         {
-            SoundDatabase.Play(type, position);
+            if (z_pos != null)
+                position.z = (float)z_pos;
+
+            var p = ParticleDatabase.PlayParticle(particle, position);
+
+            var sound = p.data.GetSound();
+
+            if (sound != null)
+                PlaySound(sound, position);
+
+            return p.instantiated_particle;
+        }
+
+        public void PlaySound(System.Enum type, Vector3? position = null, float? volume = null)
+        {
+            SoundDatabase.Play(type, position, volume);
+        }
+
+        public void PlaySound(ISoundData sound, Vector3? position = null, float? volume = null)
+        {
+            SoundDatabase.Play(sound, position, volume);
+        }
+
+        public void PlaySound(AudioClip clip, Vector3? position = null, float? volume = null)
+        {
+            SoundDatabase.Play(clip, position, volume);
         }
 
 
