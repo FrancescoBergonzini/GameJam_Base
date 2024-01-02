@@ -41,7 +41,6 @@ namespace GameJamCore
         private IParticleDatabase ParticleDatabase;
 
 
-
         public static GameManagerBase Instance;
 
         [Header("Game mode")]
@@ -51,8 +50,8 @@ namespace GameJamCore
 
         //test
         [Space]
-        //to use Untilities values use => using static GameJamCore.UnityUtilities;
-        public Range marco;
+        //to use Utilities values use => using static GameJamCore.UnityUtilities;
+        public Range range;
 
 
         private void Awake()
