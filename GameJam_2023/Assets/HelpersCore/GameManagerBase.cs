@@ -1,9 +1,12 @@
-using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.IO.LowLevel.Unsafe;
+using Unity.VisualScripting;
 using UnityEngine;
-using static GameJamCore.UnityUtilities;
+using UnityEngine.Events;
+using static System.Collections.Specialized.BitVector32;
 
 namespace GameJamCore
 {
@@ -25,13 +28,6 @@ namespace GameJamCore
 
     }
 
-    public enum GameMode
-    {
-        none,
-        gamemode_0,
-        gamemode_1,
-        gamemode_2,
-    }
 
     public class GameManagerBase : MonoBehaviour
     {
@@ -43,15 +39,18 @@ namespace GameJamCore
 
         public static GameManagerBase Instance;
 
-        [Header("Game mode")]
-        private GameMode current_mode = GameMode.none;
 
-        public string Debug_mode;
-
-        //test
         [Space]
-        //to use Utilities values use => using static GameJamCore.UnityUtilities;
-        public Range range;
+        private List<GameSessionBrain> sections_brains = new List<GameSessionBrain>();
+        private GameSessionBrain current_section;
+
+        public GameSessionBrain CurrentSection => current_section;
+
+        //editor debug
+        public bool debug_section;
+
+
+        protected Dictionary<string, GameSessionBrain> sections = new Dictionary<string, GameSessionBrain>();
 
 
         private void Awake()
@@ -59,15 +58,12 @@ namespace GameJamCore
             OnAwake();
         }
 
-        private void Start()
+        protected virtual void Start()
         {
+            //collisions
             SetupCollisionlayers();
 
-            StartMainGameRoutine();
-
         }
-
-
 
         public virtual void OnAwake()
         {
@@ -87,7 +83,64 @@ namespace GameJamCore
             {
                 Debug.LogError("GameManagerBase needs a ParticleDatabase");
             }
+
+            //inizialize the section dictionary
+            foreach (Transform go in transform)
+            {
+                var section = go.GetComponent<GameSessionBrain>();
+                sections_brains.Add(section);
+                sections[section.Name] = section;
+            }
+
+            //load the first raw_section as current_section
+            ChangeSection();
+
         }
+
+
+        #region GameMode
+
+        //default section[0]
+        private Coroutine change_section_rountine = null;
+        public void ChangeSection(string section_name = null)
+        {
+            //we are in the same section already?
+            if (current_section != null)
+            {
+                if (section_name == CurrentSection?.Name)
+                {
+                    Debug.LogError("We already are in this section!");
+                    return;
+                }
+            }
+
+            if (change_section_rountine == null)
+                StartCoroutine(_changeSection());
+
+            IEnumerator _changeSection()
+            {
+                //default
+                if (section_name == null)
+                    section_name = sections.Keys.FirstOrDefault();
+
+                //call disable?
+                var result = current_section?.SetDeactive();
+
+                yield return new WaitForEndOfFrame();
+
+                current_section = sections[section_name];
+
+                yield return new WaitForEndOfFrame();
+
+                result = current_section?.SetActive();
+
+                change_section_rountine = null;
+            }
+
+        }
+
+
+        #endregion
 
         #region Collision
 
@@ -187,78 +240,36 @@ namespace GameJamCore
 
         #endregion
 
-        #region GameMode
+        #region Test
 
-
-        //kill this routine to stop game loop
-        public Coroutine MainGameRoutine;
-
-        public void StartMainGameRoutine()
+        [ContextMenu("Change to Tutorial section")]
+        public void change_to_tutorial()
         {
-            if (MainGameRoutine == null)
-                MainGameRoutine = StartCoroutine(gameLoop_cr());
-
-            IEnumerator gameLoop_cr()
-            {
-                while (true)
-                {
-                    switch (current_mode)
-                    {
-                        case GameMode.none:
-
-                            Debug_mode = "none";
-                            break;
-
-                        case GameMode.gamemode_0:
-                            Debug_mode = "gamemode_0";
-                            break;
-
-                        case GameMode.gamemode_1:
-                            Debug_mode = "gamemode_1";
-                            break;
-
-                        case GameMode.gamemode_2:
-                            Debug_mode = "gamemode_2";
-                            break;
-
-                    }
-
-                    yield return new WaitForEndOfFrame();
-                }
-            }
+            ChangeSection("tutorial");
         }
 
-        //Todo: da riguardare, qua usi dei motodi per entrare in uno stato e metti in coda la logica onEnter
-        //potresti provare una macchina a stati come swich di behaviour del game main...
-        //andrebbe tutto fatto in overload per permettere al game derivati di adottare quello che vogliono
-
-        public void OnGameModeEnter0()
+        [ContextMenu("Change to Game Main section")]
+        public void change_to_MainGame()
         {
-            //cose che devono accadare la prima volta che si è nello stato preparation
-
-            current_mode = GameMode.gamemode_0;
-
+            ChangeSection("main");
         }
 
-        public void OnGameModeEnter1()
+        [ContextMenu("Change to Endgame section")]
+        public void change_to_EndGame()
         {
-            //cose che devono accadare la prima volta che si è nello stato preparation
-
-            current_mode = GameMode.gamemode_1;
-
+            ChangeSection("end");
         }
 
-        public void OnGameModeEnter2()
-        {
-            //cose che devono accadare la prima volta che si è nello stato preparation
 
-            current_mode = GameMode.gamemode_2;
-
-        }
-
+        //test
+        [Space]
+        //to use Utilities values use => using static GameJamCore.UnityUtilities;
+        public GameJamCore.UnityUtilities.Range range;
 
 
         #endregion
+
+
     }
 }
 
