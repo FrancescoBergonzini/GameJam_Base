@@ -6,8 +6,42 @@ using UnityEngine;
 
 namespace GameJamCore
 {
-    public class GameEntity : MonoBehaviour
+    public abstract class GameEntity : MonoBehaviour
     {
+        public GameEntityConfig Config;
+        public GameEntityConfig Runtime;
+
+        public static GameEntity Create(GameEntityConfig config, Vector3? position = null, Quaternion? rotation = null)
+        {
+            GameEntity entity = null;
+
+            if (position == null || rotation == null)
+            {
+                entity = Instantiate(config.prefab);
+            }
+            else
+            {
+                var _position = (Vector3)position;
+                var _rotation = (Quaternion)rotation;
+
+                entity = Instantiate(config.prefab, _position, _rotation);
+            }
+
+            entity.InizializeWithConfig(config);
+
+            return entity;
+        }
+
+        public virtual void InizializeWithConfig(GameEntityConfig config = null)
+        {
+            if (config != null)
+            {
+                this.Config = config;
+            }
+
+            Runtime = Config?.Clone();
+        }
+
         #region Helpers
 
         public GameObject PlayParticleMute(System.Enum type, Vector3? position = null)

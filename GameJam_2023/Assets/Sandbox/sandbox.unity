@@ -288,6 +288,7 @@ MonoBehaviour:
   range:
     min: 0
     max: 0
+  test_config: {fileID: 11400000, guid: c4fba29bfa71a224fb57498f34d7e877, type: 2}
 --- !u!4 &479940074
 Transform:
   m_ObjectHideFlags: 0
@@ -350,6 +351,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da8749d26dd6ea64cb088403c3798484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Config: {fileID: 0}
+  Runtime: {fileID: 0}
   particleData:
     prefab_particle: {fileID: 915874326755496211, guid: 685d4aeae9da5df49ae202dd1500166e, type: 3}
     Lifetime: 5

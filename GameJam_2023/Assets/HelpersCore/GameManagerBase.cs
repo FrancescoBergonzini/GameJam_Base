@@ -267,6 +267,15 @@ namespace GameJamCore
         public GameJamCore.UnityUtilities.Range range;
 
 
+        //test
+        public GameEntityConfig test_config;
+
+        [ContextMenu("Create TestGameEntity using Config")]
+        public void CreateTestGameEntity()
+        {
+            TestEntity.Create(config: test_config, UnityEngine.Vector3.zero, UnityEngine.Quaternion.identity);
+        }
+
         #endregion
 
 
