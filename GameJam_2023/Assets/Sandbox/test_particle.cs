@@ -9,7 +9,7 @@ namespace GameJamCore
         [SerializeField] ParticleData particleData;
         [SerializeField] SoundData soundData;
 
-        private void Start()
+        private void OnEnable()
         {
             PlayParticle(particleData);
             PlaySound(soundData);
