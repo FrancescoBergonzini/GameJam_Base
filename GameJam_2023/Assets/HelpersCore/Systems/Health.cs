@@ -6,7 +6,7 @@ using UnityEngine;
 namespace GameJamCore
 {
     //Usa [RequireAttribute(typeof(HealthSystem)) nelle classi che utilizzano questo system
-    public class HealthSystem : MonoBehaviour
+    public class Health : MonoBehaviour
     {
         public Action OnDeath;
 
