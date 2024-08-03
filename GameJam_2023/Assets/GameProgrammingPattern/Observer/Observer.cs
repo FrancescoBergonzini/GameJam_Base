@@ -58,6 +58,10 @@ namespace Study.GPP
                 //Unlock is not already unlocked...
             }
         }
+
+  
+
+
         #endregion
 
         #region subject
@@ -67,12 +71,12 @@ namespace Study.GPP
             List<IObserver> _observers;
             int _numObservers;
 
-            void AddObserver(IObserver observer)
+            public void AddObserver(IObserver observer)
             {
                 _observers.Add(observer);
             }
 
-            void RemoveObserver(IObserver observer)
+            public void RemoveObserver(IObserver observer)
             {
                 _observers.Remove(observer);
             }
@@ -83,6 +87,27 @@ namespace Study.GPP
                 {
                     observer.OnNotify(entity, _event);
                 }
+            }
+        }
+
+        //
+        class Physic
+        {
+            public Subject entityFell;
+
+        }
+
+        class BetterArchivement : IObserver
+        {
+            Physic _physic;
+            public void OnNotify(Entity entity, Action _event)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void ObserveEntityFell()
+            {
+                _physic.entityFell.AddObserver(this);
             }
         }
 
@@ -116,7 +141,7 @@ namespace Study.GPP
 
         interface IBetterObserver
         {
-            public void OnNotify(BetterSubject subject);
+            public virtual void OnNotify(BetterSubject subject) { }
         }
 
         class BetterObserver : IBetterObserver
@@ -167,7 +192,11 @@ namespace Study.GPP
             public System.Action<Action> OnNotify;
         }
         #endregion
+
+        #region Lined observers
+
+        #endregion
     }
-        
-    }
+
+}
 
