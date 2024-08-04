@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameJamCore
+namespace Study.GPP
 {
 
     public class AchivementSystem : IObserver
