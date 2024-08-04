@@ -1,7 +1,9 @@
 using GameJamCore;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 namespace GameJamCore
@@ -32,6 +34,10 @@ namespace GameJamCore
             return entity;
         }
 
+        #region Life Cycle
+        //example of symple event notification..
+        public UnityEvent OnEntiySpawn;
+        public UnityEvent OnEntityDie;
         public virtual void InizializeWithConfig(GameEntityConfig config = null)
         {
             if (config != null)
@@ -40,7 +46,21 @@ namespace GameJamCore
             }
 
             Runtime = Config?.Clone();
+
+            GameManagerBase.Instance.OnEntitySpawn(this);
+
+            OnEntiySpawn?.Invoke();
         }
+
+        [ContextMenu("Die")]
+        public virtual void Die()
+        {
+            OnEntityDie?.Invoke();
+            GameManagerBase.Instance.OnEntityDie(this);
+
+        }
+
+        #endregion
 
         #region Helpers
 

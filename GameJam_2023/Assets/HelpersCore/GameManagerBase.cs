@@ -75,13 +75,13 @@ namespace GameJamCore
             SoundDatabase = GetComponent<ISoundDatabase>();
             if (SoundDatabase == null)
             {
-                Debug.LogError("GameManagerBase needs a SoundDatabase");
+                UnityEngine.Debug.LogError("GameManagerBase needs a SoundDatabase");
             }
 
             ParticleDatabase = GetComponent<IParticleDatabase>();
             if (ParticleDatabase == null)
             {
-                Debug.LogError("GameManagerBase needs a ParticleDatabase");
+                UnityEngine.Debug.LogError("GameManagerBase needs a ParticleDatabase");
             }
 
             //inizialize the section dictionary
@@ -240,6 +240,30 @@ namespace GameJamCore
 
         #endregion
 
+        #region Event
+
+        public SerializedDictionary<int, GameEntity> Entities = new SerializedDictionary<int, GameEntity>();
+        public void OnEntitySpawn(GameEntity entity)
+        {
+            if (!Entities.ContainsKey(entity.GetHashCode()))
+            {
+                Entities.Add(entity.GetHashCode(), entity);
+            }
+            else
+            {
+                UnityEngine.Debug.LogError("entity " + entity.name + "already in Entities!");
+            }
+        }
+
+        public void OnEntityDie(GameEntity entity)
+        {
+            if (Entities.ContainsKey(entity.GetHashCode()))
+                Entities.Remove(entity.GetHashCode());
+
+            Destroy(entity.gameObject);
+        }
+        #endregion
+
         #region Test
 
         [ContextMenu("Change to Tutorial section")]
@@ -269,11 +293,19 @@ namespace GameJamCore
 
         //test
         public GameEntityConfig test_config;
+        public GameEntityConfig player_config;
+
 
         [ContextMenu("Create TestGameEntity using Config")]
         public void CreateTestGameEntity()
         {
             TestEntity.Create(config: test_config, UnityEngine.Vector3.zero, UnityEngine.Quaternion.identity);
+        }
+
+        [ContextMenu("Create Player")]
+        public void CreatePlayer()
+        {
+            TestEntity.Create(config: player_config, UnityEngine.Vector3.zero, UnityEngine.Quaternion.identity);
         }
 
         #endregion
