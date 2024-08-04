@@ -64,22 +64,28 @@ namespace GameJamCore
                 return true;
             }
         }
-
+        
         public virtual void OnEnter()
         {
+#if UNITY_EDITOR
             Debug.Log($"OnEnter: {Name}");
+#endif
         }
 
         public virtual void OnExit()
         {
-            Debug.Log($"OnExit: {Name}");
+#if UNITY_EDITOR
 
+            Debug.Log($"OnExit: {Name}");
+#endif
         }
 
         public virtual void OnUpdate()
         {
-            Debug.Log($"OnUpdate: {Name}");
+#if UNITY_EDITOR
 
+            Debug.Log($"OnUpdate: {Name}");
+#endif
         }
 
         #endregion
