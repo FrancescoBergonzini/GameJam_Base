@@ -193,8 +193,63 @@ namespace Study.GPP
         }
         #endregion
 
-        #region Lined observers
+        #region Linked observers
 
+        class LinedSubject
+        {
+            public LinkedObserver _head = null;
+
+            //Methods
+            public void AddObserver(LinkedObserver observer)
+            {
+                observer._next = _head;
+                _head = observer;
+            }
+
+            public void RemoveObserver(LinkedObserver observer)
+            {
+                if(_head == observer)
+                {
+                    _head = observer._next;
+                    observer._next = null;
+                    return;
+                }
+
+                LinkedObserver _current = _head;
+                while(_current != null)
+                {
+                    if(_current._next == observer)
+                    {
+                        _current._next = observer._next;
+                        observer._next = null;
+                        return;
+                    }
+
+                    _current = _current._next;
+                }
+            }
+
+            public void Notify(Entity entity, Event _event)
+            {
+                LinkedObserver observer = _head;
+                while(observer != null)
+                {
+                    observer.OnNotify(entity, _event);
+                    observer = observer._next;
+                }
+            }
+        }
+
+        class LinkedObserver
+        {
+            public LinkedObserver _next = null;
+
+            public void OnNotify(Entity entity, Event _event)
+            {
+                //
+            }
+
+        }
         #endregion
     }
 
