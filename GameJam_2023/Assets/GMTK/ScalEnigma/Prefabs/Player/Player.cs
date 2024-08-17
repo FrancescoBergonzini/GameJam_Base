@@ -9,44 +9,50 @@ namespace ScalEnigma
 {
     public class Player : BasePlayer
     {
-        private CharacterController controller;
-        private Vector3 playerVelocity;
 
         [Space]
-        [SerializeField] bool groundedPlayer;
+        [SerializeField] bool groundedPlayer = false;
         [SerializeField] float playerSpeed = 2.0f;
         [SerializeField] float jumpHeight = 1.0f;
-        [SerializeField] float gravityValue = -9.81f;
+
+        [Space]
+        public ClipTransition walk;
+        public ClipTransition idle;
+        public ClipTransition jump;
+
+        [Space]
+        public Rigidbody _rdb;
+
 
         private void Awake()
         {
-            controller = GetComponent<CharacterController>();
+            _rdb = GetComponent<Rigidbody>();
+        }
+
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.gameObject.tag == "Ground")
+            {
+                groundedPlayer = true;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.tag == "Ground")
+            {
+                groundedPlayer = false;
+            }
         }
 
         void Update()
         {
-            groundedPlayer = controller.isGrounded;
-            if (groundedPlayer && playerVelocity.y < 0)
-            {
-                playerVelocity.y = 0f;
-            }
+            float hor = Input.GetAxis("Horizontal");
 
-            Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            controller.Move(move * Time.deltaTime * playerSpeed);
+            Debug.Log(hor);
 
-            if (move != Vector3.zero)
-            {
-                gameObject.transform.forward = move;
-            }
-
-            // Changes the height position of the player..
-            if (Input.GetButtonDown("Jump") && groundedPlayer)
-            {
-                playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-            }
-
-            playerVelocity.y += gravityValue * Time.deltaTime;
-            controller.Move(playerVelocity * Time.deltaTime);
+            this._rdb.velocity = new Vector3(hor * playerSpeed, 0, 0);
         }
 
         #region Helpers
@@ -74,6 +80,7 @@ namespace ScalEnigma
 
             return animancer;
         }
+
 
         #endregion
 
