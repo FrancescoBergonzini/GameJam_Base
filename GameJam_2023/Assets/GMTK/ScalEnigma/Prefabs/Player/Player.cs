@@ -16,18 +16,13 @@ namespace ScalEnigma
         [SerializeField] float jumpHeight = 1.0f;
 
         [Space]
+        [SerializeField] float left_rot = 145;
+        [SerializeField] float right_rot = 210;
+
+        [Space]
         public ClipTransition walk;
         public ClipTransition idle;
         public ClipTransition jump;
-
-        [Space]
-        public Rigidbody _rdb;
-
-
-        private void Awake()
-        {
-            _rdb = GetComponent<Rigidbody>();
-        }
 
 
         private void OnTriggerEnter(Collider other)
@@ -48,16 +43,46 @@ namespace ScalEnigma
 
         void Update()
         {
-            float hor = Input.GetAxis("Horizontal");
+            float hor = Input.GetAxisRaw("Horizontal");
 
-            Debug.Log(hor);
+            this.GetRigidbody().velocity = new Vector3(hor * playerSpeed, this.GetRigidbody().velocity.y, this.GetRigidbody().velocity.z);
 
-            this._rdb.velocity = new Vector3(hor * playerSpeed, 0, 0);
+            if(hor > 0)
+            {
+                this.transform.rotation = Quaternion.Euler(0, left_rot, 0);
+            }
+            else if(hor < 0) 
+            {
+                this.transform.rotation = Quaternion.Euler(0, right_rot, 0);
+            }
+
+
+            if (Input.GetKeyDown(KeyCode.Space) && groundedPlayer)
+            {
+                this.GetRigidbody().AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+
+            }
+
+            if(GetRigidbody().velocity.y > 0.2 || GetRigidbody().velocity.y < -0.2)
+            {
+                GetAnimancer().Play(jump);
+            }
+            else
+            {
+                if(GetRigidbody().velocity.x == 0)
+                {
+                    GetAnimancer().Play(idle);
+                }
+                else
+                {
+                    GetAnimancer().Play(walk);
+                }
+            }
         }
 
         #region Helpers
 
-        public HighlightEffect highlight;
+        HighlightEffect highlight;
 
         public HighlightEffect GetHighlightEffect()
         {
@@ -69,7 +94,7 @@ namespace ScalEnigma
             return highlight;
         }
 
-        public AnimancerComponent animancer;
+        AnimancerComponent animancer;
 
         public AnimancerComponent GetAnimancer()
         {
@@ -79,6 +104,18 @@ namespace ScalEnigma
             }
 
             return animancer;
+        }
+
+        Rigidbody rdb;
+
+        public Rigidbody GetRigidbody()
+        {
+            if (rdb == null)
+            {
+                rdb = GetComponent<Rigidbody>();
+            }
+
+            return rdb;
         }
 
 
