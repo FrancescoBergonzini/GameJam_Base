@@ -4,11 +4,13 @@ using UnityEngine;
 using GameJamCore;
 using HighlightPlus;
 using DG.Tweening;
+using System;
 
 namespace ScalEnigma
 {
     public class BaseObject : GameEntity
     {
+        [Serializable]
         public struct Size
         {
             public enum SIZE
@@ -21,24 +23,54 @@ namespace ScalEnigma
 
 
             public Vector3 dimesion;
+
+            public Color color;
         }
 
-        public Size current_size = default;
+        public Size.SIZE current_size = Size.SIZE.MEDIUM;
 
-        
+        [Space]
+        public Size large;
+        public Size medium;
+        public Size small;
+
 
         public void SwichSize(Size size)
         {
-            if (current_size.state == size.state)
+            if (current_size == size.state)
             {
                 Debug.Log("Sono già di questa dimensione");
             }
 
-            current_size = size;
+            var sequence = DOTween.Sequence();
 
-            //this.transform.DOScale
+            sequence.Append(this.transform.DOScale(size.dimesion, ScanlEnigma.Instance.swich_duration).SetEase(ScanlEnigma.Instance.swich_ease));
+            
+            current_size = size.state;
+
         }
 
+        #region Testing
+
+        [ContextMenu("Swich large")]
+        public void SwichLarge()
+        {
+            SwichSize(large);
+        }
+
+        [ContextMenu("Swich medium")]
+        public void SwichMedium()
+        {
+            SwichSize(medium);
+        }
+
+        [ContextMenu("Swich small")]
+        public void SwichSmall()
+        {
+            SwichSize(small);
+        }
+
+        #endregion
 
         private void OnMouseEnter()
         {
@@ -66,7 +98,7 @@ namespace ScalEnigma
 
         }
 
-        public MeshRenderer rend;
+        private MeshRenderer rend;
         public MeshRenderer GetRenderer()
         {
             if(rend == null)
