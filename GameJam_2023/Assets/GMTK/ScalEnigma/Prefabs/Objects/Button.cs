@@ -7,7 +7,7 @@ namespace ScalEnigma
 {
     public class Button : MonoBehaviour
     {
-        GameObject target;
+        public GameObject target;
 
         private void OnTriggerEnter(Collider other)
         {
