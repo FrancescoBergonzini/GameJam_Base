@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GMTK/ScalEnigma/Scene/Level3.unity
     guid: b6ba601d1f3852d42a4b5653b83ee8fb
+  - enabled: 1
+    path: Assets/GMTK/ScalEnigma/Scene/Level4.unity
+    guid: 57f62ba7208df144e9810f978467a0d0
   m_configObjects: {}
