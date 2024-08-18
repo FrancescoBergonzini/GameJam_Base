@@ -584,7 +584,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 105365798844592938, guid: a4d8c1f08db8405468cceb323304f471, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.09
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 105365798844592938, guid: a4d8c1f08db8405468cceb323304f471, type: 3}
       propertyPath: m_LocalRotation.w
@@ -619,8 +619,20 @@ PrefabInstance:
       value: Frame (small)
       objectReference: {fileID: 0}
     - target: {fileID: 4388150142332872057, guid: a4d8c1f08db8405468cceb323304f471, type: 3}
+      propertyPath: large.z_pos
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388150142332872057, guid: a4d8c1f08db8405468cceb323304f471, type: 3}
+      propertyPath: small.z_pos
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388150142332872057, guid: a4d8c1f08db8405468cceb323304f471, type: 3}
       propertyPath: current_size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388150142332872057, guid: a4d8c1f08db8405468cceb323304f471, type: 3}
+      propertyPath: medium.z_pos
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4388150142332872057, guid: a4d8c1f08db8405468cceb323304f471, type: 3}
       propertyPath: large.dimesion.z
@@ -865,8 +877,20 @@ PrefabInstance:
       value: Door
       objectReference: {fileID: 0}
     - target: {fileID: 5783239332601972612, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
+      propertyPath: large.z_pos
+      value: 1.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 5783239332601972612, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
+      propertyPath: small.z_pos
+      value: 1.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 5783239332601972612, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
       propertyPath: current_size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5783239332601972612, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
+      propertyPath: medium.z_pos
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 7913303266161660375, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
       propertyPath: m_LocalScale.x
@@ -1601,6 +1625,18 @@ PrefabInstance:
       value: Cabinet
       objectReference: {fileID: 0}
     - target: {fileID: 3677420034248572854, guid: 729bb43440a94be41b7b9368c15d2099, type: 3}
+      propertyPath: large.z_pos
+      value: 0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677420034248572854, guid: 729bb43440a94be41b7b9368c15d2099, type: 3}
+      propertyPath: small.z_pos
+      value: 0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677420034248572854, guid: 729bb43440a94be41b7b9368c15d2099, type: 3}
+      propertyPath: medium.z_pos
+      value: 0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677420034248572854, guid: 729bb43440a94be41b7b9368c15d2099, type: 3}
       propertyPath: small.dimesion.x
       value: 1
       objectReference: {fileID: 0}
@@ -1986,7 +2022,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 105365798844592938, guid: a4d8c1f08db8405468cceb323304f471, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.89
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 105365798844592938, guid: a4d8c1f08db8405468cceb323304f471, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2019,6 +2055,18 @@ PrefabInstance:
     - target: {fileID: 3035403325246666313, guid: a4d8c1f08db8405468cceb323304f471, type: 3}
       propertyPath: m_Name
       value: Frame (big)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388150142332872057, guid: a4d8c1f08db8405468cceb323304f471, type: 3}
+      propertyPath: large.z_pos
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388150142332872057, guid: a4d8c1f08db8405468cceb323304f471, type: 3}
+      propertyPath: small.z_pos
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388150142332872057, guid: a4d8c1f08db8405468cceb323304f471, type: 3}
+      propertyPath: medium.z_pos
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4388150142332872057, guid: a4d8c1f08db8405468cceb323304f471, type: 3}
       propertyPath: large.dimesion.z
