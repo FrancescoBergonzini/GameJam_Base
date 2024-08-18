@@ -34,7 +34,6 @@ namespace ScalEnigma
         public Size medium;
         public Size small;
 
-
         public void SwichSize(Size size)
         {
             if (current_size == size.state)
@@ -72,6 +71,25 @@ namespace ScalEnigma
 
         #endregion
 
+        [Space]
+        public bool selected;
+
+        public bool Selected
+        {
+            get { return selected; }
+            set { 
+                
+                if (value)
+                {
+
+                }
+                else
+                {
+
+                }
+            
+            }
+        }
         private void OnMouseEnter()
         {
             { GetHighlightEffect().highlighted = true; };
@@ -85,18 +103,6 @@ namespace ScalEnigma
 
 
         #region Helpers
-
-        private OnMouseRedirector mouse_redirector;
-        public OnMouseRedirector GetMouseRedirector()
-        {
-            if(mouse_redirector == null)
-            {
-                mouse_redirector = GetComponentInChildren<OnMouseRedirector>();
-            }
-
-            return mouse_redirector;
-
-        }
 
         private MeshRenderer rend;
         public MeshRenderer GetRenderer()
