@@ -24,6 +24,8 @@ namespace ScalEnigma
 
             public Vector3 dimesion;
 
+            public float z_pos;
+
             public Color color;
         }
 
@@ -91,6 +93,8 @@ namespace ScalEnigma
             {
                 sequence.Join(this.transform.DOShakeScale(ScanlEnigma.Instance.swich_duration, 0.25f));
                 sequence.Join(this.transform.DOScale(size.dimesion, ScanlEnigma.Instance.swich_duration).SetEase(ScanlEnigma.Instance.swich_ease));
+                sequence.Join(this.transform.DOMoveZ(size.z_pos, ScanlEnigma.Instance.swich_duration));
+
             }
 
             current_size = size.size;
