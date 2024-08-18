@@ -568,7 +568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1052523883909196261, guid: 729bb43440a94be41b7b9368c15d2099, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1052523883909196261, guid: 729bb43440a94be41b7b9368c15d2099, type: 3}
       propertyPath: m_LocalScale.z
@@ -614,9 +614,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1052523883909196261, guid: 729bb43440a94be41b7b9368c15d2099, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1351296373977890433, guid: 729bb43440a94be41b7b9368c15d2099, type: 3}
+      propertyPath: m_Drag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1351296373977890433, guid: 729bb43440a94be41b7b9368c15d2099, type: 3}
+      propertyPath: m_Mass
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2734510133379017862, guid: 729bb43440a94be41b7b9368c15d2099, type: 3}
       propertyPath: m_Name
-      value: Cabinet (1)
+      value: Cabinet (Large)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677420034248572854, guid: 729bb43440a94be41b7b9368c15d2099, type: 3}
+      propertyPath: current_size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677420034248572854, guid: 729bb43440a94be41b7b9368c15d2099, type: 3}
+      propertyPath: large.dimesion.y
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -837,6 +857,9 @@ MonoBehaviour:
   player_config: {fileID: 0}
   swich_duration: 1
   swich_ease: 31
+  CanSelectObjects: 1
+  one: {fileID: 0}
+  two: {fileID: 0}
 --- !u!1 &712754606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1382,7 +1405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2734510133379017862, guid: 729bb43440a94be41b7b9368c15d2099, type: 3}
       propertyPath: m_Name
-      value: Cabinet
+      value: Cabinet (medium)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1525,42 +1548,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
-    - target: {fileID: 5783239332601972612, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
-      propertyPath: large.dimesion.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5783239332601972612, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
-      propertyPath: large.dimesion.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5783239332601972612, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
-      propertyPath: large.dimesion.z
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5783239332601972612, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
-      propertyPath: medium.dimesion.x
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 5783239332601972612, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
-      propertyPath: medium.dimesion.y
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5783239332601972612, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
-      propertyPath: medium.dimesion.z
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913303266161660375, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913303266161660375, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913303266161660375, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.15
-      objectReference: {fileID: 0}
     - target: {fileID: 7913303266161660375, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.89
@@ -1599,10 +1586,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7913303266161660375, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913303266161660375, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
-      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

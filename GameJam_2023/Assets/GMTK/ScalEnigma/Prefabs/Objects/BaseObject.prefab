@@ -59,7 +59,7 @@ MonoBehaviour:
   large:
     state: 2
     dimesion: {x: 1, y: 1, z: 1}
-    color: {r: 1, g: 0, b: 0, a: 1}
+    color: {r: 1, g: 0.93333334, b: 0, a: 1}
   medium:
     state: 1
     dimesion: {x: 0.5, y: 0.5, z: 0.5}
@@ -67,7 +67,8 @@ MonoBehaviour:
   small:
     state: 0
     dimesion: {x: 0.25, y: 0.25, z: 0.25}
-    color: {r: 0.07971394, g: 1, b: 0, a: 1}
+    color: {r: 1, g: 0.93333334, b: 0, a: 1}
+  highlighted: 0
   selected: 0
 --- !u!114 &3029096699787159794
 MonoBehaviour:
@@ -104,7 +105,7 @@ MonoBehaviour:
   cameraDistanceFadeFar: 1000
   normalsOption: 0
   ignore: 0
-  _highlighted: 0
+  _highlighted: 1
   fadeInDuration: 0
   fadeOutDuration: 0
   flipY: 0
@@ -112,14 +113,14 @@ MonoBehaviour:
   subMeshMask: -1
   overlay: 0
   overlayMode: 0
-  overlayColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  overlayColor: {r: 0.22974515, g: 1, b: 0, a: 0.28235295}
   overlayAnimationSpeed: 1
-  overlayMinIntensity: 0.5
+  overlayMinIntensity: 1
   overlayBlending: 1
   overlayTexture: {fileID: 0}
   overlayTextureUVSpace: 0
   overlayTextureScale: 1
-  outline: 1
+  outline: 0
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
   outlineColorStyle: 0
   outlineGradient:
@@ -161,11 +162,11 @@ MonoBehaviour:
   outlineOptimalBlit: 1
   outlineBlitDebug: 0
   outlineIndependent: 0
-  glow: 0.8
+  glow: 0
   glowWidth: 0.1
   glowQuality: 2
   glowDownsampling: 2
-  glowHQColor: {r: 0.04784838, g: 0.990566, b: 0, a: 1}
+  glowHQColor: {r: 1, g: 1, b: 1, a: 1}
   glowDithering: 1
   glowMagicNumber1: 0.75
   glowMagicNumber2: 0.5
@@ -190,7 +191,7 @@ MonoBehaviour:
   glowIgnoreMask: 0
   innerGlow: 0
   innerGlowWidth: 1
-  innerGlowColor: {r: 1, g: 1, b: 1, a: 1}
+  innerGlowColor: {r: 0.10893285, g: 1, b: 0, a: 1}
   innerGlowVisibility: 0
   targetFX: 0
   targetFXTexture: {fileID: 0}
@@ -231,8 +232,8 @@ MonoBehaviour:
   seeThroughTexture: {fileID: 0}
   seeThroughTextureUVSpace: 0
   seeThroughTextureScale: 1
-  rmsCount: 0
-  hitFxInitialIntensity: 0
+  rmsCount: 1
+  hitFxInitialIntensity: 1
   hitFxMode: 0
   hitFxFadeOutDuration: 0.25
   hitFxColor: {r: 1, g: 1, b: 1, a: 1}
