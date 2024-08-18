@@ -941,34 +941,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
-    - target: {fileID: 5783239332601972612, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
-      propertyPath: large.z_pos
-      value: 1.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 5783239332601972612, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
-      propertyPath: small.z_pos
-      value: 1.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 5783239332601972612, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
-      propertyPath: current_size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5783239332601972612, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
-      propertyPath: medium.z_pos
-      value: 1.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913303266161660375, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913303266161660375, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913303266161660375, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.35
-      objectReference: {fileID: 0}
     - target: {fileID: 7913303266161660375, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.9
@@ -1008,14 +980,6 @@ PrefabInstance:
     - target: {fileID: 7913303266161660375, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7913303266161660375, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8181394988836128435, guid: 7db7d04ef483be94a841fb91a0c50622, type: 3}
-      propertyPath: m_Constraints
-      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
