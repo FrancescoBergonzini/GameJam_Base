@@ -34,17 +34,51 @@ namespace ScalEnigma
         public Size medium;
         public Size small;
 
+        public Color GetColor()
+        {
+            switch (current_size)
+            {
+                case Size.SIZE.LITTLE: return small.color;
+                case Size.SIZE .MEDIUM: return medium.color;
+                case Size.SIZE.LARGE: return large.color;
+
+            }
+
+            return Color.white;
+        }
+
+        public Size GetSize()
+        {
+            switch (current_size)
+            {
+                case Size.SIZE.LITTLE: return small;
+                case Size.SIZE.MEDIUM: return medium;
+                case Size.SIZE.LARGE: return large;
+
+            }
+
+            return default;
+        }
+
         public void SwichSize(Size size)
         {
-            if (current_size == size.state)
-            {
-                Debug.Log("Sono già di questa dimensione");
-            }
 
             var sequence = DOTween.Sequence();
 
-            sequence.Append(this.transform.DOScale(size.dimesion, ScanlEnigma.Instance.swich_duration).SetEase(ScanlEnigma.Instance.swich_ease));
-            
+
+            if (current_size == size.state)
+            {
+                Debug.Log("Sono già di questa dimensione");
+
+                sequence.Join(this.transform.DOShakeScale(ScanlEnigma.Instance.swich_duration, 0.25f));
+
+            }
+            else
+            {
+                sequence.Join(this.transform.DOShakeScale(ScanlEnigma.Instance.swich_duration, 0.25f));
+                sequence.Join(this.transform.DOScale(size.dimesion, ScanlEnigma.Instance.swich_duration).SetEase(ScanlEnigma.Instance.swich_ease));
+            }
+
             current_size = size.state;
 
         }
@@ -79,32 +113,66 @@ namespace ScalEnigma
 
         private void OnMouseEnter()
         {
-            if (!selected)
+            if (!selected && ScanlEnigma.Instance.CanSelectObjects)
             {
-                { GetHighlightEffect().glow = 0.5f; };
+                GetHighlightEffect().glow = 0.5f;
+                GetHighlightEffect().SetGlowColor(GetColor());
+
                 highlighted = true;
             }
+        }
+
+        private void OnMouseExit()
+        {
+            if (!selected && ScanlEnigma.Instance.CanSelectObjects)
+            {
+                GetHighlightEffect().glow = 0.0f;
+                highlighted = false;
+            }
+
         }
 
 
         private void OnMouseDown()
         {
-            if (highlighted)
+            if (highlighted && !selected && ScanlEnigma.Instance.CanSelectObjects)
             {
-                selected = true;
+                EnableSelect();
+                return;
+
+            }
+
+            if (highlighted && selected)
+            {
+                DisableSelect();
+                return;
             }
         }
 
-
-        private void OnMouseExit()
+        public void DisableSelect(bool absolute = false)
         {
-            if (!selected)
-            {
-                { GetHighlightEffect().glow = 0.0f; };
-                highlighted = false;
-            }
+            selected = false;
+
+            GetHighlightEffect().HitFX();
+            GetHighlightEffect().glow = absolute ? 0.0f : 0.5f;
+            GetHighlightEffect().SetGlowColor(GetColor());
+
+            ScanlEnigma.Instance.OnObjectDeselected(this);
+        }
+
+        private void EnableSelect()
+        {
+            selected = true;
+
+            GetHighlightEffect().HitFX();
+            GetHighlightEffect().glow = 1f;
+            GetHighlightEffect().SetGlowColor(GetColor());
+
+            ScanlEnigma.Instance.OnObjectSelected(this);
 
         }
+
+
 
 
         #region Helpers
