@@ -92,6 +92,23 @@ namespace ScalEnigma
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+
+        public void ReloadScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        //
+        [Space]
+        public bool IstructionActive = false;
+        public GameObject istruction;
+        public void ToggleIstruction()
+        {
+            istruction.SetActive(IstructionActive);
+
+            IstructionActive = !IstructionActive;
+
+        }
     }
 }
 
