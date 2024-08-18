@@ -57,15 +57,15 @@ MonoBehaviour:
       m_Calls: []
   current_size: 1
   large:
-    state: 2
+    size: 2
     dimesion: {x: 1, y: 1, z: 1}
     color: {r: 1, g: 0.93333334, b: 0, a: 1}
   medium:
-    state: 1
+    size: 1
     dimesion: {x: 0.5, y: 0.5, z: 0.5}
     color: {r: 1, g: 0.93247044, b: 0, a: 1}
   small:
-    state: 0
+    size: 0
     dimesion: {x: 0.25, y: 0.25, z: 0.25}
     color: {r: 1, g: 0.93333334, b: 0, a: 1}
   highlighted: 0
@@ -232,7 +232,7 @@ MonoBehaviour:
   seeThroughTexture: {fileID: 0}
   seeThroughTextureUVSpace: 0
   seeThroughTextureScale: 1
-  rmsCount: 1
+  rmsCount: 0
   hitFxInitialIntensity: 1
   hitFxMode: 0
   hitFxFadeOutDuration: 0.25
