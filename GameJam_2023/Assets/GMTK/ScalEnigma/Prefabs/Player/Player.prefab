@@ -670,7 +670,8 @@ MonoBehaviour:
     _Clip: {fileID: 7400000, guid: 006d77688804b9340b7a3211d78959a6, type: 2}
     _Speed: 1
     _NormalizedStartTime: NaN
-  baseObject: {fileID: 0}
+  baseObject: {fileID: 4833513280403061906}
+  WCanvas: {fileID: 3901914004613977726}
 --- !u!1 &6306379442763232395
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,7 +719,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6306379442763232395}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}

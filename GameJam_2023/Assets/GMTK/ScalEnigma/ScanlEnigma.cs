@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameJamCore;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 namespace ScalEnigma
 {
@@ -85,6 +86,11 @@ namespace ScalEnigma
             {
                 two = null;
             }
+        }
+
+        public void NextScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

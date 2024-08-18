@@ -32,6 +32,18 @@ namespace ScalEnigma
             {
                 groundedPlayer = true;
             }
+
+        }
+
+        public void OnTriggerStay(Collider other)
+        {
+            if (other.TryGetComponent<Door>(out Door door))
+            {
+                if (door.Open)
+                {
+                    WCanvas.enabled = true;
+                }
+            }
         }
 
         private void OnTriggerExit(Collider other)
@@ -39,6 +51,11 @@ namespace ScalEnigma
             if (other.gameObject.layer == Layers.Edge || other.gameObject.layer == Layers.Object)
             {
                 groundedPlayer = false;
+            }
+
+            if (other.TryGetComponent<Door>(out Door door))
+            {
+                WCanvas.enabled = false;
             }
         }
 
@@ -84,6 +101,11 @@ namespace ScalEnigma
                 {
                     GetAnimancer().Play(walk);
                 }
+            }
+
+            if(Input.GetKeyDown(KeyCode.W) && WCanvas.isActiveAndEnabled)
+            {
+                ScanlEnigma.Instance.NextScene();
             }
         }
 
@@ -137,6 +159,9 @@ namespace ScalEnigma
 
             return baseObject;
         }
+
+        public Canvas WCanvas;
+ 
 
         #endregion
 
