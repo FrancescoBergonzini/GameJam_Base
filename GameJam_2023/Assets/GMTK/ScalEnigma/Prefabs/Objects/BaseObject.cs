@@ -13,13 +13,13 @@ namespace ScalEnigma
         [Serializable]
         public struct Size
         {
-            public enum SIZE
+            public enum STATE
             {
-                LITTLE,
+                SMALL,
                 MEDIUM,
                 LARGE
             }
-            public SIZE state;
+            public STATE size;
 
 
             public Vector3 dimesion;
@@ -27,7 +27,7 @@ namespace ScalEnigma
             public Color color;
         }
 
-        public Size.SIZE current_size = Size.SIZE.MEDIUM;
+        public Size.STATE current_size = Size.STATE.MEDIUM;
 
         [Space]
         public Size large;
@@ -38,9 +38,9 @@ namespace ScalEnigma
         {
             switch (current_size)
             {
-                case Size.SIZE.LITTLE: return small.color;
-                case Size.SIZE .MEDIUM: return medium.color;
-                case Size.SIZE.LARGE: return large.color;
+                case Size.STATE.SMALL: return small.color;
+                case Size.STATE .MEDIUM: return medium.color;
+                case Size.STATE.LARGE: return large.color;
 
             }
 
@@ -51,22 +51,36 @@ namespace ScalEnigma
         {
             switch (current_size)
             {
-                case Size.SIZE.LITTLE: return small;
-                case Size.SIZE.MEDIUM: return medium;
-                case Size.SIZE.LARGE: return large;
+                case Size.STATE.SMALL: return small;
+                case Size.STATE.MEDIUM: return medium;
+                case Size.STATE.LARGE: return large;
 
             }
 
             return default;
         }
 
+        public Size GetSize(Size.STATE size)
+        {
+            switch (size)
+            {
+                case Size.STATE.SMALL: return small;
+                case Size.STATE.MEDIUM: return medium;
+                case Size.STATE.LARGE: return large;
+
+            }
+
+            return default;
+        }
+
+
+
         public void SwichSize(Size size)
         {
-
             var sequence = DOTween.Sequence();
 
 
-            if (current_size == size.state)
+            if (current_size == size.size)
             {
                 Debug.Log("Sono già di questa dimensione");
 
@@ -79,8 +93,13 @@ namespace ScalEnigma
                 sequence.Join(this.transform.DOScale(size.dimesion, ScanlEnigma.Instance.swich_duration).SetEase(ScanlEnigma.Instance.swich_ease));
             }
 
-            current_size = size.state;
+            current_size = size.size;
 
+        }
+
+        public void SwichSize(Size.STATE state)
+        {
+            SwichSize(GetSize(state));
         }
 
         #region Testing

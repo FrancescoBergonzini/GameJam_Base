@@ -24,11 +24,11 @@ namespace ScalEnigma
 
         public void SwichSize(BaseObject one, BaseObject two)
         {
-            var one_dimension = one.GetSize();
-            var two_dimension = two.GetSize();
+            var one_size = one.current_size;
+            var two_size = two.current_size;
 
-            one.SwichSize(two_dimension);
-            two.SwichSize(one_dimension);
+            one.SwichSize(two_size);
+            two.SwichSize(one_size);
 
             //safe wait routine
             StartCoroutine(safe_wait_routine());
