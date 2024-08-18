@@ -16,7 +16,7 @@ namespace ScalEnigma
 
 
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerStay(Collider other)
         {
             if(other.gameObject.layer == Layers.Player)
             {
@@ -41,7 +41,6 @@ namespace ScalEnigma
         {
             if (other.gameObject.layer == Layers.Player)
             {
- 
                 if (Open)
                 {
                     if (DoorCr != null)
