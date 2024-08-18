@@ -470,7 +470,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   groundedPlayer: 1
-  playerSpeed: 2
+  playerSpeed: 4
   jumpHeight: 7
   left_rot: 100
   right_rot: 250
