@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -10,17 +11,28 @@ namespace ScalEnigma
         public bool disappear = false;
         public GameObject target;
 
+        //
+        public Transform button;
+        public float final_pos;
+
         private void OnTriggerEnter(Collider other)
         {
             if(other.gameObject.layer == Layers.Player)
             {
                 target.SetActive(true);
+
+                //
+                button.DOLocalMoveY(final_pos, 1);
             }
 
             if (other.gameObject.layer == Layers.Player && disappear == true)
             {
                 target.SetActive(false);
+
+                //
+                button.DOLocalMoveY(final_pos, 1);
             }
+
         }
     }
 }
