@@ -6,6 +6,15 @@ using DG.Tweening;
 
 namespace ScalEnigma
 {
+    public static class Layers
+    {
+        //new layers test
+        public const int Player = 10;
+        public const int Object = 11;
+        public const int Edge = 12;
+
+    }
+
     public class ScanlEnigma : GameManagerBase
     {
         public new static ScanlEnigma Instance;

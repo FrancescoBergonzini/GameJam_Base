@@ -10,6 +10,14 @@ namespace ScalEnigma
 {
     public class BaseObject : GameEntity
     {
+        [Space]
+        public bool CanChangeSize = true;
+
+        public void Awake()
+        {
+            SetLayerRecursively(this.gameObject, Layers.Object);
+        }
+
         [Serializable]
         public struct Size
         {
@@ -136,7 +144,7 @@ namespace ScalEnigma
 
         private void OnMouseEnter()
         {
-            if (!selected && ScanlEnigma.Instance.CanSelectObjects)
+            if (!selected && ScanlEnigma.Instance.CanSelectObjects && CanChangeSize)
             {
                 GetHighlightEffect().glow = 0.5f;
                 GetHighlightEffect().SetGlowColor(GetColor());
@@ -147,7 +155,7 @@ namespace ScalEnigma
 
         private void OnMouseExit()
         {
-            if (!selected && ScanlEnigma.Instance.CanSelectObjects)
+            if (!selected && ScanlEnigma.Instance.CanSelectObjects && CanChangeSize)
             {
                 GetHighlightEffect().glow = 0.0f;
                 highlighted = false;
@@ -158,7 +166,7 @@ namespace ScalEnigma
 
         private void OnMouseDown()
         {
-            if (highlighted && !selected && ScanlEnigma.Instance.CanSelectObjects)
+            if (highlighted && !selected && ScanlEnigma.Instance.CanSelectObjects && CanChangeSize)
             {
                 EnableSelect();
                 return;

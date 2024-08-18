@@ -94,6 +94,22 @@ namespace GameJamCore
             GameManagerBase.Instance.PlaySound(sound, position: (position != null ? (Vector3)position : transform.position), volume: volume_override);
         }
 
+        protected void SetLayerRecursively(GameObject obj, int newLayer)
+        {
+            if (obj == null)
+            {
+                return;
+            }
+
+            // Cambia il layer dell'oggetto
+            obj.layer = newLayer;
+
+            // Ricorsivamente cambia il layer di tutti i figli
+            foreach (Transform child in obj.transform)
+            {
+                SetLayerRecursively(child.gameObject, newLayer);
+            }
+        }
 
         #endregion
     }
