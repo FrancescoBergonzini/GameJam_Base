@@ -146,7 +146,7 @@ namespace ScalEnigma
         {
             if (!selected && ScanlEnigma.Instance.CanSelectObjects && CanChangeSize)
             {
-                GetHighlightEffect().glow = 0.5f;
+                GetHighlightEffect().glow = 1f;
                 GetHighlightEffect().SetGlowColor(GetColor());
 
                 highlighted = true;
@@ -185,7 +185,7 @@ namespace ScalEnigma
             selected = false;
 
             GetHighlightEffect().HitFX();
-            GetHighlightEffect().glow = absolute ? 0.0f : 0.5f;
+            GetHighlightEffect().glow = absolute ? 0.0f : 1f;
             GetHighlightEffect().SetGlowColor(GetColor());
 
             ScanlEnigma.Instance.OnObjectDeselected(this);
@@ -196,7 +196,7 @@ namespace ScalEnigma
             selected = true;
 
             GetHighlightEffect().HitFX();
-            GetHighlightEffect().glow = 1f;
+            GetHighlightEffect().glow = 2f;
             GetHighlightEffect().SetGlowColor(GetColor());
 
             ScanlEnigma.Instance.OnObjectSelected(this);
