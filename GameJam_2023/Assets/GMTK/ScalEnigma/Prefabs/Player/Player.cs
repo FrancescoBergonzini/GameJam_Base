@@ -26,17 +26,13 @@ namespace ScalEnigma
         public ClipTransition jump;
 
 
-        private void OnTriggerEnter(Collider other)
+        public void OnTriggerStay(Collider other)
         {
-            if(other.gameObject.layer == Layers.Edge || other.gameObject.layer == Layers.Object)
+            if (other.gameObject.layer == Layers.Edge || other.gameObject.layer == Layers.Object)
             {
                 groundedPlayer = true;
             }
 
-        }
-
-        public void OnTriggerStay(Collider other)
-        {
             if (other.TryGetComponent<Door>(out Door door))
             {
                 if (door.Open)
