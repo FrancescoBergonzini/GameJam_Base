@@ -2,20 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GameJamCore;
+using HighlightPlus;
 
 namespace ScalEnigma
 {
     public class BaseObject : GameEntity
     {
-        private Color startcolor;
-        void OnMouseEnter()
+
+        public void Awake()
         {
-            startcolor = GetRenderer().material.color;
-            GetRenderer().material.color = Color.yellow;
+            GetMouseRedirector().OnMouseOnObject += () => { GetHighlightEffect().highlighted = true; };
+            GetMouseRedirector().OnMouseExitFromObject += () => { GetHighlightEffect().highlighted = false; };
         }
-        void OnMouseExit()
+
+
+        #region Helpers
+
+        private OnMouseRedirector mouse_redirector;
+        public OnMouseRedirector GetMouseRedirector()
         {
-            GetRenderer().material.color = startcolor;
+            if(mouse_redirector == null)
+            {
+                mouse_redirector = GetComponentInChildren<OnMouseRedirector>();
+            }
+
+            return mouse_redirector;
+
         }
 
         public MeshRenderer rend;
@@ -26,6 +38,20 @@ namespace ScalEnigma
 
             return rend;
         }
+
+        HighlightEffect highlight;
+
+        public HighlightEffect GetHighlightEffect()
+        {
+            if (highlight == null)
+            {
+                highlight = GetComponent<HighlightEffect>();
+            }
+
+            return highlight;
+        }
+
+        #endregion
     }
 }
 

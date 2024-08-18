@@ -285,6 +285,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug_section: 1
+  Entities:
+    pairs: []
+    error: 0
   range:
     min: 0
     max: 0
