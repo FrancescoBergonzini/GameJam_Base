@@ -457,6 +457,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cabinet (medium)
       objectReference: {fileID: 0}
+    - target: {fileID: 3677420034248572854, guid: 729bb43440a94be41b7b9368c15d2099, type: 3}
+      propertyPath: large.dimesion.y
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
