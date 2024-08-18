@@ -4,6 +4,7 @@ using UnityEngine;
 using GameJamCore;
 using HighlightPlus;
 using Animancer;
+using System.Drawing;
 
 namespace ScalEnigma
 {
@@ -27,7 +28,7 @@ namespace ScalEnigma
 
         private void OnTriggerEnter(Collider other)
         {
-            if(other.gameObject.tag == "Ground")
+            if(other.gameObject.layer == Layers.Edge || other.gameObject.layer == Layers.Object)
             {
                 groundedPlayer = true;
             }
@@ -35,10 +36,16 @@ namespace ScalEnigma
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.gameObject.tag == "Ground")
+            if (other.gameObject.layer == Layers.Edge || other.gameObject.layer == Layers.Object)
             {
                 groundedPlayer = false;
             }
+        }
+
+        public void Start()
+        {
+            //not in awake to beat object...
+            SetLayerRecursively(this.gameObject, Layers.Player);
         }
 
         void Update()
@@ -118,6 +125,18 @@ namespace ScalEnigma
             return rdb;
         }
 
+        public BaseObject.Size.STATE size => GetBaseObject().current_size;
+
+        public BaseObject baseObject;
+        public BaseObject GetBaseObject()
+        {
+            if(baseObject == null)
+            {
+                baseObject = GetComponent<BaseObject>();
+            }
+
+            return baseObject;
+        }
 
         #endregion
 
