@@ -9,49 +9,80 @@ namespace ScalEnigma
 {
     public class Player : BasePlayer
     {
-        private CharacterController controller;
-        private Vector3 playerVelocity;
 
         [Space]
-        [SerializeField] bool groundedPlayer;
+        [SerializeField] bool groundedPlayer = false;
         [SerializeField] float playerSpeed = 2.0f;
         [SerializeField] float jumpHeight = 1.0f;
-        [SerializeField] float gravityValue = -9.81f;
 
-        private void Awake()
+        [Space]
+        [SerializeField] float left_rot = 145;
+        [SerializeField] float right_rot = 210;
+
+        [Space]
+        public ClipTransition walk;
+        public ClipTransition idle;
+        public ClipTransition jump;
+
+
+        private void OnTriggerEnter(Collider other)
         {
-            controller = GetComponent<CharacterController>();
+            if(other.gameObject.tag == "Ground")
+            {
+                groundedPlayer = true;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.tag == "Ground")
+            {
+                groundedPlayer = false;
+            }
         }
 
         void Update()
         {
-            groundedPlayer = controller.isGrounded;
-            if (groundedPlayer && playerVelocity.y < 0)
+            float hor = Input.GetAxisRaw("Horizontal");
+
+            this.GetRigidbody().velocity = new Vector3(hor * playerSpeed, this.GetRigidbody().velocity.y, this.GetRigidbody().velocity.z);
+
+            if(hor > 0)
             {
-                playerVelocity.y = 0f;
+                this.transform.rotation = Quaternion.Euler(0, left_rot, 0);
+            }
+            else if(hor < 0) 
+            {
+                this.transform.rotation = Quaternion.Euler(0, right_rot, 0);
             }
 
-            Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            controller.Move(move * Time.deltaTime * playerSpeed);
 
-            if (move != Vector3.zero)
+            if (Input.GetKeyDown(KeyCode.Space) && groundedPlayer)
             {
-                gameObject.transform.forward = move;
+                this.GetRigidbody().AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+
             }
 
-            // Changes the height position of the player..
-            if (Input.GetButtonDown("Jump") && groundedPlayer)
+            if(GetRigidbody().velocity.y > 0.2 || GetRigidbody().velocity.y < -0.2)
             {
-                playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+                GetAnimancer().Play(jump);
             }
-
-            playerVelocity.y += gravityValue * Time.deltaTime;
-            controller.Move(playerVelocity * Time.deltaTime);
+            else
+            {
+                if(GetRigidbody().velocity.x == 0)
+                {
+                    GetAnimancer().Play(idle);
+                }
+                else
+                {
+                    GetAnimancer().Play(walk);
+                }
+            }
         }
 
         #region Helpers
 
-        public HighlightEffect highlight;
+        HighlightEffect highlight;
 
         public HighlightEffect GetHighlightEffect()
         {
@@ -63,7 +94,7 @@ namespace ScalEnigma
             return highlight;
         }
 
-        public AnimancerComponent animancer;
+        AnimancerComponent animancer;
 
         public AnimancerComponent GetAnimancer()
         {
@@ -74,6 +105,19 @@ namespace ScalEnigma
 
             return animancer;
         }
+
+        Rigidbody rdb;
+
+        public Rigidbody GetRigidbody()
+        {
+            if (rdb == null)
+            {
+                rdb = GetComponent<Rigidbody>();
+            }
+
+            return rdb;
+        }
+
 
         #endregion
 
