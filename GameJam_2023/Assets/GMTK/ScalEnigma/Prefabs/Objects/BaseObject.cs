@@ -72,33 +72,38 @@ namespace ScalEnigma
         #endregion
 
         [Space]
+        public bool highlighted;
+
         public bool selected;
 
-        public bool Selected
-        {
-            get { return selected; }
-            set { 
-                
-                if (value)
-                {
 
-                }
-                else
-                {
-
-                }
-            
-            }
-        }
         private void OnMouseEnter()
         {
-            { GetHighlightEffect().highlighted = true; };
+            if (!selected)
+            {
+                { GetHighlightEffect().glow = 0.5f; };
+                highlighted = true;
+            }
+        }
+
+
+        private void OnMouseDown()
+        {
+            if (highlighted)
+            {
+                selected = true;
+            }
         }
 
 
         private void OnMouseExit()
         {
-            { GetHighlightEffect().highlighted = false; };
+            if (!selected)
+            {
+                { GetHighlightEffect().glow = 0.0f; };
+                highlighted = false;
+            }
+
         }
 
 

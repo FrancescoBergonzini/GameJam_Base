@@ -118,6 +118,74 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3029096699787159794, guid: 3dbe20393e07236478645309bbcf5561, type: 3}
+      propertyPath: glow
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3029096699787159794, guid: 3dbe20393e07236478645309bbcf5561, type: 3}
+      propertyPath: overlay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3029096699787159794, guid: 3dbe20393e07236478645309bbcf5561, type: 3}
+      propertyPath: innerGlow
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3029096699787159794, guid: 3dbe20393e07236478645309bbcf5561, type: 3}
+      propertyPath: _highlighted
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3029096699787159794, guid: 3dbe20393e07236478645309bbcf5561, type: 3}
+      propertyPath: glowHQColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3029096699787159794, guid: 3dbe20393e07236478645309bbcf5561, type: 3}
+      propertyPath: glowHQColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3029096699787159794, guid: 3dbe20393e07236478645309bbcf5561, type: 3}
+      propertyPath: glowHQColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3029096699787159794, guid: 3dbe20393e07236478645309bbcf5561, type: 3}
+      propertyPath: overlayColor.a
+      value: 0.28235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 3029096699787159794, guid: 3dbe20393e07236478645309bbcf5561, type: 3}
+      propertyPath: overlayColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3029096699787159794, guid: 3dbe20393e07236478645309bbcf5561, type: 3}
+      propertyPath: overlayColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3029096699787159794, guid: 3dbe20393e07236478645309bbcf5561, type: 3}
+      propertyPath: overlayColor.r
+      value: 0.22974515
+      objectReference: {fileID: 0}
+    - target: {fileID: 3029096699787159794, guid: 3dbe20393e07236478645309bbcf5561, type: 3}
+      propertyPath: overlayBlending
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3029096699787159794, guid: 3dbe20393e07236478645309bbcf5561, type: 3}
+      propertyPath: innerGlowColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3029096699787159794, guid: 3dbe20393e07236478645309bbcf5561, type: 3}
+      propertyPath: innerGlowColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3029096699787159794, guid: 3dbe20393e07236478645309bbcf5561, type: 3}
+      propertyPath: innerGlowColor.r
+      value: 0.10893285
+      objectReference: {fileID: 0}
+    - target: {fileID: 3029096699787159794, guid: 3dbe20393e07236478645309bbcf5561, type: 3}
+      propertyPath: overlayMinIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3029096699787159794, guid: 3dbe20393e07236478645309bbcf5561, type: 3}
+      propertyPath: hitFxInitialIntensity
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
