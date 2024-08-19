@@ -88,6 +88,10 @@ namespace GameJamCore
             foreach (Transform go in transform)
             {
                 var section = go.GetComponent<GameSessionBrain>();
+
+                if (section == null)
+                    return;
+
                 sections_brains.Add(section);
                 sections[section.Name] = section;
             }

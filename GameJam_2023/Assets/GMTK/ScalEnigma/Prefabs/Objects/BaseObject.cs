@@ -13,6 +13,16 @@ namespace ScalEnigma
         [Space]
         public bool CanChangeSize = true;
 
+        [Space]
+        public SoundData Maximize_sfx;
+        public SoundData Minimize_sfx;
+
+        public SoundData SameSize_sfx;
+
+        [Space]
+        public SoundData Select_sfx;
+        public SoundData Deselect_sfx;
+
         public void Awake()
         {
             SetLayerRecursively(this.gameObject, Layers.Object);
@@ -96,9 +106,22 @@ namespace ScalEnigma
 
                 sequence.Join(this.transform.DOShakeScale(ScanlEnigma.Instance.swich_duration, 0.25f));
 
+                //PlaySound(SameSize_sfx);
+
             }
             else
             {
+                if(current_size == Size.STATE.LARGE || current_size == Size.STATE.MEDIUM && size.size == Size.STATE.LARGE)
+                {
+                    //PlaySound(Minimize_sfx);
+                }
+                
+                if(current_size == Size.STATE.SMALL || current_size == Size.STATE.MEDIUM && size.size == Size.STATE.SMALL)
+                {
+                    //PlaySound(Maximize_sfx);
+
+                }
+
                 sequence.Join(this.transform.DOShakeScale(ScanlEnigma.Instance.swich_duration, 0.25f));
                 sequence.Join(this.transform.DOScale(size.dimesion, ScanlEnigma.Instance.swich_duration).SetEase(ScanlEnigma.Instance.swich_ease));
                 sequence.Join(this.transform.DOMoveZ(size.z_pos, ScanlEnigma.Instance.swich_duration));
@@ -106,6 +129,8 @@ namespace ScalEnigma
             }
 
             current_size = size.size;
+
+
 
         }
 
@@ -150,6 +175,7 @@ namespace ScalEnigma
                 GetHighlightEffect().SetGlowColor(GetColor());
 
                 highlighted = true;
+
             }
         }
 
@@ -189,6 +215,12 @@ namespace ScalEnigma
             GetHighlightEffect().SetGlowColor(GetColor());
 
             ScanlEnigma.Instance.OnObjectDeselected(this);
+
+            PlaySound(Deselect_sfx);
+
+            this.transform.DOShakeScale(0.5f, 0.1f);
+
+
         }
 
         private void EnableSelect()
@@ -200,6 +232,11 @@ namespace ScalEnigma
             GetHighlightEffect().SetGlowColor(GetColor());
 
             ScanlEnigma.Instance.OnObjectSelected(this);
+
+            PlaySound(Select_sfx);
+
+            this.transform.DOShakeScale(0.5f, 0.1f);
+
 
         }
 

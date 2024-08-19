@@ -68,56 +68,6 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
---- !u!1 &118358320592611157
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5701658706615694254}
-  - component: {fileID: 3180476202202665055}
-  m_Layer: 0
-  m_Name: tutorial
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &5701658706615694254
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 118358320592611157}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2347092801239702129}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3180476202202665055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 118358320592611157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac5eb515f85d8d14aa740f88a5d17337, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnGameSectionEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  OnGameSectionExit:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &419140887800369021
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,56 +107,6 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 419140887800369021}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac5eb515f85d8d14aa740f88a5d17337, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnGameSectionEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  OnGameSectionExit:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!1 &3947914304116210403
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4774298891264983433}
-  - component: {fileID: 2426390638401790746}
-  m_Layer: 0
-  m_Name: end
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &4774298891264983433
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3947914304116210403}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2347092801239702129}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2426390638401790746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3947914304116210403}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac5eb515f85d8d14aa740f88a5d17337, type: 3}
@@ -935,9 +835,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5701658706615694254}
   - {fileID: 443941442054784913}
-  - {fileID: 4774298891264983433}
   - {fileID: 7863917028322188562}
   - {fileID: 6275692402287743627}
   m_Father: {fileID: 0}
@@ -1015,6 +913,18 @@ MonoBehaviour:
   swich_duration: 1
   swich_ease: 31
   CanSelectObjects: 1
+  SwichSize_sfx:
+    clip: {fileID: 0}
+    clip_array:
+    - {fileID: 8300000, guid: 6f49f23d94a6cb5499e799fa0f366e50, type: 3}
+    - {fileID: 8300000, guid: fcdaff0dd43307446a90c8380b6203ca, type: 3}
+    - {fileID: 8300000, guid: ed9a185afd9fdae47909d361c321774d, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    randomize: 1
+    fattore_di_random: 0.1
+    source: {fileID: 0}
   one: {fileID: 0}
   two: {fileID: 0}
   IstructionActive: 1

@@ -20,16 +20,22 @@ namespace ScalEnigma
     {
         public new static ScanlEnigma Instance;
 
-        public void Awake()
+        public override void OnAwake()
         {
+            base.OnAwake();
+
             Instance = this;
         }
+
 
         [Space]
         public float swich_duration;
         public Ease swich_ease;
 
         public bool CanSelectObjects = true;
+
+        [Space]
+        public SoundData SwichSize_sfx;
 
 
         public void SwichSize(BaseObject one, BaseObject two)
@@ -39,6 +45,8 @@ namespace ScalEnigma
 
             one.SwichSize(two_size);
             two.SwichSize(one_size);
+
+            PlaySound(SwichSize_sfx);
 
             //safe wait routine
             StartCoroutine(safe_wait_routine());
