@@ -138,6 +138,15 @@ MonoBehaviour:
   door_frame: {fileID: 7136933564881564083}
   target_rot: 150
   duration: 1
+  open_sfx:
+    clip: {fileID: 8300000, guid: 434ebee348612a14a8df560b2e44dffb, type: 3}
+    clip_array: []
+    volume: 1
+    pitch: 1
+    loop: 0
+    randomize: 0
+    fattore_di_random: 0.2
+    source: {fileID: 0}
   objectDoor: {fileID: 5783239332601972612}
 --- !u!114 &5783239332601972612
 MonoBehaviour:
@@ -160,6 +169,24 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   CanChangeSize: 1
+  Select_sfx:
+    clip: {fileID: 0}
+    clip_array: []
+    volume: 1
+    pitch: 1
+    loop: 0
+    randomize: 0
+    fattore_di_random: 0.2
+    source: {fileID: 0}
+  Deselect_sfx:
+    clip: {fileID: 0}
+    clip_array: []
+    volume: 1
+    pitch: 1
+    loop: 0
+    randomize: 0
+    fattore_di_random: 0.2
+    source: {fileID: 0}
   current_size: 0
   large:
     size: 2
