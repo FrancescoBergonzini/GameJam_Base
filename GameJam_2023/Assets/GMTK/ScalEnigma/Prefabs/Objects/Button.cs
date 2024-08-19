@@ -1,4 +1,5 @@
 using DG.Tweening;
+using GameJamCore;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -15,6 +16,9 @@ namespace ScalEnigma
         public Transform button;
         public float final_pos;
 
+        [Space]
+        public SoundData active_sfx;
+
         private void OnTriggerEnter(Collider other)
         {
             if(other.gameObject.layer == Layers.Player)
@@ -23,6 +27,7 @@ namespace ScalEnigma
 
                 //
                 button.DOLocalMoveY(final_pos, 1);
+                GameManagerBase.Instance.PlaySound(active_sfx);
             }
 
             if (other.gameObject.layer == Layers.Player && disappear == true)
@@ -31,6 +36,8 @@ namespace ScalEnigma
 
                 //
                 button.DOLocalMoveY(final_pos, 1);
+                GameManagerBase.Instance.PlaySound(active_sfx);
+
             }
 
         }

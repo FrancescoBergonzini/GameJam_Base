@@ -52,6 +52,15 @@ MonoBehaviour:
   target: {fileID: 0}
   button: {fileID: 1250544612171486026}
   final_pos: 0
+  active_sfx:
+    clip: {fileID: 8300000, guid: fa8f976c36858f54ca4bd032a40b1f0a, type: 3}
+    clip_array: []
+    volume: 1
+    pitch: 1
+    loop: 0
+    randomize: 0
+    fattore_di_random: 0.2
+    source: {fileID: 0}
 --- !u!65 &6678889302530094005
 BoxCollider:
   m_ObjectHideFlags: 0

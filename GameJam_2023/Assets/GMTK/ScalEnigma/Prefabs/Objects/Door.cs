@@ -1,4 +1,5 @@
 using DG.Tweening;
+using GameJamCore;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,8 @@ namespace ScalEnigma
         public float target_rot = 145f;
         public float duration = 1f;
 
+        [Space]
+        public SoundData open_sfx;
 
 
         private void OnTriggerStay(Collider other)
@@ -27,9 +30,10 @@ namespace ScalEnigma
                 if (!Open)
                 {
                     if (DoorCr != null)
-                        DOTween.Kill(DoorCr);
+                        return;
 
                     DoorCr = StartCoroutine(OpenDoor());
+
                 }
 
             }
@@ -54,6 +58,7 @@ namespace ScalEnigma
         Coroutine DoorCr = null;
         IEnumerator OpenDoor()
         {
+            GameManagerBase.Instance.PlaySound(open_sfx);
             door_frame.DORotate(new Vector3(0,target_rot,0), duration);
 
             yield return new WaitForSeconds(duration);
