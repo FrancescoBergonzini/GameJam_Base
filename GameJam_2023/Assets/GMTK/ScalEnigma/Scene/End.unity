@@ -990,6 +990,26 @@ PrefabInstance:
       propertyPath: CanChangeSize
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4833513280403061906, guid: ced066e62464c654b8cdf3304396b66e, type: 3}
+      propertyPath: Select_sfx.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 23a9c7561ddec2d47a7de69c187c75bb, type: 3}
+    - target: {fileID: 4833513280403061906, guid: ced066e62464c654b8cdf3304396b66e, type: 3}
+      propertyPath: Deselect_sfx.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: e34cc6bd7c2c1c645be3923d9d2ef148, type: 3}
+    - target: {fileID: 4833513280403061906, guid: ced066e62464c654b8cdf3304396b66e, type: 3}
+      propertyPath: Select_sfx.volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833513280403061906, guid: ced066e62464c654b8cdf3304396b66e, type: 3}
+      propertyPath: Deselect_sfx.volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833513280403061906, guid: ced066e62464c654b8cdf3304396b66e, type: 3}
+      propertyPath: Select_sfx.fattore_di_random
+      value: 0.182
+      objectReference: {fileID: 0}
     - target: {fileID: 5103758429617699125, guid: ced066e62464c654b8cdf3304396b66e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.56

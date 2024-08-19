@@ -391,6 +391,15 @@ MonoBehaviour:
   swich_duration: 1
   swich_ease: 31
   CanSelectObjects: 1
+  SwichSize_sfx:
+    clip: {fileID: 0}
+    clip_array: []
+    volume: 1
+    pitch: 1
+    loop: 0
+    randomize: 0
+    fattore_di_random: 0.2
+    source: {fileID: 0}
   one: {fileID: 0}
   two: {fileID: 0}
   IstructionActive: 0
@@ -410,6 +419,22 @@ PrefabInstance:
     - target: {fileID: 5783239332601972612, guid: 9eadb1e7ad59a7c4abd0ec5a2977623a, type: 3}
       propertyPath: current_size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5783239332601972612, guid: 9eadb1e7ad59a7c4abd0ec5a2977623a, type: 3}
+      propertyPath: Select_sfx.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 23a9c7561ddec2d47a7de69c187c75bb, type: 3}
+    - target: {fileID: 5783239332601972612, guid: 9eadb1e7ad59a7c4abd0ec5a2977623a, type: 3}
+      propertyPath: Deselect_sfx.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: e34cc6bd7c2c1c645be3923d9d2ef148, type: 3}
+    - target: {fileID: 5783239332601972612, guid: 9eadb1e7ad59a7c4abd0ec5a2977623a, type: 3}
+      propertyPath: Select_sfx.volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5783239332601972612, guid: 9eadb1e7ad59a7c4abd0ec5a2977623a, type: 3}
+      propertyPath: Deselect_sfx.volume
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7913303266161660375, guid: 9eadb1e7ad59a7c4abd0ec5a2977623a, type: 3}
       propertyPath: m_LocalScale.x

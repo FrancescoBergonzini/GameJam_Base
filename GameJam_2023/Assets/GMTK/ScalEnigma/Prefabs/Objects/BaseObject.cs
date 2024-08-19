@@ -14,12 +14,6 @@ namespace ScalEnigma
         public bool CanChangeSize = true;
 
         [Space]
-        public SoundData Maximize_sfx;
-        public SoundData Minimize_sfx;
-
-        public SoundData SameSize_sfx;
-
-        [Space]
         public SoundData Select_sfx;
         public SoundData Deselect_sfx;
 
